@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStateMachine
+public class EnemyStateMachine//敌人状态机
 {
     public EnemyState currentState { get; private set; }
 
@@ -12,7 +12,7 @@ public class EnemyStateMachine
         currentState.Enter();
     }
 
-    public void ChangeState(EnemyState _newState)
+    public void ChangeState(EnemyState _newState)//改变状态函数
     {
         currentState.Exit();
         currentState = _newState;

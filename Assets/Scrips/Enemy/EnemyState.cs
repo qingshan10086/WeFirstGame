@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyState
+public class EnemyState//敌人状态
 {
-    protected EnemyStateMachine stateMachine;
-    protected Enemy enemyBase;
-    protected Rigidbody2D rb;
+    protected EnemyStateMachine stateMachine;//敌人状态机
+    protected Enemy enemyBase;//敌人基础类，为了提高代码复用率，在基类后会有其子类，如骷髅类
+    protected Rigidbody2D rb;//重力组件
 
 
-    private string animBoolName;
+    private string animBoolName;//动画bool变量名字
 
-    protected bool triggerCalled;
-    protected float stateTimer;
+    protected bool triggerCalled;//触发器
+    protected float stateTimer;//状态持续时间
 
-    public EnemyState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName)
+    public EnemyState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName)//构造函数初始化
     {
         this.enemyBase = _enemyBase;
         this.stateMachine = _stateMachine;
@@ -29,19 +29,19 @@ public class EnemyState
 
     public virtual void Enter()
     {
-        rb = enemyBase.rb;
+        rb = enemyBase.rb;//方便后期用rb代替enemyBase.rb
     
-        enemyBase.anim.SetBool(animBoolName, true);
+        enemyBase.anim.SetBool(animBoolName, true);//设置动画Bool变量为真
 
-        triggerCalled = false;
+        triggerCalled = false;//动画触发器
     }
 
     public virtual void Exit()
     {
-        enemyBase.anim.SetBool(animBoolName, false);
+        enemyBase.anim.SetBool(animBoolName, false);//设置动画Bool变量为假
     }
 
-    public virtual void AnimationFinishTrigger()
+    public virtual void AnimationFinishTrigger()//动画完成触发器函数
     {
         triggerCalled = true;
     }

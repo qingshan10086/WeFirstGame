@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParalaxBackGround : MonoBehaviour
+public class ParalaxBackGround : MonoBehaviour//该类用来让背景随着主角移动而移动
 {
     private GameObject cam;
 

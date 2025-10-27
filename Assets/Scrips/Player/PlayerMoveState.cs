@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMoveState : PlayerGroundedState
+public class PlayerMoveState : PlayerGroundedState//移动状态
 {
     public PlayerMoveState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
@@ -25,7 +25,7 @@ public class PlayerMoveState : PlayerGroundedState
 
         player.SetVelocity(xInput*player.moveSpeed,rb.velocity.y);
 
-        if (xInput == 0)
+        if (xInput == 0)        //如果没有移动输入则转入站立状态
         {
             stateMachine.ChangeState(player.idleState);
         }

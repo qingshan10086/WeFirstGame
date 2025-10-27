@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerJumpState : PlayerState
+public class PlayerJumpState : PlayerState//跳跃状态
 {
     public PlayerJumpState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
@@ -13,7 +13,7 @@ public class PlayerJumpState : PlayerState
     {
         base.Enter();
 
-        rb.velocity = new Vector2(rb.velocity.x, player.jumpForce);
+        rb.velocity = new Vector2(rb.velocity.x, player.jumpForce);   //初始化时输入跳跃力
     }
 
     public override void Exit()
@@ -25,7 +25,9 @@ public class PlayerJumpState : PlayerState
     {
         base.Update();
 
-        if (rb.velocity.y < 0)
+        player.SetVelocity(xInput * player.moveSpeed, rb.velocity.y);
+
+        if (rb.velocity.y < 0)    //如果向下掉就进入空中状态
         {
             stateMachine.ChangeState(player.airState);
         }
