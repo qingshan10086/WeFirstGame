@@ -17,13 +17,14 @@ public class SkeletonGroundedState : EnemyState//骷髅兵地面状态，保含站立和移动
     {
         base.Enter();
 
-        player = GameObject.Find("Player").transform;//获取玩家位置信息
+        player = PlayerManager.instance.player.transform;//获取玩家位置信息
     }
 
     public override void Exit()
     {
         base.Exit();
     }
+    
 
     public override void Updata()
     {

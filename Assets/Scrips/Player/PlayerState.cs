@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerState//玩家状态
 {
     protected PlayerStateMachine stateMachine; //获取玩家状态机
-    protected Player player;                   //玩家类
+    protected  Player player;                   //玩家类
 
     protected Rigidbody2D rb;                  //获取重力组件
 

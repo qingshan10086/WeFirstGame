@@ -18,7 +18,7 @@ public class SkeletonBattleState : EnemyState//骷髅兵战斗状态
     {
         base.Enter();
 
-        player=GameObject.Find("Player").transform;//获取玩家位置信息
+        player=PlayerManager.instance.player.transform;//获取玩家位置信息
 
         
     }

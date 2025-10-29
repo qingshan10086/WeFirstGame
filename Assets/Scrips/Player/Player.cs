@@ -16,18 +16,17 @@ public class Player : Entity//玩家类其父类为实体
     public float moveSpeed;                 //移动速度
     public float jumpForce;                 //跳跃力
 
+
     [Header("Dash info")]                   //冲刺输入
-    [SerializeField] private float dashCooldown;    //冲刺冷却
-    [SerializeField]private float dashTimer;        //冲刺冷却辅助
     public float dashSpeed;                 //冲刺速度
     public float dashDuration;              //冲刺持续时间
-    public float dashFaceDir {  get; set; }     //冲刺方向
+    public float dashFaceDir {  get;private set; }     //冲刺方向
 
     
 
 
 
-
+    public SkillManager skill {  get;private set; }//申明SkikllManager类
 
 
     #region States   各个状态
@@ -67,6 +66,8 @@ public class Player : Entity//玩家类其父类为实体
     {
         base.Start();
 
+        skill = SkillManager.instance;
+
         stateMachine.Initialize(idleState);   //初始化状态
     }
 
@@ -97,7 +98,7 @@ public class Player : Entity//玩家类其父类为实体
             return;
         }
 
-        dashTimer -= Time.deltaTime;
+       
 
         dashFaceDir = Input.GetAxisRaw("Horizontal");
         if (dashFaceDir == 0)
@@ -105,11 +106,11 @@ public class Player : Entity//玩家类其父类为实体
             dashFaceDir = faceDirection;
         }
 
-        if (Input.GetKeyDown(KeyCode.L)&&dashTimer<0)
+        if (Input.GetKeyDown(KeyCode.L)&&SkillManager.instance.dash.CanUseSkill())
         {
            
             stateMachine.ChangeState(dashState);
-            dashTimer = dashCooldown;
+            
         }
     }
 
