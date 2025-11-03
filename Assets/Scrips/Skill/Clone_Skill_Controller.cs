@@ -43,7 +43,7 @@ public class Clone_Skill_Controller : MonoBehaviour//克隆技能管理器
     {
         if (_canAttack)
         {
-            anim.SetInteger("AttackNumber", Random.Range(1, 3));//使克隆体随机攻击
+            anim.SetInteger("AttackNumber", Random.Range(1, 4));//使克隆体随机攻击
         }
 
         transform.position = _newTransform.position;//获取玩家位置

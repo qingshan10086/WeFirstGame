@@ -41,6 +41,9 @@ public class Player : Entity//玩家类其父类为实体
 
     public PlayerPrimaryAttackState primaryAttak {  get; private set; }
     public PlayerCounterAttackState counterAttackState { get; private set; }
+
+    public PlayerAimSwordState aimSwordState { get; private set; }
+    public PlayerCatchSwordState catchSwordState { get; private set; }
     #endregion
 
     protected override void Awake()
@@ -60,6 +63,8 @@ public class Player : Entity//玩家类其父类为实体
         primaryAttak = new PlayerPrimaryAttackState(this, stateMachine, "PrimaryAttack");
         counterAttackState = new PlayerCounterAttackState(this, stateMachine, "CounterAttack");
 
+        aimSwordState = new PlayerAimSwordState(this, stateMachine, "AimSword");
+        catchSwordState = new PlayerCatchSwordState(this, stateMachine, "CatchSword");
     }
 
     protected override void Start()

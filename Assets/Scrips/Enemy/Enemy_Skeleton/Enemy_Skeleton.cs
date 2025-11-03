@@ -36,10 +36,6 @@ public class Enemy_Skeleton : Enemy//敌人中的骷髅兵
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            stateMachine.ChangeState(stunnedState);
-        }
     }
 
     public override bool CanBeStunned()//被弹反状态优先级较高
