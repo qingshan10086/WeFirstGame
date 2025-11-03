@@ -19,6 +19,9 @@ public class PlayerAnimationTriggers : MonoBehaviour//动画机触发类，其内部函数都
             if (hit.GetComponent<Enemy>() != null)
             {
                 hit.GetComponent<Enemy>().Damage();//攻击敌人
+                hit.GetComponent<CharacterStats>().TakeDamage(player.stats.damage.GetValue());//输出战斗伤害
+
+                Debug.Log(player.stats.damage.GetValue());//
             }
         }
     }

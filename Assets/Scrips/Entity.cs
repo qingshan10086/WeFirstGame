@@ -10,6 +10,8 @@ public class Entity : MonoBehaviour      //实体类，用来储存玩家和怪物共同的行为
     public Rigidbody2D rb;                         //用来获取重力组件
 
     public EntityFX fx {  get; private set; }       //用来做一些光效的类，如受到攻击变白色
+
+    public CharacterStats stats { get; private set; }//角色数据统计
     #endregion
 
 
@@ -44,6 +46,7 @@ public class Entity : MonoBehaviour      //实体类，用来储存玩家和怪物共同的行为
         fx = GetComponentInChildren<EntityFX>();            //获取子物体挂载的光效脚本
         anim = GetComponentInChildren<Animator>();          //获取子物体挂载的动画机组件
         rb = GetComponent<Rigidbody2D>();                   //获取重力组件
+        stats = GetComponent<CharacterStats>();             //获取数据组件
     }
 
     protected virtual void Update()
