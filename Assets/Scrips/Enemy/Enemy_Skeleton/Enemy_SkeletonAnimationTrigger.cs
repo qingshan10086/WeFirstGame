@@ -19,7 +19,10 @@ public class Enemy_SkeletonAnimationTrigger : MonoBehaviour//÷¼÷Ã±ø¶¯»­´¥·¢Æ÷¹ÜÀ
         {
             if (hit.GetComponent<Player>() != null)//Èç¹ûÓĞÍæ¼ÒÔòÔì³ÉÏàÓ¦¹¥»÷¹âĞ§
             {
-                hit.GetComponent<Player>().Damage();
+                PlayerStats target = hit.GetComponent<PlayerStats>();
+                enemy.stats.DoDamage(target);
+
+               
             }
 
         }

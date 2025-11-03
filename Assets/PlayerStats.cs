@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class PlayerStats :CharacterStats
 {
-    // Start is called before the first frame update
-    void Start()
+    Player player;
+
+    protected override void Start()
     {
-        
+        base.Start();
+
+        player = GetComponent<Player>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void TakeDamage(int _damage)
     {
-        
+        base.TakeDamage(_damage);
+
+        player.DamageEffect();
     }
+
 }

@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class EnemyStats :CharacterStats
 {
-    // Start is called before the first frame update
-    void Start()
+    private Enemy enemy;
+
+    protected override void Start()
     {
-        
+        base.Start();
+
+        enemy = GetComponent<Enemy>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void TakeDamage(int _damage)
     {
-        
+        base.TakeDamage(_damage);
+
+
+        enemy.DamageEffect();
     }
 }

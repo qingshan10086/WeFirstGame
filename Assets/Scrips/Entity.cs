@@ -113,7 +113,7 @@ public class Entity : MonoBehaviour      //实体类，用来储存玩家和怪物共同的行为
         rb.velocity = new Vector2(0, 0);
     }
 
-    public virtual void Damage()                        //攻击效果管理函数
+    public virtual void DamageEffect()                        //攻击效果管理函数
     {
         fx.StartCoroutine("FlashFX");                   //开始光效协程
         StartCoroutine("HitKnockback");                 //开始击退协程

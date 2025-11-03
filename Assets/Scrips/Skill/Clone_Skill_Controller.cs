@@ -66,7 +66,7 @@ public class Clone_Skill_Controller : MonoBehaviour//克隆技能管理器
         {
             if (hit.GetComponent<Enemy>() != null)
             {
-                hit.GetComponent<Enemy>().Damage();//攻击敌人
+                hit.GetComponent<Enemy>().DamageEffect();//攻击敌人
             }
         }
     }
