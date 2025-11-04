@@ -39,6 +39,7 @@ public class EnemyState//敌人状态
     public virtual void Exit()
     {
         enemyBase.anim.SetBool(animBoolName, false);//设置动画Bool变量为假
+        
     }
 
     public virtual void AnimationFinishTrigger()//动画完成触发器函数

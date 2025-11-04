@@ -21,7 +21,7 @@ public class Skill : MonoBehaviour//玩家技能的父类,
             return true;
         }
 
-        Debug.Log("技能正在冷却");
+        
         return false;
     }
 

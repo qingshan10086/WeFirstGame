@@ -26,6 +26,7 @@ public class Enemy : Entity//所有敌人的父类
 
     public EnemyStateMachine stateMachine { get; private set; }//声明敌人状态机
 
+
     protected override void Awake()
     {
         base.Awake();
@@ -79,5 +80,6 @@ public class Enemy : Entity//所有敌人的父类
         canBeStunned = false;
         counterImage.SetActive(false);
     }
+
 
 }

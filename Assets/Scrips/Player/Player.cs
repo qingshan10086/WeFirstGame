@@ -44,6 +44,7 @@ public class Player : Entity//玩家类其父类为实体
 
     public PlayerAimSwordState aimSwordState { get; private set; }
     public PlayerCatchSwordState catchSwordState { get; private set; }
+    public PlayerDeadState deadState { get; private set; }
     #endregion
 
     protected override void Awake()
@@ -65,6 +66,7 @@ public class Player : Entity//玩家类其父类为实体
 
         aimSwordState = new PlayerAimSwordState(this, stateMachine, "AimSword");
         catchSwordState = new PlayerCatchSwordState(this, stateMachine, "CatchSword");
+        deadState = new PlayerDeadState(this, stateMachine, "Die");
     }
 
     protected override void Start()
@@ -129,4 +131,11 @@ public class Player : Entity//玩家类其父类为实体
         isBusy = false;
     }
 
+
+    public override void Die()
+    {
+        base.Die();
+
+        stateMachine.ChangeState(deadState);
+    }
 }

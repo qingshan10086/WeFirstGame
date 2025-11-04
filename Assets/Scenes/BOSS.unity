@@ -2834,9 +2834,9 @@ GameObject:
   - component: {fileID: 1058726284}
   - component: {fileID: 1058726283}
   - component: {fileID: 1058726285}
-  - component: {fileID: 1058726286}
   - component: {fileID: 1058726287}
   - component: {fileID: 1058726288}
+  - component: {fileID: 1058726289}
   m_Layer: 7
   m_Name: Enemy_Skeleton
   m_TagString: Untagged
@@ -2927,8 +2927,59 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &1058726286
-BoxCollider2D:
+--- !u!114 &1058726287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058726282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c436395126cc069498576acf9c57df7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashDuration: 0.2
+  hitMat: {fileID: 2100000, guid: ba74bf30a384e644b830979ee9a04519, type: 2}
+--- !u!114 &1058726288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058726282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b53b847f618cb6499a55947e07a2198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strength:
+    baseValue: 0
+    modifiers: 
+  agility:
+    baseValue: 0
+    modifiers: 
+  intellegence:
+    baseValue: 0
+    modifiers: 
+  vitality:
+    baseValue: 0
+    modifiers: 
+  maxHealth:
+    baseValue: 1000
+    modifiers: 
+  armor:
+    baseValue: 0
+    modifiers: 
+  evasion:
+    baseValue: 0
+    modifiers: 
+  damage:
+    baseValue: 5
+    modifiers: 
+  currentHealth: 0
+--- !u!70 &1058726289
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2959,55 +3010,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.06474304, y: -0.0092487335}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.4809418, y: 2.2208571}
-  m_EdgeRadius: 0
---- !u!114 &1058726287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1058726282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c436395126cc069498576acf9c57df7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flashDuration: 0.2
-  hitMat: {fileID: 2100000, guid: ba74bf30a384e644b830979ee9a04519, type: 2}
---- !u!114 &1058726288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1058726282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b53b847f618cb6499a55947e07a2198, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  strength:
-    baseValue: 0
-    modifiers: 
-  damage:
-    baseValue: 5
-    modifiers: 
-  maxHealth:
-    baseValue: 100
-    modifiers: 
-  currentHealth: 0
+  m_Offset: {x: 0.12024498, y: 0.009619713}
+  m_Size: {x: 1.2984295, y: 2.1738148}
+  m_Direction: 0
 --- !u!1 &1084918467
 GameObject:
   m_ObjectHideFlags: 0
@@ -3352,11 +3357,26 @@ MonoBehaviour:
   strength:
     baseValue: 0
     modifiers: 
-  damage:
-    baseValue: 10
+  agility:
+    baseValue: 0
+    modifiers: 
+  intellegence:
+    baseValue: 0
+    modifiers: 
+  vitality:
+    baseValue: 0
     modifiers: 
   maxHealth:
-    baseValue: 100
+    baseValue: 1000
+    modifiers: 
+  armor:
+    baseValue: 0
+    modifiers: 
+  evasion:
+    baseValue: 0
+    modifiers: 
+  damage:
+    baseValue: 10
     modifiers: 
   currentHealth: 0
 --- !u!1 &1288509890

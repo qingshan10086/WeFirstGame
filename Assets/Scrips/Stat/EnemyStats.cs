@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStats :CharacterStats
+public class EnemyStats :CharacterStats//敌人的数据
 {
     private Enemy enemy;
 
@@ -18,6 +18,12 @@ public class EnemyStats :CharacterStats
         base.TakeDamage(_damage);
 
 
-        enemy.DamageEffect();
+        enemy.DamageEffect();//攻击效果
+    }
+
+    protected override void Die()
+    {
+        base.Die();
+        enemy.Die();
     }
 }

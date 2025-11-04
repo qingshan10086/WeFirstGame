@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable]//相当于{get;private set;}不过更易调Bug
-public class Stat //记录游戏战斗数据的类，如攻击伤害
+public class Stat //记录各种游戏战斗数据的类，如攻击伤害
 {
     [SerializeField] private int baseValue;//基础值
 
@@ -20,6 +20,12 @@ public class Stat //记录游戏战斗数据的类，如攻击伤害
 
         return finalValue;
     }
+
+    public void SetDefalutValue(int _value)
+    {
+        baseValue= _value;
+    }
+
 
     public void AddModifier(int _modifier)//数据输入
     {
