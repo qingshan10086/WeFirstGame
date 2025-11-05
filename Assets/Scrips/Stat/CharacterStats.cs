@@ -26,7 +26,7 @@ public class CharacterStats : MonoBehaviour//角色数据
     public Stat evasion;//闪避
 
 
-    public System.Action onHealthChanged;
+    public System.Action onHealthChanged;//血条更新委托
     
 
 
@@ -37,7 +37,10 @@ public class CharacterStats : MonoBehaviour//角色数据
     {
         critPower.SetDefalutValue(150);
         currentHealth = GetMaxHealthValue();//初始化血量
+
+       
     }
+
 
     public virtual void DoDamage(CharacterStats _targetStats)//进行攻击数据的计算，然后输出
     {
@@ -89,7 +92,13 @@ public class CharacterStats : MonoBehaviour//角色数据
     {
         currentHealth-=_damage;
 
-        Debug.Log(_damage);
+      
+
+        if(onHealthChanged != null)//防空
+        {
+            onHealthChanged();
+        }
+
 
         if (currentHealth < 0)
         {

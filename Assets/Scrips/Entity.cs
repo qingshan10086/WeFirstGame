@@ -16,7 +16,7 @@ public class Entity : MonoBehaviour      //实体类，用来储存玩家和怪物共同的行为
     #endregion
 
 
-    public System.Action onFlipped;
+    public System.Action onFlipped;//血条不翻转委托
 
 
     [Header("Knockback info")]                           //击退相关

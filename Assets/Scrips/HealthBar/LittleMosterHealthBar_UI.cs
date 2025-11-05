@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar_UI : MonoBehaviour
+public class LittleMosterHealthBar_UI : MonoBehaviour//小怪挂载在血条上面的脚本
 {
-    private Entity entity;
-    private CharacterStats myStats;
-    private RectTransform rectTransform;
+    private Entity entity;//获取实体
+    private CharacterStats myStats;//获取数据
+    private RectTransform rectTransform;//用来保持血条不翻转
     private Slider slider;
 
 
@@ -18,8 +18,8 @@ public class HealthBar_UI : MonoBehaviour
         entity = GetComponentInParent<Entity>();
         myStats = GetComponentInParent<CharacterStats>();
 
-        entity.onFlipped += FlipUI;
-        myStats.onHealthChanged += UpdateHealthUI;
+        entity.onFlipped += FlipUI;//订阅不翻转事件
+        myStats.onHealthChanged += UpdateHealthUI;//订阅血条更新事件
 
        
     }
@@ -28,15 +28,17 @@ public class HealthBar_UI : MonoBehaviour
    
 
 
-    private void UpdateHealthUI()
+    private void UpdateHealthUI()//血条更新函数
     {
-        slider.maxValue =myStats.GetMaxHealthValue();
-        slider.value = myStats.currentHealth;
+        slider.maxValue =myStats.GetMaxHealthValue();//血条最大值
+        slider.value = myStats.currentHealth;//血条当前值
+
+       
     }
 
 
 
-    private void FlipUI()
+    private void FlipUI()//防血条翻转
     {
         rectTransform.Rotate(0, 180, 0);
     }
@@ -46,7 +48,7 @@ public class HealthBar_UI : MonoBehaviour
         
     }
 
-    private void OnDisable()
+    private void OnDisable()//取消订阅
     {
         entity.onFlipped -= FlipUI;
         myStats.onHealthChanged-=UpdateHealthUI;
