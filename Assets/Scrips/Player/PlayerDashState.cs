@@ -13,7 +13,7 @@ public class PlayerDashState : PlayerState//冲刺状态
     public override void Enter()
     {
         base.Enter();
-        player.skill.clone.CreatClone(player.transform);//冲刺时创造一个克隆体
+        //player.skill.clone.CreatClone(player.transform);//冲刺时创造一个克隆体
 
         stateTimer = player.dashDuration;  //冲刺持续时间
     }
