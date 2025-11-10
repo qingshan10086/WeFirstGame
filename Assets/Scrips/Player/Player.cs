@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Player : Entity//玩家类其父类为实体
 {
+    public GameObject Text;//获取对话框物体，用来实现对话时不能移动
+
+
     public bool isBusy {  get; private set; }  //用来辅助该状态是否能转入其他状态
 
     [Header("Attack details")]              //攻击相关数据
@@ -45,6 +48,7 @@ public class Player : Entity//玩家类其父类为实体
     public PlayerAimSwordState aimSwordState { get; private set; }
     public PlayerCatchSwordState catchSwordState { get; private set; }
     public PlayerDeadState deadState { get; private set; }
+    public PlayerReadTextState readTextState { get; private set; }
     #endregion
 
     protected override void Awake()
@@ -67,6 +71,7 @@ public class Player : Entity//玩家类其父类为实体
         aimSwordState = new PlayerAimSwordState(this, stateMachine, "AimSword");
         catchSwordState = new PlayerCatchSwordState(this, stateMachine, "CatchSword");
         deadState = new PlayerDeadState(this, stateMachine, "Die");
+        readTextState = new PlayerReadTextState(this, stateMachine, "Idle");
     }
 
     protected override void Start()
@@ -78,10 +83,11 @@ public class Player : Entity//玩家类其父类为实体
         stateMachine.Initialize(idleState);   //初始化状态
     }
 
-
     protected override void Update()
     {
         base.Update();
+
+        if (Text.activeSelf){ stateMachine.ChangeState(readTextState); }
 
         stateMachine.currentState.Update();  
 
