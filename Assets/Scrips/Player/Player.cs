@@ -87,6 +87,7 @@ public class Player : Entity//玩家类其父类为实体
     {
         base.Update();
 
+        
         if (Text.activeSelf){ stateMachine.ChangeState(readTextState); }
 
         stateMachine.currentState.Update();  

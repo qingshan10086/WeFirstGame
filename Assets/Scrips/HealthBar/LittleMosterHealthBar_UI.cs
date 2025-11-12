@@ -50,7 +50,14 @@ public class LittleMosterHealthBar_UI : MonoBehaviour//小怪挂载在血条上面的脚本
 
     private void OnDisable()//取消订阅
     {
-        entity.onFlipped -= FlipUI;
-        myStats.onHealthChanged-=UpdateHealthUI;
+        if (entity != null)
+        {
+            entity.onFlipped -= FlipUI;
+        }
+
+        if (myStats != null)
+        {
+            myStats.onHealthChanged -= UpdateHealthUI;
+        }
     }
 }
