@@ -12,7 +12,7 @@ public class Entity : MonoBehaviour      //实体类，用来储存玩家和怪物共同的行为
     public EntityFX fx {  get; private set; }       //用来做一些光效的类，如受到攻击变白色
 
     public CharacterStats stats { get; private set; }//角色数据统计
-    public CapsuleCollider2D cd { get; private set; }
+    public CapsuleCollider2D cd { get; private set; }//胶囊碰撞体
     #endregion
 
 
