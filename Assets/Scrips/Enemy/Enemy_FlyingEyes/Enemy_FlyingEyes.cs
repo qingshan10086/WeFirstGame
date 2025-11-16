@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 
 public class Enemy_FlyingEyes : Enemy//´óÑÛ¾¦¹ÖÎï
@@ -9,7 +10,9 @@ public class Enemy_FlyingEyes : Enemy//´óÑÛ¾¦¹ÖÎï
     public FlyingEyesBattleState battleState { get; private set; }
     public FlyingEyesAttack1State attack1State { get; private set; }
     public FlyingEyesAttack2State attack2State { get; private set; }
+    public FlyingEyesDieState dieState { get; private set; }
     #endregion
+
 
 
 
@@ -21,6 +24,7 @@ public class Enemy_FlyingEyes : Enemy//´óÑÛ¾¦¹ÖÎï
         battleState = new FlyingEyesBattleState(this, stateMachine, "Fly", this);
         attack1State = new FlyingEyesAttack1State(this, stateMachine, "Attack1", this);
         attack2State = new FlyingEyesAttack2State(this, stateMachine, "Attack2", this);
+        dieState = new FlyingEyesDieState(this, stateMachine, "Die", this);
     }
 
     protected override void Start()
@@ -32,5 +36,11 @@ public class Enemy_FlyingEyes : Enemy//´óÑÛ¾¦¹ÖÎï
     protected override void Update()
     {
         base.Update();
+    }
+
+    public override void Die()
+    {
+        base.Die();
+        stateMachine.ChangeState(dieState);
     }
 }

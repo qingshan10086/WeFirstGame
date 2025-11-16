@@ -7,7 +7,7 @@ public class Enemy_FlyingEyesAnimtionTrigger : MonoBehaviour
     private SpriteRenderer sr;//获取精灵渲染器组件
     private Animator anim;//获取动画管理机组件
 
-    private float colorLoosingSpeed = 0.1f;//颜色消失速度
+    private float colorLoosingSpeed = 0.2f;//颜色消失速度
     private float cloneTimer;//辅助计算克隆持续时间的
 
     // Start is called before the first frame update

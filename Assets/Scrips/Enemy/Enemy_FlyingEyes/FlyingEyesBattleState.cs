@@ -6,9 +6,13 @@ public class FlyingEyesBattleState : EnemyState
 {
     private Transform player;
     private Enemy_FlyingEyes enemy;
-    private int moveDir;
+    public int moveDir;
     private float attack1Distance=1.2f;//攻击1的距离
-    //private float attack2Distance;//攻击2的距离
+    private float attack2Distance=8f;//攻击2的距离
+
+    private float attack2Cooldown=5f;//攻击2有点超模，削弱一下
+    private float attack2CooldownTimer;
+
 
     public FlyingEyesBattleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName,Enemy_FlyingEyes _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
     {
@@ -30,8 +34,7 @@ public class FlyingEyesBattleState : EnemyState
     {
         base.Updata();
 
-       
-
+       attack2CooldownTimer-=Time.deltaTime;
 
 
 
@@ -39,10 +42,12 @@ public class FlyingEyesBattleState : EnemyState
         {
             stateTimer = enemy.battleTime;//重置战斗状态持续时间
 
-            if (enemy.IsPlayerDetected().distance < enemy.attackDistance&& enemy.IsPlayerDetected().distance > attack1Distance)//如果距离足够，则进入攻击状态
+            if (enemy.IsPlayerDetected().distance < attack2Distance&& enemy.IsPlayerDetected().distance > attack1Distance)//如果距离足够，则进入攻击状态
             {
-                if (CanAttack())
+                if (attack2CooldownTimer<0)
                 {
+                    attack2CooldownTimer = attack2Cooldown;
+
                     stateMachine.ChangeState(enemy.attack2State);
                 }
             }
@@ -76,7 +81,7 @@ public class FlyingEyesBattleState : EnemyState
             moveDir = -1;
         }
 
-        enemy.SetVelocity(enemy.moveSpeed * moveDir*1.5f, rb.velocity.y);//战斗速度 
+        enemy.SetVelocity(enemy.moveSpeed * moveDir*2f, rb.velocity.y);//战斗速度 
     }
 
 
@@ -94,6 +99,8 @@ public class FlyingEyesBattleState : EnemyState
             return false;
         }
     }
+
+    
 
 
 }
