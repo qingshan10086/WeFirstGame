@@ -14,6 +14,8 @@ public class FlyingEyesAttack1State : EnemyState
     public override void Enter()
     {
         base.Enter();
+
+        enemy.lastTimeAttacked = Time.time;
     }
 
     public override void Exit()
@@ -24,5 +26,12 @@ public class FlyingEyesAttack1State : EnemyState
     public override void Updata()
     {
         base.Updata();
+
+        enemy.ZeroVelocity();//攻击时速度为零
+
+        if (triggerCalled)//一完成攻击动画就进入战斗状态
+        {
+            stateMachine.ChangeState(enemy.battleState);
+        }
     }
 }

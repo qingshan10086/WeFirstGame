@@ -7,6 +7,8 @@ public class FlyingEyesBattleState : EnemyState
     private Transform player;
     private Enemy_FlyingEyes enemy;
     private int moveDir;
+    private float attack1Distance=1.2f;//攻击1的距离
+    //private float attack2Distance;//攻击2的距离
 
     public FlyingEyesBattleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName,Enemy_FlyingEyes _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
     {
@@ -28,11 +30,24 @@ public class FlyingEyesBattleState : EnemyState
     {
         base.Updata();
 
+       
+
+
+
+
         if (enemy.IsPlayerDetected())//如果检测到玩家
         {
             stateTimer = enemy.battleTime;//重置战斗状态持续时间
 
-            if (enemy.IsPlayerDetected().distance < enemy.attackDistance)//如果距离足够，则进入攻击状态
+            if (enemy.IsPlayerDetected().distance < enemy.attackDistance&& enemy.IsPlayerDetected().distance > attack1Distance)//如果距离足够，则进入攻击状态
+            {
+                if (CanAttack())
+                {
+                    stateMachine.ChangeState(enemy.attack2State);
+                }
+            }
+
+            if (enemy.IsPlayerDetected().distance < attack1Distance)//如果距离足够，则进入攻击状态
             {
                 if (CanAttack())
                 {
@@ -61,8 +76,11 @@ public class FlyingEyesBattleState : EnemyState
             moveDir = -1;
         }
 
-        enemy.SetVelocity(enemy.moveSpeed * moveDir, rb.velocity.y);//战斗速度
+        enemy.SetVelocity(enemy.moveSpeed * moveDir*1.5f, rb.velocity.y);//战斗速度 
     }
+
+
+
 
     private bool CanAttack()//攻击冷却设置
     {
