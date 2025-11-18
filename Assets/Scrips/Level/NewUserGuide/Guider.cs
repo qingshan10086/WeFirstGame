@@ -5,7 +5,7 @@ using UnityEngine;
 public class Guider : MonoBehaviour
 {
     [SerializeField] private GameObject player;//获取玩家信息
-    [SerializeField] private GameObject Text;//控制对话框的激活与失活
+    
 
 
     [SerializeField] private Transform playerCheck;//玩家检测

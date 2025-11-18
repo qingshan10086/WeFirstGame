@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Door : MonoBehaviour
+public class Door_NewUserGuider : MonoBehaviour
 {
     [SerializeField] private GameObject[] enemy;//获取所有敌人，将敌人全部消灭才可前往下一个场景
     private  bool allDefeated = true;//检测敌人是否全部被消灭

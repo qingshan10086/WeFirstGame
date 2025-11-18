@@ -586,7 +586,7 @@ GameObject:
   - component: {fileID: 321074588091272763}
   - component: {fileID: 798793297901551213}
   m_Layer: 7
-  m_Name: FlyingEyes
+  m_Name: Enemy_FlyingEyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
