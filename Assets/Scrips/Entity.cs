@@ -37,7 +37,7 @@ public class Entity : MonoBehaviour      //实体类，用来储存玩家和怪物共同的行为
 
 
     public int faceDirection { get; private set; } = 1;       //面对方向，初始默认向右
-    protected bool faceRight = true;                          //辅助是否翻转的数据
+    protected bool faceRight = true;                          //判断是否面朝右边
 
     protected virtual void Awake()                 
     {
