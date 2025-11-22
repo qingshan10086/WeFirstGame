@@ -12,6 +12,8 @@ public class ShadowMageIdleState : EnemyState
 
     private int faceDir = 1;//初始面朝方向为右
     private bool faceRight = true;//判断是否面朝右边
+    private float faceToPlayerCoolDown = 2.5f;//影法师转向的频率
+    private float faceToPlayerTimer = 0f;
 
     public ShadowMageIdleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName,Enemy_ShadowMage _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
     {
@@ -37,19 +39,28 @@ public class ShadowMageIdleState : EnemyState
 
     }
 
-    private void FaceToPlayer()//
+    private void FaceToPlayer()//使影法师始终面对玩家
     {
+        if (faceToPlayerTimer > 0)
+        {
+            faceToPlayerTimer-= Time.deltaTime;
+            return;
+        }
+
+
         if (player.position.x - enemy.transform.position.x < 0 && faceRight)
         {
             faceDir = faceDir * -1;
             faceRight = !faceRight;
             enemy.transform.Rotate(0, 180, 0);
+            faceToPlayerTimer = faceToPlayerCoolDown;
         }
         if (player.position.x - enemy.transform.position.x > 0 && !faceRight)
         {
             faceDir = faceDir * -1;
             faceRight = !faceRight;
             enemy.transform.Rotate(0, 180, 0);
+            faceToPlayerTimer = faceToPlayerCoolDown;
         }
     }
 }

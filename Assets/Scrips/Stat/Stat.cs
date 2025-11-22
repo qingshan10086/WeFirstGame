@@ -34,7 +34,7 @@ public class Stat //记录各种游戏战斗数据的类，如攻击伤害
 
     public void RemoveModifier(int _modifier)//数据移出
     {
-        modifiers.RemoveAt(_modifier);
+        modifiers.Remove(_modifier);
     }
 
 }

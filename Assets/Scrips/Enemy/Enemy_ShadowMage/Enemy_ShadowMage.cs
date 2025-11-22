@@ -4,11 +4,24 @@ using UnityEngine;
 
 public class Enemy_ShadowMage : Enemy
 {
-    public ShadowMageIdleState idleState {  get; private set; }
+    public ShadowMageIdleState idleState {  get; private set; }//申明站立状态
+
+    public ShadowMageAttack1State attack1State { get; private set; }//申明攻击1状态
+    [SerializeField] private float attack1Cooldown=60f;//攻击1间隔时间
+    [SerializeField] private float attack1CooldownTimer=0f;
+    private bool canAttack1=false;//能否攻击1
+
+
+    public EnemyStats stat;//获取敌人数据
+
+
     protected override void Awake()
     {
         base.Awake();
         idleState = new ShadowMageIdleState(this,stateMachine,"Idle",this);
+        attack1State = new ShadowMageAttack1State(this, stateMachine, "Attack1", this);
+
+        stat=GetComponent<EnemyStats>();//获取敌人数据
     }
 
     protected override void Start()
@@ -20,5 +33,35 @@ public class Enemy_ShadowMage : Enemy
     protected override void Update()
     {
         base.Update();
+
+        Attack1();
     }
+
+   
+    private void Attack1()//判断是否进入攻击1状态
+    {
+        if (!canAttack1)
+        {
+            // 冷却中
+            attack1CooldownTimer -= Time.deltaTime;
+            if (attack1CooldownTimer <= 0)
+            {
+                canAttack1 = true;
+                attack1CooldownTimer = 0;
+            }
+        }
+        else
+        {
+            
+                stateMachine.ChangeState(attack1State);
+                Debug.Log("进入攻击1状态");
+
+                // 开始冷却
+                canAttack1 = false;
+                attack1CooldownTimer = attack1Cooldown;
+            
+        }
+    }
+
 }
+
