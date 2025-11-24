@@ -34,7 +34,7 @@ public class FlyingEyesBattleState : EnemyState
     {
         base.Updata();
 
-       attack2CooldownTimer-=Time.deltaTime;
+        attack2CooldownTimer-=Time.deltaTime;
 
 
 

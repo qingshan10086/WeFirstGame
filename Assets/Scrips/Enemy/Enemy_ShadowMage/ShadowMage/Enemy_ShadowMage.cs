@@ -5,8 +5,12 @@ using UnityEngine;
 public class Enemy_ShadowMage : Enemy
 {
     public ShadowMageIdleState idleState {  get; private set; }//申明站立状态
+    public ShadowMageAttack2State attack2State { get; private set; }//申明近身攻击（攻击2）状态
+
 
     public ShadowMageAttack1State attack1State { get; private set; }//申明攻击1状态
+
+    [Header("攻击1相关")]
     [SerializeField] private float attack1Cooldown=60f;//攻击1间隔时间
     [SerializeField] private float attack1CooldownTimer=0f;
     private bool canAttack1=false;//能否攻击1
@@ -20,6 +24,7 @@ public class Enemy_ShadowMage : Enemy
         base.Awake();
         idleState = new ShadowMageIdleState(this,stateMachine,"Idle",this);
         attack1State = new ShadowMageAttack1State(this, stateMachine, "Attack1", this);
+        attack2State = new ShadowMageAttack2State(this, stateMachine, "Attack2", this);
 
         stat=GetComponent<EnemyStats>();//获取敌人数据
     }
@@ -63,5 +68,12 @@ public class Enemy_ShadowMage : Enemy
         }
     }
 
+
+
+
+
+
+
+    public override RaycastHit2D IsPlayerDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * idleState.faceDir, 50, whatIsPlayer);//接收是否检测到玩家的射线结果
 }
 
