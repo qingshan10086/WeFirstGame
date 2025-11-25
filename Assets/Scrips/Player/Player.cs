@@ -6,7 +6,7 @@ public class Player : Entity//玩家类其父类为实体
 {
     public GameObject Text;//获取对话框物体，用来实现对话时不能移动
 
-
+    private PlayerStats stat;//获取玩家数据
     public bool isBusy {  get; private set; }  //用来辅助该状态是否能转入其他状态
 
     [Header("Attack details")]              //攻击相关数据
@@ -25,7 +25,13 @@ public class Player : Entity//玩家类其父类为实体
     public float dashDuration;              //冲刺持续时间
     public float dashFaceDir {  get;private set; }     //冲刺方向
 
-    
+
+    #region 受到攻击无敌帧相关
+    public int currentHealth;//玩家当前血量
+    private int lastHealth;//玩家上一帧血量
+    private float GodTimer = 0.2f;//无敌时间
+    private bool canStunned = true;//能否受到攻击
+    #endregion
 
 
 
@@ -72,6 +78,8 @@ public class Player : Entity//玩家类其父类为实体
         catchSwordState = new PlayerCatchSwordState(this, stateMachine, "CatchSword");
         deadState = new PlayerDeadState(this, stateMachine, "Die");
         readTextState = new PlayerReadTextState(this, stateMachine, "Idle");
+
+        stat=GetComponent<PlayerStats>();
     }
 
     protected override void Start()
@@ -79,6 +87,8 @@ public class Player : Entity//玩家类其父类为实体
         base.Start();
 
         skill = SkillManager.instance;
+        currentHealth=stat.GetMaxHealthValue();
+        lastHealth=stat.GetMaxHealthValue();
 
         stateMachine.Initialize(idleState);   //初始化状态
     }
@@ -86,19 +96,36 @@ public class Player : Entity//玩家类其父类为实体
     protected override void Update()
     {
         base.Update();
+        CanGodTime();
+        if (Text.activeSelf) { stateMachine.ChangeState(readTextState); }
 
-        
-        if (Text.activeSelf){ stateMachine.ChangeState(readTextState); }
-
-        stateMachine.currentState.Update();  
+        stateMachine.currentState.Update();
 
         CheckForInputDash();   //冲刺函数
 
-        
+
     }
 
-
-
+    private void CanGodTime()//
+    {
+        currentHealth = stat.currentHealth;
+        if (currentHealth < lastHealth)
+        {
+            if (canStunned)
+            {
+                stat.evasion.AddModifier(101);
+                canStunned = false;
+            }
+            GodTimer -= Time.deltaTime;
+            if (GodTimer <= 0)
+            {
+                lastHealth = currentHealth;
+                stat.evasion.RemoveModifier(101);
+                GodTimer = 0.2f;
+                canStunned = true;
+            }
+        }
+    }
 
     public void AnimationTrigger()=>stateMachine.currentState.AnimationFinishTrigger();  //用来获取动画完成相关
 

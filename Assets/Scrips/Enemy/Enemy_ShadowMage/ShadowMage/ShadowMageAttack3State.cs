@@ -8,7 +8,7 @@ public class ShadowMageAttack3State : EnemyState
 {
     private Enemy_ShadowMage enemy;
 
-    private int random;//随机一个位移位置
+    private int random=3;//随机一个位移位置
     private float time = 1f;
 
 
@@ -27,6 +27,8 @@ public class ShadowMageAttack3State : EnemyState
         time = 1f;
     }
 
+    
+
     public override void Exit()
     {
         base.Exit();
@@ -39,27 +41,32 @@ public class ShadowMageAttack3State : EnemyState
         base.Updata();
 
         time-= Time.deltaTime;
+
         if (time < 0)
         {
-             if (random == 1)
-                 {
-                   enemy.transform.position =new Vector2(13, 6.15f);
-                }
+
+            if (random == 1)
+            {
+                   enemy.transform.position =new Vector2(10, 6.15f);
+            }
 
             if (random == 2) 
-                 {
-                 enemy.transform.position = new Vector2(63, 6.15f);
+            {
+                 enemy.transform.position = new Vector2(65, 6.15f);
             }
-             if(random == 3)
-             {
+            if(random == 3)
+            {
                enemy.transform.position = new Vector2(38, 11.25f);
-             }
+            }
 
+           
         }
 
 
 
         enemy.ZeroVelocity();//攻击时速度为零
+
+
 
         if (triggerCalled)//一完成攻击动画就进入战斗状态
         {

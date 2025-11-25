@@ -7,6 +7,7 @@ public class Enemy_ShadowMage : Enemy
     public ShadowMageIdleState idleState {  get; private set; }//申明站立状态
     public ShadowMageAttack2State attack2State { get; private set; }//申明近身攻击（攻击2）状态
     public ShadowMageAttack3State attack3State { get; private set; }//申明召唤小怪并位移（攻击3）状态
+    public  GameObject[] mosters;//小怪
     private float currentHealth;//当前血量百分数形式
     private bool[] canAttack3 = new bool[4] { true, true, true, true };
 
@@ -57,12 +58,17 @@ public class Enemy_ShadowMage : Enemy
     {
         currentHealth = (float)stat.currentHealth / stat.maxHealth.GetValue();
 
+
+        
+
+
         if (canAttack3[0])
         {
             
             if (currentHealth <= 0.8f && currentHealth >= 0.7f)
             {
                 stateMachine.ChangeState(attack3State);
+                CreatMosters();
                 canAttack3[0] = false;
             }
         }
@@ -71,6 +77,7 @@ public class Enemy_ShadowMage : Enemy
             if (currentHealth <=0.6f && currentHealth >= 0.5f)
             {
                 stateMachine.ChangeState(attack3State);
+                CreatMosters();
                 canAttack3[1] = false;
             }
         }
@@ -79,6 +86,7 @@ public class Enemy_ShadowMage : Enemy
             if (currentHealth <= 0.4f && currentHealth >= 0.3f)
             {
                 stateMachine.ChangeState(attack3State);
+                CreatMosters();
                 canAttack3[2] = false;
             }
         }
@@ -87,9 +95,25 @@ public class Enemy_ShadowMage : Enemy
             if (currentHealth <= 0.2f && currentHealth >= 0.1f)
             {
                 stateMachine.ChangeState(attack3State);
+                CreatMosters();
                 canAttack3[3] = false;
             }
         }
+    }
+
+    private void CreatMosters()
+    {
+        Vector2 left = new Vector2(0, 32);
+        Vector2 right = new Vector2(75, 32);
+        Vector2 top = new Vector2(38, 32);
+        Vector2 left1= new Vector2(13, 6.15f);
+        Vector2 right1 = new Vector2(62, 6.15f);
+
+        Instantiate(mosters[1], left, Quaternion.identity);
+        Instantiate(mosters[1], right, Quaternion.identity);
+        Instantiate(mosters[1], top, Quaternion.identity);
+        Instantiate(mosters[0],left1, Quaternion.identity);
+        Instantiate(mosters[0],right1, Quaternion.identity);
     }
 
     private void Attack1()//判断是否进入攻击1状态
