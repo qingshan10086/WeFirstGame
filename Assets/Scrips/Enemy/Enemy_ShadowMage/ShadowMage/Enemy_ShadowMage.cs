@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 
 public class Enemy_ShadowMage : Enemy
@@ -21,6 +22,9 @@ public class Enemy_ShadowMage : Enemy
     private bool canAttack1=false;//能否攻击1
 
 
+    public ShadowMageDieState dieState { get; private set; }
+
+
     public EnemyStats stat;//获取敌人数据
 
 
@@ -31,6 +35,7 @@ public class Enemy_ShadowMage : Enemy
         attack1State = new ShadowMageAttack1State(this, stateMachine, "Attack1", this);
         attack2State = new ShadowMageAttack2State(this, stateMachine, "Attack2", this);
         attack3State = new ShadowMageAttack3State(this, stateMachine, "Attack3", this);
+        dieState = new ShadowMageDieState(this, stateMachine, "Die", this);
 
         stat=GetComponent<EnemyStats>();//获取敌人数据
     }
@@ -146,7 +151,11 @@ public class Enemy_ShadowMage : Enemy
 
 
 
-
+    public override void Die()
+    {
+        base.Die();
+        stateMachine.ChangeState(dieState);
+    }
     public override RaycastHit2D IsPlayerDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * idleState.faceDir, 50, whatIsPlayer);//接收是否检测到玩家的射线结果
 }
 

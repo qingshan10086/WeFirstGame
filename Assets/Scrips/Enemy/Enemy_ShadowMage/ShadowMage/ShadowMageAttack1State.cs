@@ -73,16 +73,16 @@ public class ShadowMageAttack1State : EnemyState
  
         if (followerWays <= 50&&followerWays>=0)
         {
-                follower1 = true;
-                follower2 = false;
-                shadowFollower.transform.position = new Vector2(player.position.x - 1, player.position.y +13f);//控制随从出现位置
+               follower1 = true;
+               follower2 = false;
+               shadowFollower.transform.position = new Vector2(player.position.x - 1, player.position.y +15f);//控制随从出现位置
         }
 
-        if (followerWays > 50&&followerWays<=100)
+        if (followerWays>50 && followerWays <=100)
         {
-                follower1 = false;
-                follower2 = true;
-                shadowFollower.transform.position = new Vector2(player.position.x - 15, player.position.y);//控制随从出现位置
+               follower1 = false;
+               follower2 = true;
+               shadowFollower.transform.position = new Vector2(player.position.x - 30, player.position.y);//控制随从出现位置
         }
        
 
