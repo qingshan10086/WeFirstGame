@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class PlayerReturn : MonoBehaviour
+public class PlayerReturn_NewGuiderUser : MonoBehaviour
 {
     private PlayerStats playerStats;
+    public Slider slider;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,8 +52,9 @@ public class PlayerReturn : MonoBehaviour
 
     private void ReloadLevel()
     {
-        // 重新加载当前场景
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        playerStats.currentHealth = playerStats.GetMaxHealthValue();
+        this.transform.position = new Vector2(-1.4f, -2.8f);
+        slider.value = playerStats.currentHealth;//血条当前值
     }
 
 }

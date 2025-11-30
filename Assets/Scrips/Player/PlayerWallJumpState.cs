@@ -11,7 +11,7 @@ public class PlayerWallJumpState : PlayerState//跳墙状态
     public override void Enter()
     {
         base.Enter();
-        stateTimer = 1f;  //跳墙状态持续时间
+        stateTimer = 0.5f;  //跳墙状态持续时间
         player.SetVelocity(5 * -player.faceDirection, player.jumpForce);
     }
 

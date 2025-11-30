@@ -6,7 +6,7 @@ public class TextTalk_Level1 : MonoBehaviour
 {
     [SerializeField] private GameObject player;//通过拖拽获取玩家信息
     [SerializeField] private GameObject Text;//控制对话框的激活与失活
-    [SerializeField] private GameObject Guider;//控制幽灵的消失与出现
+   
 
     //通过拖拽获取文本信息
     [SerializeField] private GameObject[] text;
@@ -24,7 +24,7 @@ public class TextTalk_Level1 : MonoBehaviour
     {
         if (player.transform.position.x < 0&& player.transform.position.x > -2)
         {
-            if (currentText <= 1)
+            if (currentText <= 7)
             {
                 text[currentText].SetActive(true);
 
@@ -32,10 +32,10 @@ public class TextTalk_Level1 : MonoBehaviour
                 {
                     text[currentText].SetActive(false);
                     currentText++;
-                    if (currentText == 2)
+                    if (currentText == 8)
                     {
                         Text.SetActive(false);
-                        Guider.SetActive(false);
+                       
                     }
                 }
             }
@@ -43,25 +43,22 @@ public class TextTalk_Level1 : MonoBehaviour
         }
 
 
-        if (player.transform.position.x < 152 && player.transform.position.x > 150)
+        if (player.transform.position.x < 60.8f && player.transform.position.x >59)
         {
-            if (currentText <= 6)
+            if (currentText <= 8)
             {   Text.SetActive(true);
-                Guider.transform.position = new Vector2(player.transform.position.x-5, player.transform.position.y);
-                Guider.SetActive(true);
+                
                 text[currentText].SetActive(true);
 
                 if (Input.GetKeyUp(KeyCode.Space))
                 {
                     text[currentText].SetActive(false);
                     currentText++;
-                    
-                    if (currentText == 7)
+                    if (currentText == 9)
                     {
-                        Guider.SetActive(false);
                         Text.SetActive(false);
-                       
                     }
+
                 }
             }
 

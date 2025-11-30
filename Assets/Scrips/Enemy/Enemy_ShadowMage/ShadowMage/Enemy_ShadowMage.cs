@@ -137,7 +137,7 @@ public class Enemy_ShadowMage : Enemy
         {
             
                 stateMachine.ChangeState(attack1State);
-                Debug.Log("进入攻击1状态");
+              
 
                 // 开始冷却
                 canAttack1 = false;

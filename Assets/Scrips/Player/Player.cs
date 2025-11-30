@@ -167,7 +167,7 @@ public class Player : Entity//玩家类其父类为实体
 
         if (Input.GetKeyDown(KeyCode.L)&&SkillManager.instance.dash.CanUseSkill())
         {
-           
+            
             stateMachine.ChangeState(dashState);
             
         }
