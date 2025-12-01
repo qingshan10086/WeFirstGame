@@ -22,9 +22,15 @@ public class PlayerGroundedState : PlayerState   //µØÃæ×´Ì¬Àà£¬Æä°üº¬ÁËÕ¾Á¢ºÍÒÆ¶
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.U))
+        if (player.CanRecoverHP)
         {
-            stateMachine.ChangeState(player.aimSwordState);
+              if (Input.GetKeyDown(KeyCode.U))//°´UÔò½øÈë»ØÑª×´Ì¬
+              {
+                    player.CanRecoverHP = false;
+                    player.RecoverHpCooldownTimer=player.RecoverHPCooldown;
+                    stateMachine.ChangeState(player.recoverHPState);
+              }
+
         }
 
 
