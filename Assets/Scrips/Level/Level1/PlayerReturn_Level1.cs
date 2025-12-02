@@ -6,9 +6,14 @@ public class PlayerReturn_Level1 : MonoBehaviour
 {
     private PlayerStats playerStats;
     public Slider slider;
+    private Player player;
     // Start is called before the first frame update
     void Start()
     {
+        if (player == null)
+        {
+            player = GetComponent<Player>();
+        }
         if (playerStats == null)
         {
             playerStats = GetComponent<PlayerStats>();
@@ -35,7 +40,7 @@ public class PlayerReturn_Level1 : MonoBehaviour
             return;
         }
 
-        if (playerStats.currentHealth <= 0)
+        if (playerStats.currentHealth < 0)
         {
             GameOver();
             return;
@@ -45,12 +50,13 @@ public class PlayerReturn_Level1 : MonoBehaviour
     private void GameOver()
     {
         //游戏失败UI,当前还没做以后做
-        Invoke("ReloadLevel", 1.2f);
+        Invoke("ReloadLevel", 1.5f);
     }
 
     private void ReloadLevel()
     {
         playerStats.currentHealth = playerStats.GetMaxHealthValue();
+        player.stateMachine.ChangeState(player.idleState);
         this.transform.position = new Vector2(-1.4f, -2.8f);
         slider.value = playerStats.currentHealth;//血条当前值
     }
