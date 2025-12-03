@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Door_Level3 : MonoBehaviour
+public class Door_Level2 : MonoBehaviour
 {
     private Animator anim;
 

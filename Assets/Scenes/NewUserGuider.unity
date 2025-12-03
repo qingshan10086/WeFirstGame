@@ -23633,7 +23633,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   maxHealth:
-    baseValue: 100
+    baseValue: 99
     modifiers: 
   armor:
     baseValue: 0
@@ -23967,7 +23967,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: -5.6650085, y: 2.375}
-  m_SizeDelta: {x: 156.11, y: 45.15}
+  m_SizeDelta: {x: 160, y: 45.15}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1467249429
 MonoBehaviour:

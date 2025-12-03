@@ -1414,7 +1414,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 4, y: -1}
-  m_SizeDelta: {x: 239.92, y: 45.15}
+  m_SizeDelta: {x: 160, y: 45.15}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &573216474
 MonoBehaviour:
@@ -33284,7 +33284,7 @@ GameObject:
   - component: {fileID: 1036372860}
   - component: {fileID: 1036372859}
   - component: {fileID: 1036372858}
-  - component: {fileID: 1036372857}
+  - component: {fileID: 1036372861}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -33292,20 +33292,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &1036372857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1036372856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94ba3c6b8f91aaf4abc70c4fbf683ff9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1262305684}
-  goalRaidus: 2.5
 --- !u!95 &1036372858
 Animator:
   serializedVersion: 5
@@ -33394,6 +33380,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1036372861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036372856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9a97aee3a8c3c41842fa2f75148b58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1262305684}
+  goalRaidus: 2.16
 --- !u!1 &1059532933
 GameObject:
   m_ObjectHideFlags: 0
@@ -35198,7 +35198,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   maxHealth:
-    baseValue: 1
+    baseValue: 249
     modifiers: 
   armor:
     baseValue: 0
@@ -35754,6 +35754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b2a9de111a66fc45b6ec06e87fa8add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1262305683}
   Text: {fileID: 1318944792}
   Guider: {fileID: 1889010949}
   BOSS: {fileID: 1636489106}

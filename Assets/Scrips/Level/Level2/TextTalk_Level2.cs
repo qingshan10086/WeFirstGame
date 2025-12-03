@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TextTalk_Level3 : MonoBehaviour
+public class TextTalk_Level2 : MonoBehaviour
 {
 
     [SerializeField] private GameObject player;//通过拖拽获取玩家信息

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TextTalk_BOOS1 : MonoBehaviour
 {
+    [SerializeField] private GameObject player;//获取玩家
     [SerializeField] private GameObject Text;//控制对话框的激活与失活
     [SerializeField] private GameObject Guider;//引导者
     [SerializeField] private Enemy_ShadowMage BOSS;//获取BOSS
@@ -59,6 +60,7 @@ public class TextTalk_BOOS1 : MonoBehaviour
                         if (currentText == 8)
                         {
                             Guider.SetActive(true);
+                            Guider.transform.position=new Vector2(player.transform.position.x+5,player.transform.position.y);
                         }
                         if (currentText == 19)
                         {

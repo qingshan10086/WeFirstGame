@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerReturn_Level3 : MonoBehaviour
+public class PlayerReturn_Level2 : MonoBehaviour
 {
     private PlayerStats playerStats;
     public Slider slider;
