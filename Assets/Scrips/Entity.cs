@@ -29,10 +29,10 @@ public class Entity : MonoBehaviour      //实体类，用来储存玩家和怪物共同的行为
     public Transform attackCheck;                    //获取玩家攻击检测的位置信息，会单独在Unity中设置一个子物体
     public float attackCheckRadius;                  //攻击检测的半径
 
-    [SerializeField] protected Transform groundCheck;         //获取地面检测的位置信息，会单独在Unity中设置一个子物体
-    [SerializeField] protected float groundCheckDistance;     //地面检测的距离
-    [SerializeField] protected Transform wallCheck;           //获取墙壁检测的位置信息，会单独在Unity中设置一个子物体
-    [SerializeField] protected float wallCheckDiatance;       //墙壁检测的距离
+    public Transform groundCheck;         //获取地面检测的位置信息，会单独在Unity中设置一个子物体
+    public float groundCheckDistance;     //地面检测的距离
+    public Transform wallCheck;           //获取墙壁检测的位置信息，会单独在Unity中设置一个子物体
+    public float wallCheckDiatance;       //墙壁检测的距离
     [SerializeField] protected LayerMask whatisGround;        //储存墙壁层与地面层信息，来判断是那一层
 
 
