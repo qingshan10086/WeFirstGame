@@ -13,7 +13,7 @@ public class Enemy_ShadowMage : Enemy
     public  GameObject[] mosters;//小怪
     private float currentHealth;//当前血量百分数形式
     private bool[] canAttack3 = new bool[4] { true, true, true, true };
-
+    
 
 
     public ShadowMageAttack1State attack1State { get; private set; }//申明攻击1状态

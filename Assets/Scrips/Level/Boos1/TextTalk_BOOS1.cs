@@ -6,6 +6,8 @@ public class TextTalk_BOOS1 : MonoBehaviour
 {
     [SerializeField] private GameObject Text;//控制对话框的激活与失活
     [SerializeField] private GameObject Guider;//引导者
+    [SerializeField] private Enemy_ShadowMage BOSS;//获取BOSS
+    [SerializeField] private GameObject Door;//控制出口
 
     //通过拖拽获取文本信息
     [SerializeField] private GameObject[] text;
@@ -43,6 +45,29 @@ public class TextTalk_BOOS1 : MonoBehaviour
                 }
             }
 
+            if (BOSS.dieState.canNextText)
+            {
+                if (currentText <= 18)
+                {
+                    Text.SetActive(true);
+                    text[currentText].SetActive(true);
+
+                    if (Input.GetKeyUp(KeyCode.Space))
+                    {
+                        text[currentText].SetActive(false);
+                        currentText++;
+                        if (currentText == 8)
+                        {
+                            Guider.SetActive(true);
+                        }
+                        if (currentText == 19)
+                        {
+                            Door.SetActive(true);
+                            Text.SetActive(false);
+                        }
+                    }
+                }
+            }
 
 
     }
