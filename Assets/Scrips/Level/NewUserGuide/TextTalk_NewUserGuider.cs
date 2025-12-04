@@ -60,7 +60,7 @@ public class TextTalk : MonoBehaviour
             }
         }
 
-        if (player.transform.position.x > 80 && player.transform.position.x < 82)
+        if (player.transform.position.x > 80 && player.transform.position.x < 82&&player.transform.position.y>-5&&player.transform.position.y<-4)
         {
             if (currentText <= 10)
             {
@@ -77,7 +77,7 @@ public class TextTalk : MonoBehaviour
         }
 
 
-        if (player.transform.position.x > 92 && player.transform.position.x < 94)
+        if (player.transform.position.x > 92 && player.transform.position.x < 94&&player.transform.position.y>40)
         {
             if (currentText <= 11)
             {

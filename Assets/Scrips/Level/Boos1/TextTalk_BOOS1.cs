@@ -26,7 +26,7 @@ public class TextTalk_BOOS1 : MonoBehaviour
     {
 
        
-            if (currentText <= 6)
+            if (currentText <= 7)
             {
                 text[currentText].SetActive(true);
 
@@ -34,11 +34,11 @@ public class TextTalk_BOOS1 : MonoBehaviour
                 {
                     text[currentText].SetActive(false);
                     currentText++;
-                    if (currentText == 6)
-                    {
-                    Guider.SetActive(false);
-                    }
                     if (currentText == 7)
+                    {
+                        Guider.SetActive(false);
+                    }
+                    if (currentText == 8)
                     {
                         Text.SetActive(false);
                         
@@ -48,7 +48,7 @@ public class TextTalk_BOOS1 : MonoBehaviour
 
             if (BOSS.dieState.canNextText)
             {
-                if (currentText <= 18)
+                if (currentText <= 19)
                 {
                     Text.SetActive(true);
                     text[currentText].SetActive(true);
@@ -57,12 +57,12 @@ public class TextTalk_BOOS1 : MonoBehaviour
                     {
                         text[currentText].SetActive(false);
                         currentText++;
-                        if (currentText == 8)
+                        if (currentText == 9)
                         {
                             Guider.SetActive(true);
                             Guider.transform.position=new Vector2(player.transform.position.x+5,player.transform.position.y);
                         }
-                        if (currentText == 19)
+                        if (currentText == 20)
                         {
                             Door.SetActive(true);
                             Text.SetActive(false);

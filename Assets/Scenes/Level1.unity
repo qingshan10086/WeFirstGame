@@ -55000,9 +55000,9 @@ MonoBehaviour:
   jumpForce: 20
   dashSpeed: 30
   dashDuration: 0.2
-  RecoverHPCooldown: 0
-  RecoverHpCooldownTimer: 0
-  CanRecoverHP: 1
+  RecoverHPCooldown: 10000
+  RecoverHpCooldownTimer: 10000
+  CanRecoverHP: 0
   currentHealth: 0
 --- !u!50 &1262305686
 Rigidbody2D:
