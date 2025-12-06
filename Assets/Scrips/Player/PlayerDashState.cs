@@ -12,7 +12,7 @@ public class PlayerDashState : PlayerState//冲刺状态
 
     public override void Enter()
     {
-        AudioManager.instance.PlaySFX(5);//播放冲刺音效
+        AudioManager.instance.PlaySFX(5, null);//播放冲刺音效
         base.Enter();
         //player.skill.clone.CreatClone(player.transform);//冲刺时创造一个克隆体
 

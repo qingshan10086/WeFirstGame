@@ -12,7 +12,7 @@ public class PlayerMoveState : PlayerGroundedState//移动状态
     public override void Enter()
     {
         base.Enter();
-        AudioManager.instance.PlaySFX(2);//播放移动音效
+        AudioManager.instance.PlaySFX(2, null);//播放移动音效
     }
 
     public override void Exit()

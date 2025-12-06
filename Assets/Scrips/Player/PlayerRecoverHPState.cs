@@ -12,7 +12,7 @@ public class PlayerRecoverHPState : PlayerState//回血状态，此时应该是无敌的
     public override void Enter()
     {
         base.Enter();
-        AudioManager.instance.PlaySFX(6);//播放回血音效
+        AudioManager.instance.PlaySFX(6, null);//播放回血音效
         stateTimer = 0.5f;
         player.stat.evasion.AddModifier(101);
 

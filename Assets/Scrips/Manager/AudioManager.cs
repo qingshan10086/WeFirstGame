@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
 
-
+    [SerializeField] private float sfxMinimumDistance;
     [SerializeField] private AudioSource[] sfx;
     [SerializeField] private AudioSource[] bgm;
 
@@ -38,8 +38,13 @@ public class AudioManager : MonoBehaviour
     }
 
 
-    public void PlaySFX(int _sfxIndex)//播放音效音频的函数
+    public void PlaySFX(int _sfxIndex,Transform _source)//播放音效音频的函数
     {
+        if (sfx[_sfxIndex].isPlaying)
+            return;
+        if (_source != null && Vector2.Distance(PlayerManager.instance.player.transform.position, _source.position)>sfxMinimumDistance)
+            return;
+
         float pitch = sfx[_sfxIndex].pitch;//保证pitch不变
         if (_sfxIndex < sfx.Length)
         {
