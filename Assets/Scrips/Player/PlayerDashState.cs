@@ -12,6 +12,7 @@ public class PlayerDashState : PlayerState//冲刺状态
 
     public override void Enter()
     {
+        AudioManager.instance.PlaySFX(5);//播放冲刺音效
         base.Enter();
         //player.skill.clone.CreatClone(player.transform);//冲刺时创造一个克隆体
 
@@ -21,7 +22,7 @@ public class PlayerDashState : PlayerState//冲刺状态
     public override void Exit()
     {
         base.Exit();
-
+        AudioManager.instance.StopSFX(5);
         player.SetVelocity(0, rb.velocity.y); //冲刺完成后x轴上立即停止
        
     }

@@ -49,6 +49,7 @@ public class PlayerGroundedState : PlayerState   //µØÃæ×´Ì¬Àà£¬Æä°üº¬ÁËÕ¾Á¢ºÍÒÆ¶
 
         if (Input.GetKeyDown(KeyCode.K)&&player.IsGroundDetected())  //ÔÚµØÃæÇÒ°´ÁËK,Ôò½øÈëÌøÔ¾×´Ì¬
         {
+            
             stateMachine.ChangeState(player.jumpState);
         }
 

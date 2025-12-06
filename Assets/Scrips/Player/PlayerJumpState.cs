@@ -12,13 +12,14 @@ public class PlayerJumpState : PlayerState//跳跃状态
     public override void Enter()
     {
         base.Enter();
-
+        AudioManager.instance.PlaySFX(4);//播放跳跃音效
         rb.velocity = new Vector2(rb.velocity.x, player.jumpForce);   //初始化时输入跳跃力
     }
 
     public override void Exit()
     {
         base.Exit();
+        AudioManager.instance.StopSFX(4);
     }
 
     public override void Update()

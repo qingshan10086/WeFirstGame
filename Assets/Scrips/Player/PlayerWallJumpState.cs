@@ -11,6 +11,7 @@ public class PlayerWallJumpState : PlayerState//ÌøÇ½×´Ì¬
     public override void Enter()
     {
         base.Enter();
+        AudioManager.instance.PlaySFX(4);//²¥·ÅÌøÔ¾ÒôĞ§
         stateTimer = 0.5f;  //ÌøÇ½×´Ì¬³ÖĞøÊ±¼ä
         player.SetVelocity(5 * -player.faceDirection, player.jumpForce);
     }
@@ -18,6 +19,7 @@ public class PlayerWallJumpState : PlayerState//ÌøÇ½×´Ì¬
     public override void Exit()
     {
         base.Exit();
+        AudioManager.instance.StopSFX(4);
     }
 
     public override void Update()
