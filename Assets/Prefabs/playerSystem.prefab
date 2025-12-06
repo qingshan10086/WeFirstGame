@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 4578864124042777620}
   - component: {fileID: 6995147448299817145}
   - component: {fileID: 3688044371299490709}
+  - component: {fileID: 7503627804131832234}
   m_Layer: 5
   m_Name: PlayerHealthBar
   m_TagString: Untagged
@@ -205,6 +206,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity: {fileID: 5869090185335243135}
   myStats: {fileID: 2796904551716071979}
+--- !u!225 &7503627804131832234
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 484344817117098442}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &493113774553338647
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,7 +477,7 @@ Transform:
   m_GameObject: {fileID: 1212064527952997518}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.693924, y: 4.2033796, z: -10}
+  m_LocalPosition: {x: -2.693923, y: 4.2033796, z: -10}
   m_LocalScale: {x: -1.4624555, y: -1.4624555, z: -1.4624555}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -814,6 +827,8 @@ GameObject:
   - component: {fileID: 1449264130622715466}
   - component: {fileID: 690987834269253052}
   - component: {fileID: 5170701598322324001}
+  - component: {fileID: 4737598179399067179}
+  - component: {fileID: 6175003514407085942}
   m_Layer: 0
   m_Name: SkillManager
   m_TagString: Untagged
@@ -877,6 +892,54 @@ MonoBehaviour:
   clonePrefab: {fileID: 2659417590908594205, guid: 6a4c6ab1d6344b14c8f486e02f664c03, type: 3}
   cloneDuration: 1.5
   canAttack: 1
+--- !u!114 &4737598179399067179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3983772771675723339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 562beeba0b88d9f498e3273980891bae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transformDuration: 30
+  cooldown: 60
+  transformController: {fileID: 9100000, guid: b8b14988a0d89fc438b3ccab283ed2c2, type: 2}
+  overrideScale: 1
+  targetLocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  overrideCollider: 1
+  targetColliderSize: {x: 4.04, y: 7.28}
+  targetColliderOffset: {x: 0.15, y: 4.23}
+  overrideWallCheck: 1
+  wallCheckLocalPosition: {x: 0, y: 5, z: 0}
+  wallCheckDistanceOverride: 2
+  overrideGroundCheck: 1
+  groundCheckLocalPosition: {x: 0, y: 2, z: 0}
+  groundCheckDistanceOverride: 1
+  overrideAttackCheck: 1
+  attackCheckLocalPosition: {x: 3, y: 5, z: 0}
+  attackRadiusOverride: 2
+  overrideStats: 1
+  transformedDamage: 20
+  transformedHealth: 100
+--- !u!114 &6175003514407085942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3983772771675723339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8976a16bb2d1f8469d4e7efa9f2f457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heroPrefab: {fileID: 8021215280121004474, guid: c665a183b3d2c004c9280eefcf40c6d5, type: 3}
+  transformDuration: 30
+  cooldown: 60
+  spawnOffset: {x: 2, y: 0.5, z: 0}
 --- !u!1 &4107784928846663004
 GameObject:
   m_ObjectHideFlags: 0

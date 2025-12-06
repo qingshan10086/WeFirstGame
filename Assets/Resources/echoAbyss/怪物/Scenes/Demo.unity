@@ -1845,23 +1845,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8523d090138b2be4ea2bd8bdb2a4ba3c, type: 3}
---- !u!1 &1574396541 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 484344817117098442, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
-  m_PrefabInstance: {fileID: 1659859781}
-  m_PrefabAsset: {fileID: 0}
---- !u!225 &1574396547
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1574396541}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1001 &1659859781
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1870,29 +1853,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 493113774553338647, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3756755967807957271, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3756755967807957271, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4107784928846663004, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
       propertyPath: m_Name
       value: playerSystem
-      objectReference: {fileID: 0}
-    - target: {fileID: 4661702143717924322, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.693923
-      objectReference: {fileID: 0}
-    - target: {fileID: 4661702143717924322, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4.2033796
       objectReference: {fileID: 0}
     - target: {fileID: 8375523023277986980, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1937,70 +1900,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3983772771675723339, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1659859783}
-    - targetCorrespondingSourceObject: {fileID: 3983772771675723339, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1659859788}
-    - targetCorrespondingSourceObject: {fileID: 484344817117098442, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1574396547}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
---- !u!1 &1659859782 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3983772771675723339, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
-  m_PrefabInstance: {fileID: 1659859781}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1659859783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1659859782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 562beeba0b88d9f498e3273980891bae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transformDuration: 30
-  cooldown: 60
-  transformController: {fileID: 9100000, guid: b8b14988a0d89fc438b3ccab283ed2c2, type: 2}
-  overrideScale: 1
-  targetLocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  overrideCollider: 1
-  targetColliderSize: {x: 4.04, y: 7.28}
-  targetColliderOffset: {x: 0.15, y: 4.23}
-  overrideWallCheck: 1
-  wallCheckLocalPosition: {x: 0, y: 5, z: 0}
-  wallCheckDistanceOverride: 2
-  overrideGroundCheck: 1
-  groundCheckLocalPosition: {x: 0, y: 2, z: 0}
-  groundCheckDistanceOverride: 1
-  overrideAttackCheck: 1
-  attackCheckLocalPosition: {x: 3, y: 5, z: 0}
-  attackRadiusOverride: 2
-  overrideStats: 1
-  transformedDamage: 20
-  transformedHealth: 100
---- !u!114 &1659859788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1659859782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8976a16bb2d1f8469d4e7efa9f2f457, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  heroPrefab: {fileID: 8021215280121004474, guid: c665a183b3d2c004c9280eefcf40c6d5, type: 3}
-  transformDuration: 30
-  cooldown: 60
-  spawnOffset: {x: 2, y: 0.5, z: 0}
 --- !u!1 &1683627655
 GameObject:
   m_ObjectHideFlags: 0
