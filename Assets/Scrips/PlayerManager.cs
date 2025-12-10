@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour//玩家管理单例
+public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
     public Player player;
+    public PlayerStats playerStats;
+    
+    
 
     private void Awake()
     {

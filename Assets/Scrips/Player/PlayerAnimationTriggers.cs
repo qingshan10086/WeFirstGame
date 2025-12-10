@@ -10,6 +10,14 @@ public class PlayerAnimationTriggers : MonoBehaviour//动画机触发类，其内部函数都
         player.AnimationTrigger();
     }
 
+
+
+    private void RecoverHP()
+    {
+        player.stats.RecoverHP();
+    }
+
+
     private void AttackTrigger()
     {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(player.attackCheck.position, player.attackCheckRadius);//攻击检测触发和其范围

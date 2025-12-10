@@ -12,7 +12,7 @@ public class Entity : MonoBehaviour      //实体类，用来储存玩家和怪物共同的行为
     public EntityFX fx {  get; private set; }       //用来做一些光效的类，如受到攻击变白色
 
     public CharacterStats stats { get; private set; }//角色数据统计
-    public CapsuleCollider2D cd { get; private set; }
+    public CapsuleCollider2D cd { get; private set; }//胶囊碰撞体
     #endregion
 
 
@@ -37,7 +37,7 @@ public class Entity : MonoBehaviour      //实体类，用来储存玩家和怪物共同的行为
 
 
     public int faceDirection { get; private set; } = 1;       //面对方向，初始默认向右
-    protected bool faceRight = true;                          //辅助是否翻转的数据
+    protected bool faceRight = true;                          //判断是否面朝右边
 
     protected virtual void Awake()                 
     {

@@ -8,7 +8,7 @@ public class Enemy_SkeletonAnimationTrigger : MonoBehaviour//÷¼÷Ã±ø¶¯»­´¥·¢Æ÷¹ÜÀ
     private SpriteRenderer sr;//¾«ÁéäÖÈ¾×é¼ş
     private Animator anim;
 
-    private float colorLoosingSpeed=0.1f;//ÑÕÉ«ÏûÊ§ËÙ¶È
+    private float colorLoosingSpeed=0.2f;//ÑÕÉ«ÏûÊ§ËÙ¶È
     private float cloneTimer;//¸¨Öú¼ÆËã¿ËÂ¡³ÖĞøÊ±¼äµÄ
 
     private void Awake()

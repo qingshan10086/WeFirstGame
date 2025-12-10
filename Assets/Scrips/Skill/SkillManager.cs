@@ -20,7 +20,7 @@ public class SkillManager : MonoBehaviour//技能管理单例
         }
         else
         {
-            Destroy(instance.gameObject);
+            Destroy(gameObject);
         }
     }
 

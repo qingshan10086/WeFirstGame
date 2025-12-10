@@ -22,14 +22,22 @@ public class PlayerGroundedState : PlayerState   //µØÃæ×´Ì¬Àà£¬Æä°üº¬ÁËÕ¾Á¢ºÍÒÆ¶
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.U))
+        if (player.CanRecoverHP)
         {
-            stateMachine.ChangeState(player.aimSwordState);
+              if (Input.GetKeyDown(KeyCode.U))//°´UÔò½øÈë»ØÑª×´Ì¬
+              {
+               
+                    player.CanRecoverHP = false;
+                    player.RecoverHpCooldownTimer=player.RecoverHPCooldown;
+                    stateMachine.ChangeState(player.recoverHPState);
+              }
+
         }
 
 
         if (Input.GetKeyDown(KeyCode.Q))//°´QÔò½øÈëµ¯·´×´Ì¬
         {
+            
             stateMachine.ChangeState(player.counterAttackState);
         }
 
@@ -41,11 +49,13 @@ public class PlayerGroundedState : PlayerState   //µØÃæ×´Ì¬Àà£¬Æä°üº¬ÁËÕ¾Á¢ºÍÒÆ¶
 
         if (Input.GetKeyDown(KeyCode.K)&&player.IsGroundDetected())  //ÔÚµØÃæÇÒ°´ÁËK,Ôò½øÈëÌøÔ¾×´Ì¬
         {
+            
             stateMachine.ChangeState(player.jumpState);
         }
 
         if (Input.GetKey(KeyCode.J))          //°´ÁËJÔò½øÈë¹¥»÷×´Ì¬
         {
+            
             stateMachine.ChangeState(player.primaryAttak);
         }
 

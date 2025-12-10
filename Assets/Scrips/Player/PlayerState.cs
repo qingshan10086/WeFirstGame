@@ -34,7 +34,7 @@ public class PlayerState//玩家状态
 
     public virtual void Update()            //状态每帧执行
     {
-        stateTimer -= Time.deltaTime;       //
+        stateTimer -= Time.deltaTime;       //状态持续时间
 
         xInput = Input.GetAxisRaw("Horizontal");//水平轴输入
         yInput = Input.GetAxisRaw("Vertical");//垂直轴输入，当前还没做相关内容
