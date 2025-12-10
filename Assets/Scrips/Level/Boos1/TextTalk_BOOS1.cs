@@ -12,10 +12,10 @@ public class TextTalk_BOOS1 : MonoBehaviour
 
     //通过拖拽获取文本信息
     [SerializeField] private GameObject[] text;
-    private int currentText = 0;
-
-    private float currenntText;//记录当前是哪个文本
-    // Start is called before the first frame update
+    private int[] currentText = new int[] { 0, 8};//记录当前是哪段文本,其分成几个部分，每部分的初始文本值不同，根据你在text中拖拽的来看
+    [SerializeField] private bool[] canTrigger = new bool[] { true, true};//判断是否能触发文本
+    private float textCooldown = 100000f;//第二次文本触发时间//BOOS战不需要二次文本
+    [SerializeField] private float[] textCooldownTimer = new float[] { 10, 10};//文本冷却辅助
     void Start()
     {
 
@@ -24,45 +24,71 @@ public class TextTalk_BOOS1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-       
-            if (currentText <= 7)
+        for (int i = 0; i < 2; i++)//判断能否触发文本
+        {
+            if (!canTrigger[i])
             {
-                text[currentText].SetActive(true);
-
-                if (Input.GetKeyUp(KeyCode.Space))
+                textCooldownTimer[i] -= Time.deltaTime;
+                if (textCooldownTimer[i] < 0)
                 {
-                    text[currentText].SetActive(false);
-                    currentText++;
-                    if (currentText == 7)
-                    {
-                        Guider.SetActive(false);
-                    }
-                    if (currentText == 8)
-                    {
-                        Text.SetActive(false);
-                        
-                    }
+                    canTrigger[i] = true;
+                    textCooldownTimer[i] = textCooldown;
                 }
             }
-
-            if (BOSS.dieState.canNextText)
+        }
+        if (canTrigger[0])
+        {
+            if(Vector2.Distance(player.transform.position, new Vector2(38f, 3)) < 1)
             {
-                if (currentText <= 19)
+
+                if (currentText[0] <= 7)
                 {
                     Text.SetActive(true);
-                    text[currentText].SetActive(true);
+                    text[currentText[0]].SetActive(true);
+
+                        if (Input.GetKeyUp(KeyCode.Space))
+                        {
+                            text[currentText[0]].SetActive(false);
+                            currentText[0]++;
+                            if (currentText[0] == 7)
+                            {
+                                Guider.SetActive(false);
+                            }
+                            if (currentText[0] == 8)
+                            {
+                            Text.SetActive(false);
+                            canTrigger[0] = false;
+                            currentText[0] = 0;//每次触发都从这段文本的初始文本值开始
+                            }
+                        }
+                }
+            }
+            else//防止进场景每次都卡在第一段文本
+            {
+                text[currentText[0]].SetActive(false);
+                Text.SetActive(false);
+            }
+
+
+        }
+
+        if (BOSS.dieState.canNextText)
+            {
+                if (currentText[1] <= 19)
+                {
+                    Text.SetActive(true);
+                    text[currentText[1]].SetActive(true);
 
                     if (Input.GetKeyUp(KeyCode.Space))
                     {
-                        text[currentText].SetActive(false);
-                        currentText++;
-                        if (currentText == 9)
+                        text[currentText[1]].SetActive(false);
+                        currentText[1]++;
+                        if (currentText[1] == 9)
                         {
                             Guider.SetActive(true);
                             Guider.transform.position=new Vector2(player.transform.position.x+5,player.transform.position.y);
                         }
-                        if (currentText == 20)
+                        if (currentText[1] == 20)
                         {
                             Door.SetActive(true);
                             Text.SetActive(false);

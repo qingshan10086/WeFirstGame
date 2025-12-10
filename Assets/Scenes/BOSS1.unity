@@ -37307,7 +37307,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   maxHealth:
-    baseValue: 249
+    baseValue: 1
     modifiers: 
   armor:
     baseValue: 0
@@ -37889,6 +37889,10 @@ MonoBehaviour:
   - {fileID: 846084573}
   - {fileID: 560179330}
   - {fileID: 1958995229}
+  canTrigger: 0101
+  textCooldownTimer:
+  - 10
+  - 10
 --- !u!1 &1785304899
 GameObject:
   m_ObjectHideFlags: 0

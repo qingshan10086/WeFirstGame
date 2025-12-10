@@ -471925,6 +471925,9 @@ MonoBehaviour:
   - {fileID: 1708276483}
   - {fileID: 1564916755}
   - {fileID: 1442864714}
+  canTrigger: 0101010101
+  textCooldownTimer:
+  - 10
 --- !u!114 &1275431664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475498,7 +475501,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1521870568
 RectTransform:
   m_ObjectHideFlags: 0

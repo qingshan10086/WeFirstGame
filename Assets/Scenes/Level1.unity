@@ -56216,7 +56216,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1201631177
 RectTransform:
   m_ObjectHideFlags: 0
@@ -59022,6 +59022,10 @@ MonoBehaviour:
   - {fileID: 394748702}
   - {fileID: 1139178749}
   - {fileID: 1401828100}
+  canTrigger: 0101
+  textCooldownTimer:
+  - 10
+  - 10
 --- !u!1001 &5898002236265446017
 PrefabInstance:
   m_ObjectHideFlags: 0

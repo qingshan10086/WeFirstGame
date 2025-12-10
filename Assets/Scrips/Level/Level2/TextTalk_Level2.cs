@@ -11,10 +11,10 @@ public class TextTalk_Level2 : MonoBehaviour
 
     //通过拖拽获取文本信息
     [SerializeField] private GameObject[] text;
-    private int currentText = 0;
-
-    private float currenntText;//记录当前是哪个文本
-    // Start is called before the first frame update
+    private int[] currentText = new int[] { 0};//记录当前是哪段文本,其分成几个部分，每部分的初始文本值不同，根据你在text中拖拽的来看
+    [SerializeField] private bool[] canTrigger = new bool[] { true, true, true, true, true };//判断是否能触发文本
+    private float textCooldown = 10f;//第二次文本触发时间
+    [SerializeField] private float[] textCooldownTimer = new float[] { 10 };//文本冷却辅助
     void Start()
     {
 
@@ -23,22 +23,47 @@ public class TextTalk_Level2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.transform.position.x < 16&& player.transform.position.x > 14)
+        for (int i = 0; i < 1; i++)//判断能否触发文本
         {
-            if (currentText <= 4)
+            if (!canTrigger[i])
             {
-                text[currentText].SetActive(true);
-
-                if (Input.GetKeyUp(KeyCode.Space))
+                textCooldownTimer[i] -= Time.deltaTime;
+                if (textCooldownTimer[i] < 0)
                 {
-                    text[currentText].SetActive(false);
-                    currentText++;
-                    if (currentText == 5)
-                    {
-                        Text.SetActive(false);
+                    canTrigger[i] = true;
+                    textCooldownTimer[i] = textCooldown;
+                }
+            }
+        }
 
+        if (canTrigger[0])
+        {
+            
+            if (player.transform.position.x < 16&& player.transform.position.x > 14)
+            {
+                if (currentText[0] <= 4)
+                {
+                    Text.SetActive(true);
+                    text[currentText[0]].SetActive(true);
+
+                    if (Input.GetKeyUp(KeyCode.Space))
+                    {
+                        text[currentText[0]].SetActive(false);
+                        currentText[0]++;
+                        if (currentText[0] == 5)
+                        {
+                            Text.SetActive(false);
+                            canTrigger[0] = false;
+                            currentText[0] = 0;//每次触发都从这段文本的初始文本值开始
+                        }
                     }
                 }
+
+            }
+            else//防止进场景每次都卡在第一段文本
+            {
+                text[currentText[0]].SetActive(false);
+                Text.SetActive(false);
             }
 
         }
