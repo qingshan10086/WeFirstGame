@@ -14,8 +14,8 @@ public class TextTalk_BOOS1 : MonoBehaviour
     [SerializeField] private GameObject[] text;
     private int[] currentText = new int[] { 0, 8};//记录当前是哪段文本,其分成几个部分，每部分的初始文本值不同，根据你在text中拖拽的来看
     [SerializeField] private bool[] canTrigger = new bool[] { true, true};//判断是否能触发文本
-    private float textCooldown = 100000f;//第二次文本触发时间//BOOS战不需要二次文本
-    [SerializeField] private float[] textCooldownTimer = new float[] { 10, 10};//文本冷却辅助
+   
+   
     void Start()
     {
 
@@ -24,18 +24,7 @@ public class TextTalk_BOOS1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < 2; i++)//判断能否触发文本
-        {
-            if (!canTrigger[i])
-            {
-                textCooldownTimer[i] -= Time.deltaTime;
-                if (textCooldownTimer[i] < 0)
-                {
-                    canTrigger[i] = true;
-                    textCooldownTimer[i] = textCooldown;
-                }
-            }
-        }
+        
         if (canTrigger[0])
         {
             if(Vector2.Distance(player.transform.position, new Vector2(38f, 3)) < 1)
@@ -65,6 +54,7 @@ public class TextTalk_BOOS1 : MonoBehaviour
             }
             else//防止进场景每次都卡在第一段文本
             {
+                canTrigger[0] = false;
                 text[currentText[0]].SetActive(false);
                 Text.SetActive(false);
             }
