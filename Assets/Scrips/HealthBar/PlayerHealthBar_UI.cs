@@ -23,8 +23,10 @@ public class PlayerHealthBar_UI : MonoBehaviour//Íæ¼ÒÊ¹ÓÃµÄÑªÌõ½Å±¾£¬¹ÒÔØÔÚÉãÏñ»
        
     }
 
-
-   
+    private void Update()
+    {
+        UpdateHealthUI();
+    }
 
 
     private void UpdateHealthUI()//ÑªÌõ¸üĞÂº¯Êı

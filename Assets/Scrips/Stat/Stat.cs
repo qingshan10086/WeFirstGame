@@ -1,19 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[System.Serializable]//相当于{get;private set;}不过更易调Bug
-public class Stat //记录各种游戏战斗数据的类，如攻击伤害
+using Newtonsoft.Json;
+[System.Serializable]
+[JsonObject(MemberSerialization.OptIn)]
+public class Stat
 {
-    [SerializeField] private int baseValue;//基础值
+    [JsonProperty]
+    [SerializeField] private int baseValue=0;//基础值
 
-    public List<int> modifiers;//修改器数列，储存各种额外值，如Buff
+    [JsonProperty]
+    public List<int> modifiers=new List<int>();//修改器数列，储存各种额外值，如Buff
 
 
     public int GetValue()//使外界获取值,输出最终值
     {
         int finalValue = baseValue;
 
-        foreach(int modifier in modifiers)
+        foreach (int modifier in modifiers)
         {
             finalValue += modifier;
         }
@@ -21,9 +25,9 @@ public class Stat //记录各种游戏战斗数据的类，如攻击伤害
         return finalValue;
     }
 
-    public void SetDefalutValue(int _value)
+    public void SetDefalutValue(int _value)//设置基础值
     {
-        baseValue= _value;
+        baseValue = _value;
     }
 
 
@@ -34,7 +38,22 @@ public class Stat //记录各种游戏战斗数据的类，如攻击伤害
 
     public void RemoveModifier(int _modifier)//数据移出
     {
-        modifiers.RemoveAt(_modifier);
+        modifiers.Remove(_modifier);
     }
 
+    public void ClearModifiers()//数据清除
+    {
+        modifiers.Clear();
+    }
+
+
+    public List<int> GetModifiers()=>new List<int>(modifiers);
+
+    public void CopyFrom(Stat other)
+    {
+        if (other == null) return;
+        baseValue = other.baseValue;
+        modifiers.Clear ();
+        modifiers.AddRange(other.modifiers);
+    }
 }

@@ -15,10 +15,8 @@ public class PlayerPrimaryAttackState : PlayerState//主要攻击状态
 
     public override void Enter()
     {
-       
-
         base.Enter();
-        
+        AudioManager.instance.PlaySFX(8, null);//播放攻击效果
 
         if (comboCounter > 2||Time.time > lastTimeAttacked + comboWindow)//重置攻击次数
         {
@@ -43,12 +41,13 @@ public class PlayerPrimaryAttackState : PlayerState//主要攻击状态
     public override void Exit()
     {
         base.Exit();
+        AudioManager.instance.StopSFX(8);
         player.anim.SetBool("PrimaryAttack", false);
         player.StartCoroutine("BusyFor", 0.15f);
         lastTimeAttacked = Time.time;
 
         comboCounter++;
-     
+        
     }
 
     

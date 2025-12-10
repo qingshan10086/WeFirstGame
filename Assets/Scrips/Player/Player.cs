@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Player : Entity//玩家类其父类为实体
 {
+    public GameObject Text;//获取对话框物体，用来实现对话时不能移动
+
+    public PlayerStats stat;//获取玩家数据
     public bool isBusy {  get; private set; }  //用来辅助该状态是否能转入其他状态
 
     [Header("Attack details")]              //攻击相关数据
@@ -22,7 +25,17 @@ public class Player : Entity//玩家类其父类为实体
     public float dashDuration;              //冲刺持续时间
     public float dashFaceDir {  get;private set; }     //冲刺方向
 
-    
+    [Header("回血技能冷却")]//暂时放这里，技能类那边继承没做完
+    public float RecoverHPCooldown;
+    public float RecoverHpCooldownTimer=0f;
+    public bool  CanRecoverHP = false;
+
+    #region 受到攻击无敌帧相关
+    public int currentHealth;//玩家当前血量
+    private int lastHealth;//玩家上一帧血量
+    private float GodTimer = 0.5f;//无敌时间
+    private bool canStunned = true;//能否受到攻击
+    #endregion
 
 
 
@@ -45,7 +58,12 @@ public class Player : Entity//玩家类其父类为实体
     public PlayerAimSwordState aimSwordState { get; private set; }
     public PlayerCatchSwordState catchSwordState { get; private set; }
     public PlayerDeadState deadState { get; private set; }
+    public PlayerReadTextState readTextState { get; private set; }
+    public PlayerRecoverHPState recoverHPState { get; private set; }
     #endregion
+
+
+   
 
     protected override void Awake()
     {
@@ -67,6 +85,10 @@ public class Player : Entity//玩家类其父类为实体
         aimSwordState = new PlayerAimSwordState(this, stateMachine, "AimSword");
         catchSwordState = new PlayerCatchSwordState(this, stateMachine, "CatchSword");
         deadState = new PlayerDeadState(this, stateMachine, "Die");
+        readTextState = new PlayerReadTextState(this, stateMachine, "Idle");
+        recoverHPState = new PlayerRecoverHPState(this, stateMachine, "RecoverHP");
+
+        stat=GetComponent<PlayerStats>();
     }
 
     protected override void Start()
@@ -74,24 +96,55 @@ public class Player : Entity//玩家类其父类为实体
         base.Start();
 
         skill = SkillManager.instance;
+        currentHealth=stat.GetMaxHealthValue();//获取最大血量
+        lastHealth=stat.GetMaxHealthValue();//获取最大血量
 
         stateMachine.Initialize(idleState);   //初始化状态
     }
-
 
     protected override void Update()
     {
         base.Update();
 
-        stateMachine.currentState.Update();  
+        if (!CanRecoverHP)
+        {
+            RecoverHpCooldownTimer-=Time.deltaTime;
+        }
+        if (RecoverHpCooldownTimer < 0) { CanRecoverHP = true; }
+
+
+        CanGodTime();
+
+
+        if (Text.activeSelf) { stateMachine.ChangeState(readTextState); }
+
+        stateMachine.currentState.Update();
 
         CheckForInputDash();   //冲刺函数
 
-        
+
     }
 
-
-
+    private void CanGodTime()//判断是否可以处于无敌时间，防止同时吃了太多帧伤
+    {
+        currentHealth = stat.currentHealth;
+        if (currentHealth < lastHealth)
+        {
+            if (canStunned)
+            {
+                stat.evasion.AddModifier(101);
+                canStunned = false;
+            }
+            GodTimer -= Time.deltaTime;
+            if (GodTimer <= 0)
+            {
+                lastHealth = currentHealth;
+                stat.evasion.RemoveModifier(101);
+                GodTimer = 0.2f;
+                canStunned = true;
+            }
+        }
+    }
 
     public void AnimationTrigger()=>stateMachine.currentState.AnimationFinishTrigger();  //用来获取动画完成相关
 
@@ -105,7 +158,7 @@ public class Player : Entity//玩家类其父类为实体
             return;
         }
 
-       
+        if (deadState.isDead) { return; }//死亡时不能冲刺
 
         dashFaceDir = Input.GetAxisRaw("Horizontal");
         if (dashFaceDir == 0)
@@ -115,7 +168,7 @@ public class Player : Entity//玩家类其父类为实体
 
         if (Input.GetKeyDown(KeyCode.L)&&SkillManager.instance.dash.CanUseSkill())
         {
-           
+            
             stateMachine.ChangeState(dashState);
             
         }

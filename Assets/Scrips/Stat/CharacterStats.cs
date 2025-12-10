@@ -87,6 +87,17 @@ public class CharacterStats : MonoBehaviour//角色数据
     }
 
 
+    public virtual void RecoverHP()//回复血量
+    {
+       
+        if (onHealthChanged != null)//防空
+        {
+            onHealthChanged();
+            Debug.Log("调用");
+        }
+    }
+
+
 
     public virtual void TakeDamage(int _damage)//造成伤害
     {

@@ -30,6 +30,7 @@ public class PlayerAirState : PlayerState  //空中状态，用来过渡的状态
 
         if (player.IsGroundDetected())//如果检测到地面就进入站立状态
         {
+            AudioManager.instance.PlaySFX(3, null);
             stateMachine.ChangeState(player.idleState);
         }
 

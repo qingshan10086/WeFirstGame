@@ -11,13 +11,15 @@ public class PlayerWallJumpState : PlayerState//跳墙状态
     public override void Enter()
     {
         base.Enter();
-        stateTimer = 2f;  //跳墙状态持续时间
+        AudioManager.instance.PlaySFX(4,null);//播放跳跃音效
+        stateTimer = 0.5f;  //跳墙状态持续时间
         player.SetVelocity(5 * -player.faceDirection, player.jumpForce);
     }
 
     public override void Exit()
     {
         base.Exit();
+        AudioManager.instance.StopSFX(4);
     }
 
     public override void Update()
