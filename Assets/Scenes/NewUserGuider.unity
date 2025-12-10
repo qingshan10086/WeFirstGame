@@ -452,7 +452,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &158102120
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7895,7 +7895,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  moveSpeed: 5
+  moveSpeed: 10
   stopDistance: 2
 --- !u!1 &781446779
 GameObject:
@@ -26138,6 +26138,13 @@ MonoBehaviour:
   - {fileID: 992256630}
   - {fileID: 663829134}
   - {fileID: 178080024}
+  canTrigger: 0101010101
+  textCooldownTimer:
+  - 10
+  - 10
+  - 10
+  - 10
+  - 10
 --- !u!1 &1785304899
 GameObject:
   m_ObjectHideFlags: 0

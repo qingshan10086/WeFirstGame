@@ -30,6 +30,7 @@ public class LittleMosterHealthBar_UI : MonoBehaviour//小怪挂载在血条上面的脚本
 
     private void UpdateHealthUI()//血条更新函数
     {
+
         slider.maxValue =myStats.GetMaxHealthValue();//血条最大值
         slider.value = myStats.currentHealth;//血条当前值
 

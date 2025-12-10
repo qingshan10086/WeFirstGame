@@ -10,10 +10,13 @@ public class TextTalk : MonoBehaviour
 
     //通过拖拽获取文本信息
     [SerializeField] private GameObject[] text;
-    private int currentText = 0;
-    
+    private int[] currentText =new int[] {0,8,9,11,12 };//记录当前是哪段文本,其分成几个部分，每部分的初始文本值不同，根据你在text中拖拽的来看
+    [SerializeField]private bool[] canTrigger = new bool[5] { true, true, true, true, true };//判断是否能触发文本
+    private float textCooldown = 10f;//第二次文本触发时间
+    [SerializeField]private float[] textCooldownTimer = new float[5] { 10, 10, 10, 10, 10 };//文本冷却辅助
 
-    private float currenntText;//记录当前是哪个文本
+
+    
     void Start()
     {
         
@@ -22,101 +25,161 @@ public class TextTalk : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-        if (player.transform.position.x < -1 && player.transform.position.x > -2)
+        
+        for(int i = 0; i < 5; i++)//判断能否触发文本
         {
-            if (currentText <= 7)
+            if (!canTrigger[i])
             {
-                text[currentText].SetActive(true);
-
-                if (Input.GetKeyUp(KeyCode.Space))
+                textCooldownTimer[i]-=Time.deltaTime;
+                if (textCooldownTimer[i] < 0)
                 {
-                    text[currentText].SetActive(false);
-                    currentText++;
-                    if (currentText == 8)
+                    canTrigger[i] = true;
+                    textCooldownTimer[i]=textCooldown;
+                }
+            }
+        }
+
+
+        if (canTrigger[0])//第一段文本
+        {
+            
+            if (Vector2.Distance(player.transform.position, new Vector2(-1.5f, -3))<1)//小区域触发
+            {
+            
+                if (currentText[0] <= 7)
+                {
+                    Text.SetActive(true);
+                    text[currentText[0]].SetActive(true);
+
+                    if (Input.GetKeyUp(KeyCode.Space))
                     {
-                        Text.SetActive(false);
+                        text[currentText[0]].SetActive(false);
+                        currentText[0]++;
+                        if (currentText[0] == 8)
+                        {
+                            Text.SetActive(false);
+                            canTrigger[0] = false;
+                            currentText[0]=0;//每次触发都从这段文本的初始文本值开始
+                        }
+                    }
+                }
+            
+            }
+            else//防止进场景每次都卡在第一段文本
+            {
+                text[currentText[0]].SetActive(false);
+                Text.SetActive(false);
+            }
+
+
+        }
+
+        if (canTrigger[1])//第二段文本
+        {
+
+            if (Vector2.Distance(player.transform.position, new Vector2(49f, -3)) < 1)
+            {
+                if (currentText[1] == 8)
+                {
+                    Text.SetActive(true);
+                    text[currentText[1]].SetActive(true);
+                    if (Input.GetKeyUp(KeyCode.Space))
+                    {
+                        text[currentText[1]].SetActive(false);
+                        currentText[1]++;
+                        if (currentText[1] == 9)
+                        {
+                            Text.SetActive(false);
+                            canTrigger[1] = false;
+                            currentText[1] = 8;
+                        }
                     }
                 }
             }
-            
+          
         }
-
-
-
-        if (player.transform.position.x > 48 && player.transform.position.x < 50)
+        if (canTrigger[2])//第三段文本
         {
-            if (currentText == 8)
+            if (Vector2.Distance(player.transform.position, new Vector2(81f, -4f)) < 1)
             {
-                Text.SetActive(true);
-                text[currentText].SetActive(true);
-                if (Input.GetKeyUp(KeyCode.Space))
+                if (currentText[2] <= 10)
                 {
-                    text[currentText].SetActive(false);
-                    currentText++;
-                    Text.SetActive(false);
+                    Text.SetActive(true);
+                    text[currentText[2]].SetActive(true);
+                    if (Input.GetKeyUp(KeyCode.Space))
+                    {
+                        text[currentText[2]].SetActive(false);
+                        currentText[2]++;
+                        if (currentText[2] == 11)
+                        {
+                            Text.SetActive(false);
+                            canTrigger[2] = false;
+                            currentText[2] = 9;
+                        }
+                    }
                 }
             }
+   
         }
 
-        if (player.transform.position.x > 80 && player.transform.position.x < 82&&player.transform.position.y>-5&&player.transform.position.y<-4)
+        if (canTrigger[3])//第四段文本
         {
-            if (currentText <= 10)
+
+            if (Vector2.Distance(player.transform.position, new Vector2(93f, 42)) < 1)
             {
-                Text.SetActive(true);
-                text[currentText].SetActive(true);
-                if (Input.GetKeyUp(KeyCode.Space))
+                if (currentText[3] <= 11)
                 {
-                    text[currentText].SetActive(false);
-                    currentText++;
-                    if(currentText == 11)
-                    Text.SetActive(false);
+                    Text.SetActive(true);
+                    text[currentText[3]].SetActive(true);
+                    if (Input.GetKeyUp(KeyCode.Space))
+                    {
+                        text[currentText[3]].SetActive(false);
+                        currentText[3]++;
+                        if (currentText[3] == 12)
+                        {
+                            Text.SetActive(false);
+                            canTrigger[3] = false;
+                            currentText[3] = 11;
+                        }
+                    }
                 }
             }
+ 
         }
-
-
-        if (player.transform.position.x > 92 && player.transform.position.x < 94&&player.transform.position.y>40)
+        if (canTrigger[4])//第五段文本
         {
-            if (currentText <= 11)
+
+            if (Vector2.Distance(player.transform.position, new Vector2(119f, 38)) < 1)
             {
-                Text.SetActive(true);
-                text[currentText].SetActive(true);
-                if (Input.GetKeyUp(KeyCode.Space))
+                foreach (GameObject enemyObj in enemy)
                 {
-                    text[currentText].SetActive(false);
-                    currentText++;
-                    if (currentText == 12)
-                        Text.SetActive(false);
+                    if (enemyObj == null)
+                    {
+                        if (currentText[4] <= 12)
+                        {
+                            Text.SetActive(true);
+                            text[currentText[4]].SetActive(true);
+                            if (Input.GetKeyUp(KeyCode.Space))
+                            {
+                                text[currentText[4]].SetActive(false);
+                                currentText[4]++;
+                                if (currentText[4] == 13)
+                                {
+                                    Text.SetActive(false);
+                                    canTrigger[4] = false;
+                                    currentText[4] = 12;
+                                }
+                            }
+                        }
+
+                    }
+
+
                 }
             }
+
         }
 
-        if (player.transform.position.x > 118 && player.transform.position.x < 120)
-        {
-            foreach(GameObject enemyObj in enemy)
-            {
-                if (enemyObj == null)
-                {
-                      if (currentText <= 12)
-                      {
-                           Text.SetActive(true);
-                           text[currentText].SetActive(true);
-                           if (Input.GetKeyUp(KeyCode.Space))
-                           {
-                                text[currentText].SetActive(false);
-                                currentText++;
-                                if (currentText == 13)
-                                Text.SetActive(false);
-                           }
-                      }
-
-                }
-
-
-            }
-        }
     }
 
     
