@@ -422,7 +422,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   damage:
-    baseValue: 30
+    baseValue: 20
     modifiers: 
   critChange:
     baseValue: 0

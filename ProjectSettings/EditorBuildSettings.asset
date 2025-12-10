@@ -14,7 +14,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/NewUserGuider.unity
     guid: 4c7ee28ea379796458e8cbb9035ab5fa
-  - enabled: 1
+  - enabled: 0
     path: "Assets/Resources/echoAbyss/\u602A\u7269/Scenes/Demo.unity"
     guid: 01c3fb4beae9cb24ba9666ae290dfeba
+  - enabled: 1
+    path: Assets/Scenes/BossDeath.unity
+    guid: f9b4af9aa3e7f854d9bac4fe68e48bd2
   m_configObjects: {}

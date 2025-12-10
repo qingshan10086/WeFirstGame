@@ -360,14 +360,14 @@ public class HeroKnightTransformSkill : MonoBehaviour
     {
         if (player == null || player.stats == null) return;
 
-        // 如果在变身期间血量降到 0 或以下，退出变身并回满血
+        // 如果在变身期间血量降到 0 或以下，退出变身并回半血
         if (player.stats.currentHealth <= 0 && isTransformed)
         {
             // 先结束变身还原外观/判定
             ForceEndTransform();
 
             // 回满血并通知（调用 onHealthChanged 以便 UI 更新）
-            player.stats.currentHealth = player.stats.GetMaxHealthValue();
+            player.stats.currentHealth = player.stats.GetMaxHealthValue()/2;
             player.stats.onHealthChanged?.Invoke();
 
             // 防止进入死亡状态：尝试让玩家回到空闲态（视项目状态机而定）

@@ -335,7 +335,7 @@ MonoBehaviour:
   m_enemyLayers:
     serializedVersion: 2
     m_Bits: 128
-  m_attackDamage: 30
+  m_attackDamage: 20
   m_attackKnockback: 1
 --- !u!95 &8296326693330477312
 Animator:

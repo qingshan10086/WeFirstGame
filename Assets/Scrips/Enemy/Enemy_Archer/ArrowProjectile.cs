@@ -59,11 +59,6 @@ public class ArrowProjectile : MonoBehaviour
                 // 调用发射者的伤害逻辑（保留暴击/护甲等逻辑）
                 ownerStats.DoDamage(targetStats);
             }
-            else
-            {
-                // 备用：直接对目标造成 1 点伤害（可在调试时临时改为更大值以便观察）
-                targetStats.TakeDamage(1);
-            }
 
             Debug.Log($"ArrowProjectile: target health after hit = {targetStats.currentHealth}");
             Destroy(gameObject);

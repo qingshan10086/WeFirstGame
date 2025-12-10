@@ -81,7 +81,6 @@ public class Enemy_Archer : Enemy//敌人中的骷髅兵
         if (arrow == null || arrowSpawnPoint == null) return;
 
         GameObject go = Instantiate(arrow, arrowSpawnPoint.position, Quaternion.identity);
-        // 尝试使用 ArrowProjectile 初始化（若箭预制带该脚本）
         var proj = go.GetComponent<ArrowProjectile>();
         if (proj != null)
         {
