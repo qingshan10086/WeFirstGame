@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: revolve
+  m_Name: integrate
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -20,26 +20,24 @@ AnimationClip:
   m_PPtrCurves:
   - serializedVersion: 2
     curve:
-    - time: 0
-      value: {fileID: 21300000, guid: 2ec301c0f97d8f646a1b93f5a46ec2f9, type: 3}
-    - time: 0.05
-      value: {fileID: 21300000, guid: 979d833e7953dcf43804723a6b6ae66d, type: 3}
     - time: 0.1
-      value: {fileID: 21300000, guid: 3aa7739404fc38b4687a547be8a35114, type: 3}
-    - time: 0.15
-      value: {fileID: 21300000, guid: fdf514527e700b943b9913962d6e66e7, type: 3}
+      value: {fileID: 21300000, guid: e1044d5d5fe48b940b3dea66631f1ee3, type: 3}
     - time: 0.2
-      value: {fileID: 21300000, guid: e790a965d6e297b4ab0edd1f27667d7e, type: 3}
-    - time: 0.25
-      value: {fileID: 21300000, guid: 241a1bcb8b22cc846a9683420cb0540f, type: 3}
+      value: {fileID: 21300000, guid: ebf637d9b7a287e4aab9614d285db2b1, type: 3}
     - time: 0.3
-      value: {fileID: 21300000, guid: 6edc402fbff9eb7499114120ae1b308d, type: 3}
+      value: {fileID: 21300000, guid: 195125e9dedc69144a5df772595f1572, type: 3}
+    - time: 0.4
+      value: {fileID: 21300000, guid: 972181d90ac144d4f855a76b33d1ab3b, type: 3}
+    - time: 0.5
+      value: {fileID: 21300000, guid: 0c3cb848951a124468b4f7a91a721000, type: 3}
+    - time: 0.6
+      value: {fileID: 21300000, guid: 9755f0e22a52d0f449629591c739da84, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
     flags: 2
-  m_SampleRate: 20
+  m_SampleRate: 10
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -56,19 +54,18 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 2ec301c0f97d8f646a1b93f5a46ec2f9, type: 3}
-    - {fileID: 21300000, guid: 979d833e7953dcf43804723a6b6ae66d, type: 3}
-    - {fileID: 21300000, guid: 3aa7739404fc38b4687a547be8a35114, type: 3}
-    - {fileID: 21300000, guid: fdf514527e700b943b9913962d6e66e7, type: 3}
-    - {fileID: 21300000, guid: e790a965d6e297b4ab0edd1f27667d7e, type: 3}
-    - {fileID: 21300000, guid: 241a1bcb8b22cc846a9683420cb0540f, type: 3}
-    - {fileID: 21300000, guid: 6edc402fbff9eb7499114120ae1b308d, type: 3}
+    - {fileID: 21300000, guid: e1044d5d5fe48b940b3dea66631f1ee3, type: 3}
+    - {fileID: 21300000, guid: ebf637d9b7a287e4aab9614d285db2b1, type: 3}
+    - {fileID: 21300000, guid: 195125e9dedc69144a5df772595f1572, type: 3}
+    - {fileID: 21300000, guid: 972181d90ac144d4f855a76b33d1ab3b, type: 3}
+    - {fileID: 21300000, guid: 0c3cb848951a124468b4f7a91a721000, type: 3}
+    - {fileID: 21300000, guid: 9755f0e22a52d0f449629591c739da84, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.35000002
+    m_StopTime: 0.70000005
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -87,4 +84,18 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.6
+    functionName: OnRespawnAnimationComplete
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.7
+    functionName: OnRespawnAnimationComplete
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
