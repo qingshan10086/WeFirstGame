@@ -220,6 +220,13 @@
       "dependencies": {},
       "url": "https://packages.unity.cn"
     },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.2.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.cn"
+    },
     "com.unity.recorder": {
       "version": "4.0.3",
       "depth": 1,

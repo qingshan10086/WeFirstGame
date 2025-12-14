@@ -2,42 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Entity : MonoBehaviour      //ÊµÌåÀà£¬ÓÃÀ´´¢´æÍæ¼ÒºÍ¹ÖÎï¹²Í¬µÄĞĞÎª
+public class Entity : MonoBehaviour      //å®ä½“ç±»ï¼Œç”¨æ¥å‚¨å­˜ç©å®¶å’Œæ€ªç‰©å…±åŒçš„è¡Œä¸º
 {
     #region Component
-    public Animator anim { get; private set; }     //ÓÃÀ´»ñÈ¡¶¯»­»ú
+    public Animator anim { get; private set; }     //ç”¨æ¥è·å–åŠ¨ç”»æœº
 
-    public Rigidbody2D rb;                         //ÓÃÀ´»ñÈ¡ÖØÁ¦×é¼ş
+    public Rigidbody2D rb;                         //ç”¨æ¥è·å–é‡åŠ›ç»„ä»¶
 
-    public EntityFX fx {  get; private set; }       //ÓÃÀ´×öÒ»Ğ©¹âĞ§µÄÀà£¬ÈçÊÜµ½¹¥»÷±ä°×É«
+    public EntityFX fx {  get; private set; }       //ç”¨æ¥åšä¸€äº›å…‰æ•ˆçš„ç±»ï¼Œå¦‚å—åˆ°æ”»å‡»å˜ç™½è‰²
 
-    public CharacterStats stats { get; private set; }//½ÇÉ«Êı¾İÍ³¼Æ
-    public CapsuleCollider2D cd { get; private set; }
+    public CharacterStats stats { get; private set; }//è§’è‰²æ•°æ®ç»Ÿè®¡
+    public CapsuleCollider2D cd { get; private set; }//èƒ¶å›Šç¢°æ’ä½“
     #endregion
 
 
-    public System.Action onFlipped;//ÑªÌõ²»·­×ªÎ¯ÍĞ
+    public System.Action onFlipped;//è¡€æ¡ä¸ç¿»è½¬å§”æ‰˜
 
 
-    [Header("Knockback info")]                           //»÷ÍËÏà¹Ø
-    [SerializeField] protected Vector2 knockbackDirection;   //±»»÷ÍË·½Ïò
-    protected bool isKnocked;                                //ÅĞ¶ÏÊÇ·ñ±»»÷ÍË
-    [SerializeField] protected float knockbackDuration;      //»÷ÍË³ÖĞøÊ±¼ä
+    [Header("Knockback info")]                           //å‡»é€€ç›¸å…³
+    [SerializeField] protected Vector2 knockbackDirection;   //è¢«å‡»é€€æ–¹å‘
+    protected bool isKnocked;                                //åˆ¤æ–­æ˜¯å¦è¢«å‡»é€€
+    [SerializeField] protected float knockbackDuration;      //å‡»é€€æŒç»­æ—¶é—´
 
 
-    [Header("Collision info")]                       //Åö×²¼ì²âÊı¾İ£¬À´´¢´æ¹¥»÷·½ÃæµÄ
-    public Transform attackCheck;                    //»ñÈ¡Íæ¼Ò¹¥»÷¼ì²âµÄÎ»ÖÃĞÅÏ¢£¬»áµ¥¶ÀÔÚUnityÖĞÉèÖÃÒ»¸ö×ÓÎïÌå
-    public float attackCheckRadius;                  //¹¥»÷¼ì²âµÄ°ë¾¶
+    [Header("Collision info")]                       //ç¢°æ’æ£€æµ‹æ•°æ®ï¼Œæ¥å‚¨å­˜æ”»å‡»æ–¹é¢çš„
+    public Transform attackCheck;                    //è·å–ç©å®¶æ”»å‡»æ£€æµ‹çš„ä½ç½®ä¿¡æ¯ï¼Œä¼šå•ç‹¬åœ¨Unityä¸­è®¾ç½®ä¸€ä¸ªå­ç‰©ä½“
+    public float attackCheckRadius;                  //æ”»å‡»æ£€æµ‹çš„åŠå¾„
 
-    public Transform groundCheck;         //»ñÈ¡µØÃæ¼ì²âµÄÎ»ÖÃĞÅÏ¢£¬»áµ¥¶ÀÔÚUnityÖĞÉèÖÃÒ»¸ö×ÓÎïÌå
-    public float groundCheckDistance;     //µØÃæ¼ì²âµÄ¾àÀë
-    public Transform wallCheck;           //»ñÈ¡Ç½±Ú¼ì²âµÄÎ»ÖÃĞÅÏ¢£¬»áµ¥¶ÀÔÚUnityÖĞÉèÖÃÒ»¸ö×ÓÎïÌå
-    public float wallCheckDiatance;       //Ç½±Ú¼ì²âµÄ¾àÀë
-    [SerializeField] protected LayerMask whatisGround;        //´¢´æÇ½±Ú²ãÓëµØÃæ²ãĞÅÏ¢£¬À´ÅĞ¶ÏÊÇÄÇÒ»²ã
+    public Transform groundCheck;         //è·å–åœ°é¢æ£€æµ‹çš„ä½ç½®ä¿¡æ¯ï¼Œä¼šå•ç‹¬åœ¨Unityä¸­è®¾ç½®ä¸€ä¸ªå­ç‰©ä½“
+    public float groundCheckDistance;     //åœ°é¢æ£€æµ‹çš„è·ç¦»
+    public Transform wallCheck;           //è·å–å¢™å£æ£€æµ‹çš„ä½ç½®ä¿¡æ¯ï¼Œä¼šå•ç‹¬åœ¨Unityä¸­è®¾ç½®ä¸€ä¸ªå­ç‰©ä½“
+    public float wallCheckDiatance;       //å¢™å£æ£€æµ‹çš„è·ç¦»
+    [SerializeField] protected LayerMask whatisGround;        //å‚¨å­˜å¢™å£å±‚ä¸åœ°é¢å±‚ä¿¡æ¯ï¼Œæ¥åˆ¤æ–­æ˜¯é‚£ä¸€å±‚
 
 
-    public int faceDirection { get; set; } = 1;       //Ãæ¶Ô·½Ïò£¬³õÊ¼Ä¬ÈÏÏòÓÒ
-    protected bool faceRight = true;                          //¸¨ÖúÊÇ·ñ·­×ªµÄÊı¾İ
+    public int faceDirection { get; set; } = 1;       //é¢å¯¹æ–¹å‘ï¼Œåˆå§‹é»˜è®¤å‘å³
+    protected bool faceRight = true;                          //è¾…åŠ©æ˜¯å¦ç¿»è½¬çš„æ•°æ®
 
     protected virtual void Awake()                 
     {
@@ -46,10 +46,10 @@ public class Entity : MonoBehaviour      //ÊµÌåÀà£¬ÓÃÀ´´¢´æÍæ¼ÒºÍ¹ÖÎï¹²Í¬µÄĞĞÎª
 
     protected virtual void Start()
     {
-        fx = GetComponentInChildren<EntityFX>();            //»ñÈ¡×ÓÎïÌå¹ÒÔØµÄ¹âĞ§½Å±¾
-        anim = GetComponentInChildren<Animator>();          //»ñÈ¡×ÓÎïÌå¹ÒÔØµÄ¶¯»­»ú×é¼ş
-        rb = GetComponent<Rigidbody2D>();                   //»ñÈ¡ÖØÁ¦×é¼ş
-        stats = GetComponent<CharacterStats>();     //»ñÈ¡Êı¾İ×é¼ş
+        fx = GetComponentInChildren<EntityFX>();            //è·å–å­ç‰©ä½“æŒ‚è½½çš„å…‰æ•ˆè„šæœ¬
+        anim = GetComponentInChildren<Animator>();          //è·å–å­ç‰©ä½“æŒ‚è½½çš„åŠ¨ç”»æœºç»„ä»¶
+        rb = GetComponent<Rigidbody2D>();                   //è·å–é‡åŠ›ç»„ä»¶
+        stats = GetComponent<CharacterStats>();     //è·å–æ•°æ®ç»„ä»¶
         cd = GetComponent<CapsuleCollider2D>();
     }
 
@@ -60,21 +60,21 @@ public class Entity : MonoBehaviour      //ÊµÌåÀà£¬ÓÃÀ´´¢´æÍæ¼ÒºÍ¹ÖÎï¹²Í¬µÄĞĞÎª
 
 
     #region   Collider 
-    //ÉäÏß¼ì²â
-    public virtual bool IsGroundDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatisGround);  //¸Ãº¯ÊıÓÃÀ´´¢´æÉäÏßÊÇ·ñ¼ì²âµ½ÁËµØÃæ²ã
-    public virtual bool IsWallDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * faceDirection, wallCheckDiatance, whatisGround);//¸Ãº¯ÊıÓÃÀ´´¢´æÉäÏßÊÇ·ñ¼ì²âµ½ÁËÇ½±Ú²ã
-    protected virtual void OnDrawGizmos()      //¸Ãº¯ÊıÓÃÀ´ÔÚUnityÖĞ»­Ò»ÌõÉäÏß£¬²»»áÔÚÓÎÏ·³¡¾°ÖĞ³öÏÖ£¬À´¸¨ÖúÉäÏß¼ì²â£¬ºÃÈ·¶¨ÉäÏßµÄ¾ßÌå³¤¶È
+    //å°„çº¿æ£€æµ‹
+    public virtual bool IsGroundDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatisGround);  //è¯¥å‡½æ•°ç”¨æ¥å‚¨å­˜å°„çº¿æ˜¯å¦æ£€æµ‹åˆ°äº†åœ°é¢å±‚
+    public virtual bool IsWallDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * faceDirection, wallCheckDiatance, whatisGround);//è¯¥å‡½æ•°ç”¨æ¥å‚¨å­˜å°„çº¿æ˜¯å¦æ£€æµ‹åˆ°äº†å¢™å£å±‚
+    protected virtual void OnDrawGizmos()      //è¯¥å‡½æ•°ç”¨æ¥åœ¨Unityä¸­ç”»ä¸€æ¡å°„çº¿ï¼Œä¸ä¼šåœ¨æ¸¸æˆåœºæ™¯ä¸­å‡ºç°ï¼Œæ¥è¾…åŠ©å°„çº¿æ£€æµ‹ï¼Œå¥½ç¡®å®šå°„çº¿çš„å…·ä½“é•¿åº¦
     {
-        Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));//»­µØÃæ¼ì²âÏß
-        Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDiatance * faceDirection, wallCheck.position.y));//»­Ç½±Ú¼ì²âÏß
-        Gizmos.DrawWireSphere(attackCheck.position, attackCheckRadius);  //»­¹¥»÷¼ì²âÔ²
+        Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));//ç”»åœ°é¢æ£€æµ‹çº¿
+        Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDiatance * faceDirection, wallCheck.position.y));//ç”»å¢™å£æ£€æµ‹çº¿
+        Gizmos.DrawWireSphere(attackCheck.position, attackCheckRadius);  //ç”»æ”»å‡»æ£€æµ‹åœ†
 
     }
     #endregion
 
 
-    #region ·­×ª
-    public virtual void Flip()     //·­×ªº¯Êı£¬Ã¿´Îµ÷ÓÃ¿ÉÒÔ·­×ªÒ»´Î
+    #region ç¿»è½¬
+    public virtual void Flip()     //ç¿»è½¬å‡½æ•°ï¼Œæ¯æ¬¡è°ƒç”¨å¯ä»¥ç¿»è½¬ä¸€æ¬¡
     {
         faceDirection = faceDirection * -1;
         faceRight = !faceRight;
@@ -85,7 +85,7 @@ public class Entity : MonoBehaviour      //ÊµÌåÀà£¬ÓÃÀ´´¢´æÍæ¼ÒºÍ¹ÖÎï¹²Í¬µÄĞĞÎª
         }
     }
 
-    public virtual void FlipController(float _x)   //·­×ª¹ÜÀíÆ÷
+    public virtual void FlipController(float _x)   //ç¿»è½¬ç®¡ç†å™¨
     {
         if (_x > 0 && !faceRight)                   
         {
@@ -99,7 +99,7 @@ public class Entity : MonoBehaviour      //ÊµÌåÀà£¬ÓÃÀ´´¢´æÍæ¼ÒºÍ¹ÖÎï¹²Í¬µÄĞĞÎª
     #endregion
 
 
-    public void SetVelocity(float _xVelocity, float _yVelocity)    //ÉèÖÃËÙ¶ÈµÄº¯Êı£¬Ç°Ò»¸ö²ÎÊıÎªxÖáËÙ¶È£¬ºóÒ»¸öÎªyÖáËÙ¶È
+    public void SetVelocity(float _xVelocity, float _yVelocity)    //è®¾ç½®é€Ÿåº¦çš„å‡½æ•°ï¼Œå‰ä¸€ä¸ªå‚æ•°ä¸ºxè½´é€Ÿåº¦ï¼Œåä¸€ä¸ªä¸ºyè½´é€Ÿåº¦
     {
         if (isKnocked)                                          //
         {
@@ -111,7 +111,7 @@ public class Entity : MonoBehaviour      //ÊµÌåÀà£¬ÓÃÀ´´¢´æÍæ¼ÒºÍ¹ÖÎï¹²Í¬µÄĞĞÎª
         FlipController(rb.velocity.x);
     }
 
-    public void ZeroVelocity()              //ÉèÖÃ0ËÙ¶ÈµÄº¯Êı
+    public void ZeroVelocity()              //è®¾ç½®0é€Ÿåº¦çš„å‡½æ•°
     {
         if (isKnocked)
         {
@@ -121,14 +121,14 @@ public class Entity : MonoBehaviour      //ÊµÌåÀà£¬ÓÃÀ´´¢´æÍæ¼ÒºÍ¹ÖÎï¹²Í¬µÄĞĞÎª
         rb.velocity = new Vector2(0, 0);
     }
 
-    public virtual void DamageEffect()                        //¹¥»÷Ğ§¹û¹ÜÀíº¯Êı
+    public virtual void DamageEffect()                        //æ”»å‡»æ•ˆæœç®¡ç†å‡½æ•°
     {
-        fx.StartCoroutine("FlashFX");                   //¿ªÊ¼¹âĞ§Ğ­³Ì
-        StartCoroutine("HitKnockback");                 //¿ªÊ¼»÷ÍËĞ­³Ì
+        fx.StartCoroutine("FlashFX");                   //å¼€å§‹å…‰æ•ˆåç¨‹
+        StartCoroutine("HitKnockback");                 //å¼€å§‹å‡»é€€åç¨‹
         
     }
 
-    protected virtual IEnumerator HitKnockback()        //»÷ÍËĞ­³Ì¹ÜÀí
+    protected virtual IEnumerator HitKnockback()        //å‡»é€€åç¨‹ç®¡ç†
     {
         isKnocked = true;
 
