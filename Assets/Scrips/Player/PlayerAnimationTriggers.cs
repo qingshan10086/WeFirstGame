@@ -30,9 +30,9 @@ public class PlayerAnimationTriggers : MonoBehaviour//动画机触发类，其内部函数都
 
                 player.stats.DoDamage(_target);
 
-               
-                
+
             }
+           
         }
     }
 }
