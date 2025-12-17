@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 /// <summary>
@@ -16,6 +17,7 @@ public class ArrowTrap : MonoBehaviour
     [SerializeField] private GameObject arrowPrefab;
     [SerializeField] private float arrowSpeed = 10f;
     [SerializeField] private float arrowLifetime = 5f;
+    [SerializeField] private float arrowDamage = 10f;  // 箭造成的伤害
     #endregion
 
     #region 发射控制
@@ -70,7 +72,7 @@ public class ArrowTrap : MonoBehaviour
         
         // 实例化箭并设置初始旋转，确保箭头朝向发射方向
         // 箭旋转角度为0时，箭头指向下
-        GameObject arrow = Instantiate(arrowPrefab, arrowSpawnPoint.position, Quaternion.AngleAxis(arrowAngle, Vector3.forward));
+        GameObject arrow = Object.Instantiate(arrowPrefab, arrowSpawnPoint.position, Quaternion.AngleAxis(arrowAngle, Vector3.forward));
         
         // 设置箭的层级为trap
         arrow.layer = LayerMask.NameToLayer("trap");
@@ -104,6 +106,8 @@ public class ArrowTrap : MonoBehaviour
         if (arrowComponent != null)
         {
             arrowComponent.OnArrowDestroyed += OnArrowDestroyed;
+            // 设置箭的伤害值
+            arrowComponent.SetDamage(arrowDamage);
         }
         
         // 设置箭的生命周期

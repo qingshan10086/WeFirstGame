@@ -24,10 +24,11 @@ public class Player : Entity//玩家类其父类为实体
     public float dashSpeed;                 //冲刺速度
     public float dashDuration;              //冲刺持续时间
     public float dashFaceDir {  get;private set; }     //冲刺方向
+
     [Header("回血技能冷却")]//暂时放这里，技能类那边继承没做完
     public float RecoverHPCooldown;
     public float RecoverHpCooldownTimer=0f;
-    public bool CanRecoverHP = true;
+    public bool  CanRecoverHP = false;
 
     #region 受到攻击无敌帧相关
     public int currentHealth;//玩家当前血量
@@ -139,7 +140,7 @@ public class Player : Entity//玩家类其父类为实体
             {
                 lastHealth = currentHealth;
                 stat.evasion.RemoveModifier(101);
-                GodTimer = 0.2f;
+                GodTimer = 0.5f;
                 canStunned = true;
             }
         }
@@ -157,7 +158,7 @@ public class Player : Entity//玩家类其父类为实体
             return;
         }
 
-       
+        if (deadState.isDead) { return; }//死亡时不能冲刺
 
         dashFaceDir = Input.GetAxisRaw("Horizontal");
         if (dashFaceDir == 0)
@@ -167,7 +168,7 @@ public class Player : Entity//玩家类其父类为实体
 
         if (Input.GetKeyDown(KeyCode.L)&&SkillManager.instance.dash.CanUseSkill())
         {
-           
+            
             stateMachine.ChangeState(dashState);
             
         }

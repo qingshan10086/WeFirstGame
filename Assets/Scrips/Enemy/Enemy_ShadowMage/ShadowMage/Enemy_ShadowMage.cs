@@ -5,20 +5,22 @@ using UnityEngine;
 
 public class Enemy_ShadowMage : Enemy
 {
+    public GameObject Text;//获取对话框物体，用来实现对话时不能移动
+    public ShadowMageReadTextState readTextState;//阅读文本状态
     public ShadowMageIdleState idleState {  get; private set; }//申明站立状态
     public ShadowMageAttack2State attack2State { get; private set; }//申明近身攻击（攻击2）状态
     public ShadowMageAttack3State attack3State { get; private set; }//申明召唤小怪并位移（攻击3）状态
     public  GameObject[] mosters;//小怪
     private float currentHealth;//当前血量百分数形式
     private bool[] canAttack3 = new bool[4] { true, true, true, true };
-
+    
 
 
     public ShadowMageAttack1State attack1State { get; private set; }//申明攻击1状态
 
     [Header("攻击1相关")]
     [SerializeField] private float attack1Cooldown=60f;//攻击1间隔时间
-    [SerializeField] private float attack1CooldownTimer=0f;
+    public float attack1CooldownTimer=0f;
     private bool canAttack1=false;//能否攻击1
 
 
@@ -36,14 +38,14 @@ public class Enemy_ShadowMage : Enemy
         attack2State = new ShadowMageAttack2State(this, stateMachine, "Attack2", this);
         attack3State = new ShadowMageAttack3State(this, stateMachine, "Attack3", this);
         dieState = new ShadowMageDieState(this, stateMachine, "Die", this);
-
+        readTextState = new ShadowMageReadTextState(this, stateMachine, "Idle", this);
         stat=GetComponent<EnemyStats>();//获取敌人数据
     }
 
     protected override void Start()
     {
         base.Start();
-        stateMachine.Initialize(idleState);//初始化状态
+        stateMachine.Initialize(readTextState);//初始化状态
     }
 
 
@@ -137,7 +139,7 @@ public class Enemy_ShadowMage : Enemy
         {
             
                 stateMachine.ChangeState(attack1State);
-                Debug.Log("进入攻击1状态");
+              
 
                 // 开始冷却
                 canAttack1 = false;

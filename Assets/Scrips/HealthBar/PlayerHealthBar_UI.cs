@@ -23,12 +23,10 @@ public class PlayerHealthBar_UI : MonoBehaviour//Íæ¼ÒÊ¹ÓÃµÄÑªÌõ½Å±¾£¬¹ÒÔØÔÚÉãÏñ»
        
     }
 
-
-   // private void Update()
-   // {
-      //  slider.maxValue = myStats.GetMaxHealthValue();//ÑªÌõ×î´óÖµ
-     //   slider.value = myStats.currentHealth;//ÑªÌõµ±Ç°Öµ
-   // }
+    private void Update()
+    {
+        UpdateHealthUI();
+    }
 
 
     private void UpdateHealthUI()//ÑªÌõ¸üĞÂº¯Êı

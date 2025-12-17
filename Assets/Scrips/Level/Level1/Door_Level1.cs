@@ -32,7 +32,7 @@ public class Door_Level1 : MonoBehaviour
         float distance = Vector3.Distance(player.position, transform.position);
         if (distance < goalRaidus && allDefeated)
         {
-            SceneManager.LoadScene("BOSS1");
+            SceneManager.LoadScene("Level2");
         }
     }
 

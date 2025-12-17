@@ -62,13 +62,56 @@ public class DynamicChainsaw : MonoBehaviour
     #endregion
 
     #region 碰撞检测
+    private float damageTimer = 0f;
+    [SerializeField] private float damageInterval = 0.5f; // 伤害间隔时间
+    private bool isFirstCollision = true; // 是否是第一次碰撞
+
     private void OnCollisionStay2D(Collision2D collision)
     {
         // 检查是否碰撞到玩家
         if (collision.gameObject.CompareTag("Player"))
         {
-            // 碰撞检测逻辑保留，伤害功能将由用户自行实现
             Debug.Log("玩家与电锯碰撞！");
+            
+            // 第一次碰撞时立即造成伤害
+            if (isFirstCollision)
+            {
+                isFirstCollision = false;
+                damageTimer = 0f;
+                // 获取玩家的PlayerStats组件并造成伤害
+                PlayerStats playerStats = collision.gameObject.GetComponent<PlayerStats>();
+                if (playerStats != null)
+                {
+                    playerStats.TakeDamage(Mathf.RoundToInt(damageAmount));
+                    Debug.Log("动态电锯对玩家造成了 " + Mathf.RoundToInt(damageAmount) + " 点伤害");
+                }
+            }
+            else
+            {
+                // 计时伤害
+                damageTimer += Time.deltaTime;
+                if (damageTimer >= damageInterval)
+                {
+                    damageTimer = 0f;
+                    // 获取玩家的PlayerStats组件并造成伤害
+                    PlayerStats playerStats = collision.gameObject.GetComponent<PlayerStats>();
+                    if (playerStats != null)
+                    {
+                        playerStats.TakeDamage(Mathf.RoundToInt(damageAmount));
+                        Debug.Log("动态电锯对玩家造成了 " + Mathf.RoundToInt(damageAmount) + " 点伤害");
+                    }
+                }
+            }
+        }
+    }
+    
+    // 当玩家离开碰撞范围时，重置第一次碰撞标志
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            isFirstCollision = true;
+            damageTimer = 0f;
         }
     }
     #endregion

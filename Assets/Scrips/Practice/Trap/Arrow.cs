@@ -22,6 +22,15 @@ public class Arrow : MonoBehaviour
 
     #region 箭参数
     private bool hasHit = false;      // 箭是否已经命中目标
+    [SerializeField] private float damageAmount = 10f;  // 箭造成的伤害
+    
+    /// <summary>
+    /// 设置箭的伤害值（从外部调用）
+    /// </summary>
+    public void SetDamage(float damage)
+    {
+        damageAmount = damage;
+    }
     #endregion
 
     #region 生命周期方法
@@ -29,7 +38,7 @@ public class Arrow : MonoBehaviour
     {
         // 初始化组件引用
         if (rb == null) rb = GetComponent<Rigidbody2D>();
-        if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         if (arrowCollider == null) arrowCollider = GetComponent<Collider2D>();
 
         // 确保箭的碰撞器是实体碰撞体
@@ -41,6 +50,13 @@ public class Arrow : MonoBehaviour
         // 设置箭的层级为trap
         // 确保在Unity编辑器中已经创建了名为"trap"的层级
         gameObject.layer = LayerMask.NameToLayer("trap");
+        
+        // 设置箭的绘制层级为Trap
+        // 确保在Unity编辑器中已经创建了名为"Trap"的Sorting Layer
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.sortingLayerName = "Trap";
+        }
         
         // 初始化旋转，确保箭头朝向速度方向
         UpdateArrowRotation();
@@ -87,6 +103,13 @@ public class Arrow : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("玩家被箭命中");
+            // 获取玩家的PlayerStats组件并造成伤害
+            PlayerStats playerStats = collision.gameObject.GetComponent<PlayerStats>();
+            if (playerStats != null)
+            {
+                playerStats.TakeDamage(Mathf.RoundToInt(damageAmount));
+                Debug.Log("箭对玩家造成了 " + Mathf.RoundToInt(damageAmount) + " 点伤害");
+            }
         }
 
         // 停止箭的运动

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class Town_trigger : MonoBehaviour
@@ -10,14 +11,33 @@ public class Town_trigger : MonoBehaviour
     {
         enemy = GetComponentInParent<Enemy_town2>();
     }
-     private void AttackTrigger()
+     public void AttackTrigger()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(enemy.checkAttack.position,     enemy.checkAttackRange);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(enemy.checkAttack.position, enemy.checkAttackRange);
         foreach (Collider2D collider in colliders)
         {
             if (collider.CompareTag("Player"))
             {
-               UnityEngine.Debug.Log("TownResident攻击到玩家");
+                // 获取玩家的PlayerStats组件
+                PlayerStats playerStats = collider.GetComponent<PlayerStats>();
+                if (playerStats != null)
+                {
+                   
+                    // 让玩家受到伤害
+                    int totalDamage = Mathf.RoundToInt(enemy.attackDamage);
+                    playerStats.TakeDamage(totalDamage);
+                    
+                    // 播放攻击效果
+                    if (enemy.fx != null)
+                    {
+                        enemy.fx.StartCoroutine("FlashFX");
+                    }
+                    
+                    if (enemy.showDebugLogs)
+                    {
+                        UnityEngine.Debug.Log("TownResident攻击到玩家，造成了 " + totalDamage + " 点伤害");
+                    }
+                }
             }
         }
     }

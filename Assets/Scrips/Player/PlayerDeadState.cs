@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerDeadState : PlayerState
 {
+    public bool isDead;//ËÀÍöÊ±²»ÄÜ³å´Ì
     public PlayerDeadState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
     }
@@ -16,11 +17,13 @@ public class PlayerDeadState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        isDead = true;
     }
 
     public override void Exit()
     {
         base.Exit();
+        isDead = false;
     }
 
     public override void Update()

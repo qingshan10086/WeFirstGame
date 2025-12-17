@@ -5,10 +5,13 @@ using UnityEngine;
 /// <summary>
 /// 第一种攻击状态
 /// </summary>
-public class AttackOneState : EnemyState2
+public class AttackOneState : EnemyState
 {
-    public AttackOneState(EnemyStateMachine2 _stateMachine, Enemy_nothing _enemy, string _animBoolName) : base(_stateMachine, _enemy, _animBoolName)
+    private Enemy_nothing enemy;
+
+    public AttackOneState(Enemy _enemy, EnemyStateMachine _stateMachine, string _animBoolName) : base(_enemy, _stateMachine, _animBoolName)
     {
+        enemy = (Enemy_nothing)_enemy;
     }
 
     public override void Enter()
@@ -21,12 +24,11 @@ public class AttackOneState : EnemyState2
         stateTimer = enemy.attackCooldown; // 设置攻击冷却时间
     }
 
-    public override void Update()
+    public override void Updata()
     {
-        base.Update();
+        base.Updata();
         // 攻击动画播放完毕后回到空闲状态
-        if (enemy.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f && 
-    !enemy.anim.IsInTransition(0))
+        if (enemy.anim.GetBool("attack") == false)
         {
             stateMachine.ChangeState(enemy.idleState);
         }

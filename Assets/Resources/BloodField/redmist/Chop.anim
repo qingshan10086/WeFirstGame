@@ -23,9 +23,9 @@ AnimationClip:
     - time: 1
       value: {fileID: -1767924929, guid: c495879ebf5abc148a0c493ab3f1bff5, type: 3}
     - time: 1.1
-      value: {fileID: -959358582, guid: c495879ebf5abc148a0c493ab3f1bff5, type: 3}
-    - time: 1.2
       value: {fileID: 41076534, guid: c495879ebf5abc148a0c493ab3f1bff5, type: 3}
+    - time: 1.2
+      value: {fileID: -395223315, guid: c495879ebf5abc148a0c493ab3f1bff5, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -49,14 +49,14 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
     - {fileID: -1767924929, guid: c495879ebf5abc148a0c493ab3f1bff5, type: 3}
-    - {fileID: -959358582, guid: c495879ebf5abc148a0c493ab3f1bff5, type: 3}
     - {fileID: 41076534, guid: c495879ebf5abc148a0c493ab3f1bff5, type: 3}
+    - {fileID: -395223315, guid: c495879ebf5abc148a0c493ab3f1bff5, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.3000001
+    m_StopTime: 1.4
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -75,4 +75,25 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 1.2
+    functionName: CircleAttackHitTrigger
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.3
+    functionName: GenerateSpecialSwordSlashAbovePlayer
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.4
+    functionName: AnimationFinishTrigger
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

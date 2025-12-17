@@ -1,14 +1,12 @@
+
 using System.Collections;
-using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
-public class TomMali : MonoBehaviour
+public class TomMali : Enemy
 {
      public System.Action onFlipped;//血条不翻转委托
     private GameObject player;
-    private Rigidbody2D rb;
-    private Animator anim;
     
     [Header("移动参数")]
     [SerializeField] private float horizontalSpeed = 2f;      //水平移动速度
@@ -16,18 +14,17 @@ public class TomMali : MonoBehaviour
     [SerializeField] private float playerDetectionRange = 3f;  //玩家检测范围
     
     [Header("检查参数")]
-    [SerializeField] protected Transform groundCheck;         //获取地面检测的位置信息，会单独在Unity中设置一个子物体
-    [SerializeField] protected Transform wallCheck;           //获取墙壁检测的位置信息，会单独在Unity中设置一个子物体
     [SerializeField] protected Transform playerCheck;         //获取玩家检测的位置信息，会单独在Unity中设置一个子物体
-    [SerializeField] protected float groundCheckDistance;     //地面检测的距离
-    [SerializeField] protected float wallCheckDiatance;       //墙壁检测的距离
     [SerializeField] protected float playerCheckDistance;     //玩家检测的距离
-    [SerializeField] public LayerMask whatisGround;        //储存墙壁层与地面层信息，来判断是那一层
     [SerializeField] public LayerMask whatisPlayer;        //储存玩家层信息，来判断是否检测到玩家
     [Header("攻击参数")]
     [SerializeField] protected Transform checkAttack;         //获取攻击检测的位置信息，会单独在Unity中设置一个子物体
     [SerializeField] protected float checkAttackRange;        //攻击检测的范围  
     [SerializeField] public float attackRange;                //攻击范围
+    [SerializeField] public float attackDamage = 10f;      //基础攻击伤害
+    [SerializeField] public float skill1Damage = 15f;      //技能1伤害
+    [SerializeField] public float skill2Damage = 20f;      //技能2伤害
+    [SerializeField] public float skill3Damage = 25f;      //技能3伤害
     
     [Header("技能攻击范围")]
     // 技能1攻击范围 - 黑色圆形
@@ -42,40 +39,59 @@ public class TomMali : MonoBehaviour
     // 技能3攻击范围 - 蓝色圆形
     [SerializeField] public Transform skill3Attack;
     [SerializeField] public float skill3AttackRange = 2.5f;  // 技能3攻击半径
+    
+    [Header("技能4配置 - 召唤小怪")]
+    // 技能4 - 召唤敌人预制体
+    [SerializeField] public GameObject enemyTownPrefab;  // Enemy_town预制体
+    [SerializeField] public GameObject enemyTown2Prefab; // Enemy_town2预制体
+    [SerializeField] public int minSummonCount = 2;      // 最小召唤数量
+    [SerializeField] public int maxSummonCount = 5;      // 最大召唤数量
+    [SerializeField] public float summonRange = 3f;      // 召唤范围
+    [SerializeField] public float skill4Cooldown = 60f;  // 技能4冷却时间（1分钟）
+    [SerializeField] private float skill4Probability = 0.2f; // 技能4选择概率
 
-
-    public int faceDirection { get; private set; } = 1;       //面对方向，初始默认向右
-    protected bool faceRight = true;                          //判断是否面朝右边
-    public EntityFX fx {  get; private set; }       //用来做一些光效的类，如受到攻击变白色
+    public EnemyStats TomStats;
     private bool isJumpingToPlayer = false;                  //是否正在向玩家跳跃
-
-    public CharacterStats stats { get; private set; }//角色数据统计
     
     // 技能随机释放相关变量
     private bool isPerformingSkill = false;                 //是否正在执行技能
     private bool isRestingAfterSkill = false;               //技能执行后是否正在休息
     [Header("技能配置")]
     [SerializeField] private float skillRestDuration = 2f;   //技能执行后的休息时间
+    [SerializeField] public float skillDamageCooldown = 0.5f; //技能伤害冷却时间，避免帧伤
     private float currentRestTimer;                          //当前技能休息计时器
     private bool skillOneSelected = false;                 //是否选择了技能一
     private bool skillThreeSelected = false;               //是否选择了技能三
     private bool skillSecondSelected = false;                 //是否选择了技能二
     private bool skillOneDirectionSet = false; // 标记技能一是否已经确定朝向
-    void Awake()
+    private bool skillFourSelected = false;                //是否选择了技能四
+    private float skill4CooldownTimer = 0f;  // 技能4冷却计时器
+    private bool diesign = false;
+    protected override void Awake()
     {
+        base.Awake();
         player = GameObject.FindGameObjectWithTag("Player");
-        rb = GetComponent<Rigidbody2D>();
-        anim = GetComponentInChildren<Animator>();
+        TomStats = GetComponent<EnemyStats>();
     }
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        
+        base.Start();
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        if(diesign)
+        {
+            return;
+        }
+        if (TomStats.currentHealth <= 0)
+        {
+            Die();
+            diesign = true;
+        }
+        // 不调用base.Update()，避免Enemy类中的状态机空引用错误
         // 处理技能休息时间
         if (isRestingAfterSkill)
         {
@@ -92,8 +108,12 @@ public class TomMali : MonoBehaviour
         // 执行选择的技能
         if (isPerformingSkill)
         {
-            Debug.Log("正在执行技能: 技能1=" + skillOneSelected + ", 技能2=" + skillSecondSelected + ", 技能3=" + skillThreeSelected);
-            if (skillOneSelected)
+            Debug.Log("正在执行技能: 技能1=" + skillOneSelected + ", 技能2=" + skillSecondSelected + ", 技能3=" + skillThreeSelected + ", 技能4=" + skillFourSelected);
+            if(skill4CooldownTimer <= 0)
+            {
+                PerformSkillFour();
+            }
+            else if (skillOneSelected)
             {
                 PerformSkillOne();
             }
@@ -117,6 +137,9 @@ public class TomMali : MonoBehaviour
         //召唤小怪
         // 技能移动逻辑将在这里实现
         // 目前只保留墙壁检测功能
+        // 更新技能4冷却计时器
+       skill4CooldownTimer-=Time.deltaTime;
+        
         if (IsWallDetected())
         {
             Flip();
@@ -158,6 +181,9 @@ public class TomMali : MonoBehaviour
         float randomChoice = Random.value;
         Debug.Log("随机选择值: " + randomChoice + "，玩家是否存在: " + (detectedPlayer != null) + "，是否在攻击范围内: " + isPlayerInAttackRange);
         
+        // 检查是否可以选择技能4（冷却完成）
+        bool canUseSkill4 = skill4CooldownTimer >= skill4Cooldown;
+        
         // 调整技能选择概率，确保只有在攻击范围内才能选择技能2
         if (detectedPlayer == null)
         {
@@ -169,6 +195,7 @@ public class TomMali : MonoBehaviour
                 skillOneSelected = true;
                 skillThreeSelected = false;
                 skillSecondSelected = false;
+        skillFourSelected = false;
                 Debug.Log("选择了技能1");
             }
             else
@@ -292,6 +319,7 @@ public class TomMali : MonoBehaviour
         anim.SetBool("skill1", false);
         anim.SetBool("skill2", false);
         anim.SetBool("skill3", false);
+        anim.SetBool("skill4", false);
         isPerformingSkill = false;
         skillOneSelected = false;
         skillThreeSelected = false;
@@ -505,8 +533,7 @@ public class TomMali : MonoBehaviour
 
      #region   Collider 
     //射线检测
-    public  bool IsGroundDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatisGround);  //该函数用来储存射线是否检测到了地面层
-    public bool IsWallDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * faceDirection, wallCheckDiatance, whatisGround);//该函数用来储存射线是否检测到了墙壁层
+    public override bool IsWallDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * faceDirection, wallCheckDiatance, whatisGround);//该函数用来储存射线是否检测到了墙壁层
     
     // 检测玩家的射线方法（双向检测 + 球形检测）
     public GameObject DetectPlayer()
@@ -540,12 +567,47 @@ public class TomMali : MonoBehaviour
         return null;
     }
     
-    protected  void OnDrawGizmos()      //该函数用来在Unity中画一条射线，不会在游戏场景中出现，来辅助射线检测，好确定射线的具体长度
+    
+
+    // 执行技能四：召唤Enemy_town和Enemy_town2预制体
+    private void PerformSkillFour()
     {
-        Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));//画地面检测线
-        Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDiatance * faceDirection, wallCheck.position.y));//画墙壁检测线
+        // 设置技能4动画状态
+        anim.SetBool("skill4", true);
+        skill4CooldownTimer = skill4Cooldown;
+        // 计算召唤数量（在minSummonCount和maxSummonCount之间随机）
+        int summonCount = Random.Range(minSummonCount, maxSummonCount + 1);
+        Debug.Log("技能4：召唤" + summonCount + "个敌人");
+
+        // 召唤指定数量的敌人
+        for (int i = 0; i < summonCount; i++)
+        {
+            // 随机选择要召唤的敌人类型
+            GameObject enemyPrefab = Random.value > 0.5f ? enemyTownPrefab : enemyTown2Prefab;
+
+            // 生成随机位置（在召唤范围内）
+            Vector2 randomOffset = new Vector2(
+                Random.Range(-summonRange, summonRange),
+                Random.Range(-summonRange, summonRange)
+            );
+            Vector2 summonPosition = (Vector2)transform.position + randomOffset;
+
+            // 实例化敌人预制体
+            if (enemyPrefab != null)
+            {
+                Object.Instantiate(enemyPrefab, summonPosition, Quaternion.identity);
+                Debug.Log("成功召唤" + enemyPrefab.name + "到位置：" + summonPosition);
+            }
+        }
+
+        // 技能4执行完成后直接结束技能
+        EndSkill();
+    }
+    protected override void OnDrawGizmos()
+    {
         
-        // 画玩家检测射线（双向）
+        Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDiatance * faceDirection, wallCheck.position.y));//画墙壁检测线
+          // 画玩家检测射线（双向）
         if (playerCheck != null)
         {
             Gizmos.color = Color.red;
@@ -572,25 +634,22 @@ public class TomMali : MonoBehaviour
         // 画技能3攻击范围 - 蓝色圆形
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(skill3Attack.position, skill3AttackRange);
+    
     }
+        
+      
     #endregion
 
 
     #region 翻转
-    public  void Flip()     //翻转函数，每次调用可以翻转一次
+    public override void Flip()     //翻转函数，每次调用可以翻转一次
     {
-        faceDirection = faceDirection * -1;
-        faceRight = !faceRight;
-        transform.Rotate(0, 180, 0);
-        if (onFlipped!= null)
-        {
-            onFlipped();
-        }
+       base.Flip();
     }
 
-    public  void FlipController(float _x)   //翻转管理器
+    public override void FlipController(float _x)   //翻转管理器
     {
-        if (_x > 0 && !faceRight)                   
+        if (_x > 0 && !faceRight)                    
         {
             Flip();
         }
@@ -615,8 +674,31 @@ public class TomMali : MonoBehaviour
     #endregion
 
 
-    public void Die()
+    public override void Die()
     {
-
+        base.Die();
+        ZeroVelocity();
+        rb.bodyType = RigidbodyType2D.Static; // 死亡后禁用物理
+        cd.enabled = false; // 死亡后禁用碰撞器
+        
+        // 禁用所有子物体的碰撞器（如果有）
+        Collider2D[] childColliders = GetComponentsInChildren<Collider2D>();
+        foreach (Collider2D collider in childColliders)
+        {
+            collider.enabled = false;
+        }
+        
+        // 延迟销毁物体，确保死亡动画播放完成
+        StartCoroutine(DestroyAfterDelay(2f));
     }
+    
+
+
+
+private IEnumerator DestroyAfterDelay(float delay)
+{
+    yield return new WaitForSeconds(delay);
+    Object.Destroy(this.gameObject);
 }
+}
+

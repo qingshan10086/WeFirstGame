@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyIdleState2 : EnemyState2
+public class EnemyIdleState : EnemyState
 {
-    private bool sign=false;
-    public EnemyIdleState2(EnemyStateMachine2 _stateMachine, Enemy_nothing _enemy, string _animBoolName) : base(_stateMachine, _enemy, _animBoolName)
+    private bool sign = false;
+    private Enemy_nothing enemy;
+
+    public EnemyIdleState(Enemy _enemy, EnemyStateMachine _stateMachine, string _animBoolName) : base(_enemy, _stateMachine, _animBoolName)
     {
+        enemy = (Enemy_nothing)_enemy;
     }
 
     public override void Enter()
@@ -16,12 +19,12 @@ public class EnemyIdleState2 : EnemyState2
         stateTimer = enemy.idleTime;
     }
 
-    public override void Update()
+    public override void Updata()
     {
-        base.Update();
-        if(enemy.checkPlayer())
+        base.Updata();
+        if (enemy.IsPlayerDetected())
         {
-            sign=true;
+            sign = true;
         }
         if (sign)
         {
@@ -33,7 +36,4 @@ public class EnemyIdleState2 : EnemyState2
     {
         base.Exit();
     }
-
-  
-
 }

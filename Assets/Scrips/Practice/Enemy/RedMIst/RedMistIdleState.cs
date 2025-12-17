@@ -1,45 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-// 空闲状态
-public class RedMistIdleState : RedMistBaseState
+using Debug = UnityEngine.Debug;
+public class RedMistIdleState : EnemyState
 {
-    private float idleTimer;
-    private float idleDuration;
-    
-    public RedMistIdleState(RedMist enemy, RedMistStateMachine stateMachine) : base(enemy, stateMachine)
-    {}
-    
+    private bool sign = false;
+    private RedMist enemy;
+
+    public RedMistIdleState(Enemy _enemy, EnemyStateMachine _stateMachine, string _animBoolName) : base(_enemy, _stateMachine, _animBoolName)
+    {
+        enemy = (RedMist)_enemy;
+    }
+
     public override void Enter()
     {
-        idleTimer = 0;
-        idleDuration = Random.Range(1f, 3f); // 随机空闲时间
-        Debug.Log("进入空闲状态");
+        base.Enter();
+        enemy.rb.velocity = new Vector2(0, enemy.rb.velocity.y);
+        stateTimer = enemy.idleTime;
     }
-    
-    public override void Update()
+
+    public override void Updata()
     {
-        idleTimer += Time.deltaTime;
+        base.Updata();
         
-        // 空闲时间结束后切换到移动状态
-        if (idleTimer >= idleDuration)
+        // 检查血量，如果血量为0，切换到死亡状态
+        if (enemy.stats != null && enemy.stats.currentHealth <= 0)
         {
-            stateMachine.ChangeState(RedMistState.Move);
+            stateMachine.ChangeState(enemy.deathState);
+            return;
         }
         
-        // 如果检测到玩家，切换到攻击状态
-        if (IsPlayerInAttackRange())
+        // 处理idle计时器，时间到了切换到出现状态
+        if (stateTimer <= 0)
         {
-            stateMachine.ChangeState(RedMistState.Attack);
+            Debug.Log("切换到消失状态");
+             stateMachine.ChangeState(enemy.disappearState);
         }
     }
-    
-    private bool IsPlayerInAttackRange()
+
+    public override void Exit()
     {
-        if (enemy.player == null) return false;
-        
-        float distance = Vector2.Distance(enemy.transform.position, enemy.player.transform.position);
-        return distance <= enemy.playerDetectionRange;
+        base.Exit();
     }
 }

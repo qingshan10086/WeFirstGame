@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
+
 /// <summary>
 /// 第二种攻击状态
 /// </summary>
-public class AttackTwoState : EnemyState2
+public class AttackTwoState : EnemyState
 {
-    public AttackTwoState(EnemyStateMachine2 _stateMachine, Enemy_nothing _enemy, string _animBoolName) : base(_stateMachine, _enemy, _animBoolName)
+    private Enemy_nothing enemy;
+
+    public AttackTwoState(Enemy _enemy, EnemyStateMachine _stateMachine, string _animBoolName) : base(_enemy, _stateMachine, _animBoolName)
     {
+        enemy = (Enemy_nothing)_enemy;
     }
 
     public override void Enter()
@@ -19,12 +22,12 @@ public class AttackTwoState : EnemyState2
         enemy.ZeroVelocity(); // 停止移动
         // 设置攻击动画参数
         enemy.anim.SetInteger("combo", 0);
-        stateTimer = enemy.attackCooldown ; // 设置攻击冷却时间（稍微长一点）
+        stateTimer = enemy.attackCooldown; // 设置攻击冷却时间（稍微长一点）
     }
 
-    public override void Update()
+    public override void Updata()
     {
-        base.Update();
+        base.Updata();
         Debug.Log("第二种攻击状态更新");
         // 攻击动画播放完毕后回到空闲状态
         if (enemy.anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f && 
