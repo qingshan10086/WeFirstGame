@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Enemy_ShadowMage : Enemy
 {
+    public GameObject Player;//获取玩家位置
     public GameObject Text;//获取对话框物体，用来实现对话时不能移动
     public ShadowMageReadTextState readTextState;//阅读文本状态
     public ShadowMageIdleState idleState {  get; private set; }//申明站立状态

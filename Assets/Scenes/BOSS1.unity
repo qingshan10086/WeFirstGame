@@ -150,7 +150,7 @@ Transform:
   m_GameObject: {fileID: 5678550}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.5758, y: -0.1397, z: 0.22053272}
+  m_LocalPosition: {x: -0.49, y: 0.17, z: 0.22053272}
   m_LocalScale: {x: 7.949108, y: 5.9854307, z: 6.9206934}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -218,12 +218,12 @@ SpriteRenderer:
   m_SortingLayerID: -1065307163
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2033902712, guid: 98342d7883e0b554e909be4a77738a89, type: 3}
+  m_Sprite: {fileID: -1344628448, guid: 98342d7883e0b554e909be4a77738a89, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.65, y: 0.76}
+  m_Size: {x: 0.76, y: 0.91}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -37389,6 +37389,7 @@ MonoBehaviour:
   attackDistance: 7
   attackCooldown: 2
   lastTimeAttacked: 0
+  Player: {fileID: 1262305683}
   Text: {fileID: 1318944792}
   mosters:
   - {fileID: 1831042160443146603, guid: d9a3524ab9bbace47aa04b10d804e617, type: 3}

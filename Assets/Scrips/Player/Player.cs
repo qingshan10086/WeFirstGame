@@ -69,6 +69,7 @@ public class Player : Entity//玩家类其父类为实体
     {
         base.Awake();
 
+        
         stateMachine = new PlayerStateMachine();
 
         idleState = new PlayerIdleState(this, stateMachine, "Idle");
@@ -89,6 +90,9 @@ public class Player : Entity//玩家类其父类为实体
         recoverHPState = new PlayerRecoverHPState(this, stateMachine, "RecoverHP");
 
         stat=GetComponent<PlayerStats>();
+
+      
+
     }
 
     protected override void Start()
@@ -127,6 +131,7 @@ public class Player : Entity//玩家类其父类为实体
 
     private void CanGodTime()//判断是否可以处于无敌时间，防止同时吃了太多帧伤
     {
+        
         currentHealth = stat.currentHealth;
         if (currentHealth < lastHealth)
         {
@@ -143,6 +148,10 @@ public class Player : Entity//玩家类其父类为实体
                 GodTimer = 0.5f;
                 canStunned = true;
             }
+        }
+        else if (currentHealth > lastHealth) 
+        {
+            lastHealth=currentHealth;
         }
     }
 
