@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ShadowFollower
   - enemy
+  - Wall
   layers:
   - Default
   - TransparentFX
