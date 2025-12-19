@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - ShadowFollower
+  - Wall
   layers:
   - Default
   - TransparentFX

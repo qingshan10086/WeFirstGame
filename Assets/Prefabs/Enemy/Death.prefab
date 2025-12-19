@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1298393829118247333}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7412033050286184423}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 953278186387243632}
   - component: {fileID: 6466178444597630011}
   - component: {fileID: 7254863385846334248}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8378396142943537122}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -310,7 +310,7 @@ GameObject:
   - component: {fileID: 3474265579936867401}
   - component: {fileID: 6167958932995358155}
   - component: {fileID: 7983788324342603282}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Death
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -367,7 +367,7 @@ MonoBehaviour:
   stunDuration: 0
   stunDirection: {x: 0, y: 0}
   counterImage: {fileID: 5174714954870085552}
-  moveSpeed: 2
+  moveSpeed: 4
   idleTime: 2
   battleTime: 4
   attackDistance: 5.79
@@ -377,6 +377,7 @@ MonoBehaviour:
   castPrefab: {fileID: 5572482101161006346, guid: a2591c6133f7cd54799b525c55d649dc, type: 3}
   castSpawnHeight: 4.5
   castTriggerDistance: 8
+  castTriggerDistance2: 12
   castProbability: 0.25
   castCooldown: 6
   lastCastTime: -100
@@ -391,6 +392,8 @@ MonoBehaviour:
   minionPerSummon: 3
   summonRadius: 40
   summonCooldown: 60
+  summonRegionL: 0
+  summonRegionR: 0
   lastSummonTime: -100
   lastSummonTime2: -500
   summonHpThreshold: 0.75

@@ -299,6 +299,13 @@ public class HeroKnightTransformSkill : MonoBehaviour
     // 将还原逻辑集中到一个方法，避免重复
     private void RestoreAfterTransform()
     {
+        //位置上抬两个单位
+        if (transformCoroutine != null)
+        {
+            Vector3 vector3 = new Vector3(0, 2, 0);
+            player.transform.position += vector3;
+        }
+
         if (playerAnimator != null && originalController != null)
         {
             playerAnimator.runtimeAnimatorController = originalController;
