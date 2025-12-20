@@ -38,7 +38,7 @@ public class Enemy_FlyingEyesAnimtionTrigger : MonoBehaviour
         }
 
         // 当完全透明后，销毁整个物体
-        Destroy(transform.root.gameObject);
+        Destroy(transform.parent.gameObject);
     }
 
 

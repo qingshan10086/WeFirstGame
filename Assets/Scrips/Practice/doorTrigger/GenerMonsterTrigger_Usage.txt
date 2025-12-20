@@ -1,0 +1,129 @@
+# 怪物产生器使用说明
+
+## 概述
+GenerMonsterTrigger 是一个功能完整的怪物产生器，支持在指定范围内随机产生怪物，提供多种触发条件和产生模式选择。
+
+## 使用步骤
+
+### 1. 创建怪物产生器
+1. 在场景中创建一个空对象，命名为 "MonsterSpawner"
+2. 添加 **GenerMonsterTrigger.cs** 脚本组件
+3. 调整产生器的位置
+
+### 2. 设置怪物预制体
+1. 在 "Monster Prefabs" 字段中点击 "Size" 设置要使用的怪物类型数量
+2. 将不同的怪物预制体拖放到数组元素中
+
+### 3. 配置产生参数
+- **Max Monster Count**: 最大怪物数量（默认 5）
+- **Spawn Interval**: 怪物产生间隔（默认 2 秒）
+- **Spawn Range Size**: 产生范围大小（默认 10 单位）
+- **Spawn Range Offset**: 产生范围偏移（默认 0）
+
+### 4. 设置触发条件
+选择以下触发方式之一或多种：
+- **Spawn On Trigger Enter**: 玩家进入触发器时开始产生（默认开启）
+- **Spawn On Start**: 游戏开始时开始产生（默认关闭）
+
+### 5. 选择产生模式
+- **连续产生模式**: 关闭 "Spawn In Wave"，怪物将按照设定的间隔持续产生
+- **波次产生模式**: 开启 "Spawn In Wave"，怪物将以波次方式产生
+  - **Monsters Per Wave**: 每波产生的怪物数量（默认 3）
+  - **Wave Interval**: 波次间隔（默认 5 秒）
+
+### 6. 测试产生功能
+1. 运行游戏
+2. 根据设置的触发条件激活产生器
+3. 观察怪物在指定范围内随机产生
+
+## 主要功能
+
+### 范围调整
+- 通过 "Spawn Range Size" 控制产生范围的大小
+- 通过 "Spawn Range Offset" 调整产生范围的偏移位置
+- 在编辑器中可以看到半透明的红色立方体表示产生范围
+
+### 触发条件
+- **玩家进入触发器**: 当玩家进入产生器的碰撞范围时开始产生
+- **游戏开始**: 在游戏启动时自动开始产生
+- **手动控制**: 通过代码调用 `StartSpawning()` 和 `StopSpawning()` 方法
+
+### 产生模式
+1. **连续产生**: 按照设定的间隔持续产生怪物，直到达到最大数量
+2. **波次产生**: 每次产生一定数量的怪物，然后等待一段时间再产生下一波
+
+### 事件系统
+可以订阅以下事件以实现自定义逻辑：
+- `OnStartSpawning`: 开始产生怪物时触发
+- `OnStopSpawning`: 停止产生怪物时触发
+- `OnWaveComplete`: 完成一波怪物产生时触发（仅波次模式）
+- `OnAllMonstersSpawned`: 所有怪物产生完成时触发
+
+```csharp
+GenerMonsterTrigger spawner = GetComponent<GenerMonsterTrigger>();
+spawner.OnWaveComplete += OnWaveComplete;
+
+private void OnWaveComplete()
+{
+    Debug.Log("波次完成！当前波次：" + spawner.GetCurrentWave());
+}
+```
+
+## 高级功能
+
+### 手动控制
+```csharp
+// 开始产生怪物
+spawner.StartSpawning();
+
+// 停止产生怪物
+spawner.StopSpawning();
+
+// 重置产生器
+spawner.ResetSpawner();
+
+// 获取已产生的怪物数量
+int spawnedCount = spawner.GetSpawnedMonsterCount();
+
+// 获取当前波次数
+int currentWave = spawner.GetCurrentWave();
+```
+
+### 双向集成
+可以与门或传送门系统集成，例如：
+```csharp
+// 当所有怪物死亡时打开门
+doorController.OpenDoor();
+
+// 当玩家通过传送门时开始产生怪物
+portal.OnPlayerTeleported += (player) => {
+    spawner.StartSpawning();
+};
+```
+
+### 调试功能
+- 开启 "Show Debug Info" 可以在控制台看到详细的产生信息
+- 在编辑器中可以看到产生范围和已产生怪物的位置
+
+## 注意事项
+1. 确保怪物预制体有合适的 Collider2D 和 Rigidbody2D 组件
+2. 调整产生范围时要考虑游戏场景的布局
+3. 设置合适的产生间隔和数量，避免性能问题
+4. 在波次模式下，每波产生的怪物数量不宜过多
+5. 确保玩家对象有正确的标签（默认为 "Player"）
+
+## 性能优化建议
+- 限制最大怪物数量，避免过多怪物影响性能
+- 使用对象池替代直接实例化（可以扩展该脚本实现）
+- 对于复杂的怪物，可以在产生时使用简单的占位符，接近玩家时再加载完整模型
+- 关闭不需要的调试信息
+
+## 更新日志
+
+### v1.0
+- 基本产生功能
+- 连续和波次产生模式
+- 可调整的产生范围
+- 多种触发条件
+- 完整的事件系统
+- 编辑器可视化支持

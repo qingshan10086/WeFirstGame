@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6187795314940627801}
   - component: {fileID: 8449077570883307759}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 9084983105312282946}
   - component: {fileID: 493101942515807667}
   - component: {fileID: 8485525882820409702}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: swordslash
   m_TagString: Untagged
   m_Icon: {fileID: 0}

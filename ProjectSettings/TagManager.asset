@@ -4,10 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - ShadowFollower
   - enemy
-  - wall
   - Wall
+  - ShadowFollower
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -19,8 +19,8 @@ TagManager:
   - Enemy
   - EnemyTrigger
   - trap
-  - 
-  - 
+  - trigger
+  - triggerWall
   - 
   - 
   - 
@@ -45,21 +45,33 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: BackGround
-    uniqueID: 1283232651
+  - name: background
+    uniqueID: 3651135967
     locked: 0
-  - name: Ground
-    uniqueID: 3995931785
+  - name: backGround
+    uniqueID: 2425370019
     locked: 0
-  - name: Repair
-    uniqueID: 3229660133
+  - name: border
+    uniqueID: 2047871999
+    locked: 0
+  - name: repair
+    uniqueID: 1808500791
     locked: 0
   - name: Trap
-    uniqueID: 2986890515
+    uniqueID: 1143690651
     locked: 0
   - name: Enemy
-    uniqueID: 2337370587
+    uniqueID: 2935558937
+    locked: 0
+  - name: EnemyTrigger
+    uniqueID: 1196180763
     locked: 0
   - name: Player
-    uniqueID: 3360932291
+    uniqueID: 3739334663
+    locked: 0
+  - name: camara
+    uniqueID: 2776786945
+    locked: 0
+  - name: UI
+    uniqueID: 154492373
     locked: 0

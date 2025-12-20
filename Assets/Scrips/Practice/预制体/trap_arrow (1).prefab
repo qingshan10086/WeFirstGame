@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1143690651
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f01113850312c7141824c8706125b4f4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -170,4 +170,5 @@ MonoBehaviour:
   arrowPrefab: {fileID: 2249072580267131847, guid: 5fb2ba78f38aa584d99843014fbaf57a, type: 3}
   arrowSpeed: 10
   arrowLifetime: 5
+  arrowDamage: 10
   isSequentialFiring: 1

@@ -214,8 +214,8 @@ Transform:
   m_GameObject: {fileID: 7897233559885321211}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.11, y: 0.61, z: 0.07161293}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.05, y: 0.73, z: 0.07161293}
+  m_LocalScale: {x: 1.0279447, y: 1.0028514, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2079554537895263089}
@@ -258,9 +258,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1359408359
+  m_SortingLayer: 6
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: c5545875d929ec046a989d1b4ef82911, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -315,11 +315,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2079554537895263089}
   - component: {fileID: 4470944295467052759}
+  - component: {fileID: 6188076724566246656}
   - component: {fileID: 8142906280498364604}
   - component: {fileID: 7056074476755309926}
   m_Layer: 7
   m_Name: TomMali
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -333,8 +334,8 @@ Transform:
   m_GameObject: {fileID: 8005287290999235138}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: 1.69, z: -0.07161293}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -6, y: 1.69, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6169001233270556255}
@@ -381,6 +382,55 @@ CapsuleCollider2D:
   m_Offset: {x: -0.3806305, y: -0.009492397}
   m_Size: {x: 4.81728, y: 5.7815666}
   m_Direction: 0
+--- !u!114 &6188076724566246656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8005287290999235138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b53b847f618cb6499a55947e07a2198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strength:
+    baseValue: 0
+    modifiers: 
+  agility:
+    baseValue: 0
+    modifiers: 
+  intellegence:
+    baseValue: 0
+    modifiers: 
+  vitality:
+    baseValue: 0
+    modifiers: 
+  magic:
+    baseValue: 0
+    modifiers: 
+  damage:
+    baseValue: 0
+    modifiers: 
+  critChange:
+    baseValue: 0
+    modifiers: 
+  critPower:
+    baseValue: 0
+    modifiers: 
+  critEquiptment:
+    baseValue: 0
+    modifiers: 
+  maxHealth:
+    baseValue: 100
+    modifiers: 
+  armor:
+    baseValue: 0
+    modifiers: 
+  evasion:
+    baseValue: 0
+    modifiers: 
+  currentHealth: 0
 --- !u!114 &8142906280498364604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,31 +443,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cb7ccf34054ff844b8537d75d33c8ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 2
-  fixedJumpSpeed: 10
-  playerDetectionRange: 3
+  rb: {fileID: 0}
+  knockbackDirection: {x: 0, y: 0}
+  knockbackDuration: 0
+  attackCheck: {fileID: 0}
+  attackCheckRadius: 0
   groundCheck: {fileID: 541706572520935704}
+  groundCheckDistance: 4.5
   wallCheck: {fileID: 964454998246032517}
-  playerCheck: {fileID: 2026685743842671487}
-  groundCheckDistance: 3.24
   wallCheckDiatance: 1.85
-  playerCheckDistance: 8
   whatisGround:
     serializedVersion: 2
     m_Bits: 8
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 64
+  stunDuration: 0
+  stunDirection: {x: 0, y: 0}
+  counterImage: {fileID: 0}
+  moveSpeed: 0
+  idleTime: 0
+  battleTime: 0
+  attackDistance: 0
+  attackCooldown: 0
+  lastTimeAttacked: 0
+  horizontalSpeed: 2
+  fixedJumpSpeed: 10
+  playerDetectionRange: 3
+  playerCheck: {fileID: 2026685743842671487}
+  playerCheckDistance: 8
   whatisPlayer:
     serializedVersion: 2
     m_Bits: 64
   checkAttack: {fileID: 0}
   checkAttackRange: 0
   attackRange: 4.44
+  attackDamage: 10
+  skill1Damage: 15
+  skill2Damage: 20
+  skill3Damage: 25
   skill1Attack: {fileID: 6966802085939711548}
   skill1AttackRange: 3.21
   skill2Attack: {fileID: 1103737607012691641}
   skill2AttackRange: 3.05
   skill3Attack: {fileID: 2972797371804668418}
   skill3AttackRange: 2.8
+  enemyTownPrefab: {fileID: 2221447620031092417, guid: 166e7dcdcb607884d8b0e12351da8a33, type: 3}
+  enemyTown2Prefab: {fileID: 2239107465268627698, guid: 528fb4d42d85f824ab6c41c2a8833ef2, type: 3}
+  minSummonCount: 2
+  maxSummonCount: 5
+  summonRange: 3
+  skill4Cooldown: 60
+  skill4Probability: 0.2
+  TomStats: {fileID: 0}
+  isJumpingToPlayer: 0
   skillRestDuration: 2
+  skillDamageCooldown: 0.5
 --- !u!50 &7056074476755309926
 Rigidbody2D:
   serializedVersion: 4
