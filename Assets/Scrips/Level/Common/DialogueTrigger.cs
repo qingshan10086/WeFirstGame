@@ -104,7 +104,6 @@ public class DialogueTrigger : MonoBehaviour
                 }
             
         }
-        Debug.Log($"״̬: hasTrigger={hasTrigger}, canTrigger={canTrigger}, currentText={currentText}");
         Debug.Log(player.transform.position);
     }
 }

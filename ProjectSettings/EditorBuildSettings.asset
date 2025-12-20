@@ -8,15 +8,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/NewUserGuide.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/Scenes/BOSS 1.unity
+  - enabled: 1
+    path: Assets/Scenes/BOSS1.unity
     guid: b7562fe9e8b53d446955ed4b13631afe
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/NewUserGuider.unity
     guid: 4c7ee28ea379796458e8cbb9035ab5fa
-  - enabled: 0
-    path: "Assets/Resources/echoAbyss/\u602A\u7269/Scenes/Demo.unity"
-    guid: 01c3fb4beae9cb24ba9666ae290dfeba
   - enabled: 1
     path: Assets/Scenes/BossDeath.unity
     guid: f9b4af9aa3e7f854d9bac4fe68e48bd2
@@ -29,6 +26,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level2.unity
     guid: 2cb808f238c04614a8a07459e23641e9
+  - enabled: 1
+    path: Assets/Scenes/EchoAbyss.unity
+    guid: 40f13a753af05574cb1a68126a57dfe1
+  - enabled: 1
+    path: Assets/Scenes/EchoAbyss+.unity
+    guid: d1679c0bad099c54fb21b0b39e6ff4cb
+  - enabled: 1
+    path: Assets/Scenes/Abyss2.unity
+    guid: d6d04d1546bf9e74f8ffaf1c8b1fdd2c
   - enabled: 1
     path: Assets/Scenes/BOSS1.unity
     guid: b7562fe9e8b53d446955ed4b13631afe
