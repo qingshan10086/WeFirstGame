@@ -35,7 +35,7 @@ public class Enemy_ArcherAnimationTrigger : MonoBehaviour
         }
 
         // 当完全透明后，销毁整个物体
-        Destroy(transform.root.gameObject);
+        Destroy(transform.parent.gameObject);
     }
 
     private Enemy_Archer enemy => GetComponentInParent<Enemy_Archer>();//获取父物体

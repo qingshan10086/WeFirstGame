@@ -38,27 +38,26 @@ public class SavePoint : MonoBehaviour
         float distance = Vector3.Distance(player.position, transform.position);
         if (distance < goalRaidus)
         {
+            if (SaveManager.Instance == null)
+            {
+                Debug.LogError("存档管理器未初始化");
+                return false;
+            }
+
             if (PlayerManager.instance == null ||
-             PlayerManager.instance.player == null ||
-             PlayerManager.instance.playerStats == null)
+                PlayerManager.instance.player == null ||
+                PlayerManager.instance.playerStats == null)
             {
                 Debug.LogError("PlayerManager组件不完整");
                 return false;
             }
 
-            //玩家位置
-            var xPosition = PlayerManager.instance.player.transform.position.x;
-            var yPosition = PlayerManager.instance.player.transform.position.y;
-            var zPosition = PlayerManager.instance.player.transform.position.z;
-            //玩家数据
+            SaveManager.Instance.UpdateGameScene(SceneManager.GetActiveScene().name);
+            SaveManager.Instance.UpdatePlayerPosition(PlayerManager.instance.player.transform.position);
+            SaveManager.Instance.UpdatePlayerHealth(PlayerManager.instance.playerStats.currentHealth);
 
-            var currentHealth = PlayerManager.instance.playerStats.currentHealth;
-
-
-            var sceneName = SceneManager.GetActiveScene().name;
-
-
-            SaveAndLoad.SaveData(xPosition, yPosition, zPosition, currentHealth, sceneName);
+            SaveManager.Instance.SaveGame();
+            Debug.Log("游戏已保存，玩家数据和机关状态已保存");
             return true;
         }
         return false;

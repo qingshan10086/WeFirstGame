@@ -70,6 +70,8 @@ public class Player : Entity//玩家类其父类为实体
         base.Awake();
 
         
+
+        
         stateMachine = new PlayerStateMachine();
 
         idleState = new PlayerIdleState(this, stateMachine, "Idle");

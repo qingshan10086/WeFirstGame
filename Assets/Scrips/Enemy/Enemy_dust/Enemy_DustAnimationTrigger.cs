@@ -34,7 +34,7 @@ public class NewBehaviourScript : MonoBehaviour //
         }
 
         // 当完全透明后，销毁整个物体
-        Destroy(transform.root.gameObject);
+        Destroy(transform.parent.gameObject);
     }
 
     private Enemy_Dust enemy => GetComponentInParent<Enemy_Dust>(); //获取父物体dust
