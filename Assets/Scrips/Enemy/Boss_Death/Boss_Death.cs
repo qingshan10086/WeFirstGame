@@ -41,6 +41,8 @@ public class Boss_Death : Enemy
     public int minionPerSummon = 3;           // 每次召唤数量（随机选）
     public float summonRadius = 2f;           // 小怪生成半径（Boss 四周）
     public float summonCooldown = 60f;        // 召唤冷却（秒）
+    public float summonRegionL;               //
+    public float summonRegionR;
     private float summonCooldown2 = 300f;     // 第二轮召唤冷却
     [HideInInspector] public float lastSummonTime = -100f;
     [HideInInspector] public float lastSummonTime2 = -300f;
@@ -216,7 +218,7 @@ public class Boss_Death : Enemy
         {
             GameObject prefab = minionPrefabs[Random.Range(0, minionPrefabs.Count)];
             float angle = Random.Range(0f, Mathf.PI);
-            Vector3 pos = transform.position + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0f) * summonRadius;
+            Vector3 pos = transform.position + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle)/2, 0f) * summonRadius;
             Instantiate(prefab, pos, Quaternion.identity);
         }
 
