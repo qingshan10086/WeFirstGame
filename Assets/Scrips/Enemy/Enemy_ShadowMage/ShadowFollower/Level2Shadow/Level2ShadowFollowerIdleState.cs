@@ -40,7 +40,7 @@ public class Level2ShadowFollowerIdleState : EnemyState
 
         FlipControl();
 
-        Debug.Log("鬼影离玩家的距离为："+distanceFromPlayerToEnemy);
+    
     }
 
     private void FlipControl()//翻转管理器，保证鬼影面朝玩家
