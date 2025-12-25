@@ -37814,6 +37814,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1262305683}
+    - target: {fileID: 3190401695182469837, guid: 9b216bbf41dfd1646bf0bab12c4c85c3, type: 3}
+      propertyPath: moveSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7815859064620463973, guid: 9b216bbf41dfd1646bf0bab12c4c85c3, type: 3}
       propertyPath: m_Name
       value: Guider

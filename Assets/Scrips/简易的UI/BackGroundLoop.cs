@@ -12,7 +12,7 @@ public class BackGroundLoop : MonoBehaviour
     private float loopTimer=2f;//循环时间辅助器
 
     private int currentImage=0;//当前图片
-    private int maxImage=3;//最大图片数量
+    private int maxImage=4;//最大图片数量
 
     // Start is called before the first frame update
     void Start()
