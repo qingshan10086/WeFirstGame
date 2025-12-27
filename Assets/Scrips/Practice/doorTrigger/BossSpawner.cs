@@ -45,6 +45,8 @@ public class BossSpawner : MonoBehaviour
     private EnemyStats bossStats = null; // Boss的生命值组件
     [Header("Boss生命血条")]
     public GameObject bossHealthBar;
+    [Header("对机关的管理")]
+    public OneTimeMechanism bossOneTimeMechanism;
 
     #region 生命周期方法
     private void Start()
@@ -414,6 +416,7 @@ public class BossSpawner : MonoBehaviour
     #endregion
     void BossDeath()
     {
+        bossOneTimeMechanism.isTriggered = true;
         //清除Boss血条
         Debug.Log("BossDeath: Boss health bar deactivated.");
         bossHealthBar.SetActive(false);

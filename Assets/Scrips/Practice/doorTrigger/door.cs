@@ -11,6 +11,7 @@ public class door : MonoBehaviour
     void Start()
     {
         monsterDeathDetector = GetComponentInParent<MonsterDeathDetector>();
+        oneTimeMechanism = GetComponent<OneTimeMechanism>();
     }
 
     // Update is called once per frame

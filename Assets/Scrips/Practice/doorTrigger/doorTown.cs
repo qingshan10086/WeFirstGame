@@ -1,3 +1,4 @@
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 /// <summary>
@@ -44,6 +45,7 @@ public class doorTown : MonoBehaviour
     private bool isOpen = false; // 是否已经完全打开
     private float openTimer = 0f; // 开门延迟计时器
     private Collider2D doorCollider; // 门的碰撞器组件
+    public OneTimeMechanism oneTimeMechanism;
     
     #region 生命周期方法
     private void Awake()
@@ -55,6 +57,7 @@ public class doorTown : MonoBehaviour
         
         // 获取门的碰撞器组件
         doorCollider = GetComponent<Collider2D>();
+        oneTimeMechanism=GetComponent<OneTimeMechanism>();
     }
     
     private void Start()
@@ -73,6 +76,7 @@ public class doorTown : MonoBehaviour
         {
             Debug.Log("doorTown initialized and waiting for Boss defeat event.");
         }
+        
     }
     
     private void Update()
@@ -103,6 +107,11 @@ public class doorTown : MonoBehaviour
                     DisableDoor();
                     break;
             }
+           
+        }
+        if (oneTimeMechanism.isTriggered)
+        {
+            this.gameObject.SetActive(false);
         }
     }
     
@@ -133,7 +142,7 @@ public class doorTown : MonoBehaviour
         }
         
         isOpening = true;
-        
+        oneTimeMechanism.isTriggered = true;
         // 如果是直接禁用类型，立即执行
         if (doorType == DoorType.Disable)
         {

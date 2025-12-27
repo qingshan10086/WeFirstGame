@@ -8,12 +8,13 @@ public class GainEnermySys : MonoBehaviour
     public Canvas canvasone;
     public Canvas canvasTwo;
     public PlayerEnergySystem playerEnergySystem;
+    public OneTimeMechanism oneTimeMechanism;
     
     // Start is called before the first frame update
     void Start()
     {
         collider2D = GetComponent<Collider2D>();
-        
+        oneTimeMechanism = GetComponent<OneTimeMechanism>();
         // 确保Collider2D是触发器
         if (collider2D != null)
         {
@@ -66,4 +67,19 @@ public class GainEnermySys : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+    private void Update()
+    {
+        if(oneTimeMechanism!=null)
+        {
+            if(oneTimeMechanism.isTriggered)
+            {
+                playerEnergySystem.isSkillEnabled = true;
+                canvasone.gameObject.SetActive(true);
+                canvasTwo.gameObject.SetActive(true);
+                collider2D.enabled = false;
+                gameObject.SetActive(false);
+            }
+        }
+    }
+
 }

@@ -33,7 +33,7 @@ public class Door_BOSS1 : MonoBehaviour
 
         if (distance < goalRaidus)
         {
-            SceneManager.LoadScene("BOSS1");
+            SceneManager.LoadScene("BloodFields");
         }
     }
 

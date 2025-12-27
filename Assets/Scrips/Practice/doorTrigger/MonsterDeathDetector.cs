@@ -18,7 +18,7 @@ public class MonsterDeathDetector : MonoBehaviour
     [SerializeField] private Color deadMonsterColor = Color.red; // 死亡怪物颜色
     [SerializeField] private Color aliveMonsterColor = Color.green; // 存活怪物颜色
     
-    private List<GameObject> detectedMonsters = new List<GameObject>(); // 检测到的怪物列表
+    public List<GameObject> detectedMonsters = new List<GameObject>(); // 检测到的怪物列表
     private int deadMonsterCount = 0; // 当前死亡怪物数量
     
     public System.Action<int, int> OnMonsterCountChanged; // 怪物数量变化事件（当前死亡数量，需要的数量）

@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NewUserGuider.unity
     guid: 4c7ee28ea379796458e8cbb9035ab5fa
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NewUserGuider.unity
     guid: 4c7ee28ea379796458e8cbb9035ab5fa
   - enabled: 1
@@ -28,13 +28,13 @@ EditorBuildSettings:
     guid: 40f13a753af05574cb1a68126a57dfe1
   - enabled: 1
     path: Assets/Scenes/Abyss2.unity
-    guid: d6d04d1546bf9e74f8ffaf1c8b1fdd2c
+    guid: 543425fc9a54a7f498d4d3ae0f2cde0f
   - enabled: 1
     path: Assets/Scenes/EchoAbyss+.unity
     guid: d1679c0bad099c54fb21b0b39e6ff4cb
   - enabled: 1
     path: Assets/Scenes/Abyss3.unity
-    guid: 6a5eb0d29cde70942b8a98e7dbce9e82
+    guid: 3ac9e6884d2588140acd0c34019b60b6
   - enabled: 1
     path: Assets/Scenes/EchoAbyss++.unity
     guid: 05b9621b6005f9b488e6864e2b8aec72
@@ -53,7 +53,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BossDeath1.unity
     guid: 51eea7d9829e7224b879d8987ed98b57
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BOSS1.unity
     guid: b7562fe9e8b53d446955ed4b13631afe
+  - enabled: 1
+    path: Assets/Scenes/BloodFields.unity
+    guid: 4aff893eab48dec42ba5c98918ced0da
   m_configObjects: {}

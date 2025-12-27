@@ -34,6 +34,8 @@ public class BossBattleUI : MonoBehaviour
     [Header("Door")]
     public doormoveup doorMoveUp1;
     public doormoveup doorMoveUp2;
+    [Header("Boss血条")]
+    public GameObject RedMistHealthBar;
 
     private void Awake()
     {
@@ -237,7 +239,7 @@ public class BossBattleUI : MonoBehaviour
         
         // 显示Boss战主UI面板
         ShowBossBattleMainUI();
-        
+        RedMistHealthBar.SetActive(true);
       
     }
     
