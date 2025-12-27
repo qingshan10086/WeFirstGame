@@ -344,7 +344,7 @@ public class SaveManager : MonoBehaviour
     {
         if (currentSaveData?.PlayData != null)
         {
-            currentSaveData.PlayData.currentHealth = health;
+            currentSaveData.PlayData.currentHealth = PlayerManager.instance.playerStats.GetMaxHealthValue();
         }
     }
     /// <summary>

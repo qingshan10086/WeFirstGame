@@ -471183,7 +471183,7 @@ Transform:
   m_GameObject: {fileID: 1198033892}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -80.1, y: -0.1, z: -0.22053272}
+  m_LocalPosition: {x: -79.9, y: -0.02, z: -0.22053272}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -471209,7 +471209,7 @@ MonoBehaviour:
   knockbackDirection: {x: 0, y: 0}
   knockbackDuration: 0
   attackCheck: {fileID: 2018749540}
-  attackCheckRadius: 1.38
+  attackCheckRadius: 1.7
   groundCheck: {fileID: 151103248}
   groundCheckDistance: 0
   wallCheck: {fileID: 1516765731}
@@ -476416,7 +476416,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5E7D\u7075\uFF08\u5F62\u4F53\u5728\u4F60\u8EAB\u8FB9\u51DD\u805A\uFF09\uFF1A\"\u6211\u4EEC\u5DF2\u7ECF\u5F88\u63A5\u8FD1\u4E86...\u8428\u591A\u65AF\u5C31\u5728\u8FD9\u8FF7\u5BAB\u7684\u51FA\u53E3\u3002\""
+  m_Text: "\u5E7D\u7075\uFF08\u5F62\u4F53\u5728\u4F60\u8EAB\u8FB9\u51DD\u805A\uFF09\uFF1A\"\u6211\u4EEC\u5DF2\u7ECF\u5F88\u63A5\u8FD1\u4E86...\u8428\u591A\u65AF\u5E94\u8BE5\u5C31\u5728\u8FD9\u8FF7\u5BAB\u7684\u51FA\u53E3\u3002\""
 --- !u!222 &1521870570
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -484012,7 +484012,7 @@ Transform:
   m_GameObject: {fileID: 2018749539}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.31, y: 0.52, z: 0}
+  m_LocalPosition: {x: -0.24, y: 0.43, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
