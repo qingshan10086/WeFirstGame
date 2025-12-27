@@ -43,7 +43,7 @@ public class PlayerReturn_BOSS1 : MonoBehaviour
     private void GameOver()
     {
         //游戏失败UI,当前还没做以后做
-        Invoke("ReloadLevel", 1.5f);
+        Invoke("ReloadLevel", 0.5f);
     }
 
     private void ReloadLevel()

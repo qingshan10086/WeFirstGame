@@ -52,15 +52,19 @@ public class PlayerReturn_NewGuiderUser : MonoBehaviour
     private void GameOver()
     {
         //游戏失败UI,当前还没做以后做
-        Invoke("ReloadLevel",1.5f);
+        Invoke("ReloadLevel",0.5f);
     }
 
-    private void ReloadLevel()
+    private void ReloadLevel()//重新加载场景脚本
     {
-        playerStats.currentHealth = playerStats.GetMaxHealthValue();
+        PlayData data = SaveManager.Instance.GetPlayData();
+
+        Vector3 savedPosition = new Vector3(data.xPosition, data.yPosition, data.zPosition);
+        PlayerManager.instance.player.transform.position = savedPosition;
+
+        // 恢复玩家生命值
+        PlayerManager.instance.playerStats.currentHealth = data.currentHealth;
         player.stateMachine.ChangeState(player.idleState);
-        this.transform.position = new Vector2(-1.4f, -2.8f);
-        slider.value = playerStats.currentHealth;//血条当前值
     }
 
 }
