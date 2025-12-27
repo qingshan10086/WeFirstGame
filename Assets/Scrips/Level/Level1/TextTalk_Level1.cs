@@ -40,7 +40,7 @@ public class TextTalk_Level1 : MonoBehaviour
         if (canTrigger[0])
         {
 
-            if (Vector2.Distance(player.transform.position, new Vector2(-1f, -2)) < 1)
+            if (Vector2.Distance(player.transform.position, new Vector2(-1f, -3)) < 1)
             {
                 if (currentText[0] <= 7)
                 {

@@ -41,7 +41,7 @@ public class TextTalk_Level2 : MonoBehaviour
             
             if (player.transform.position.x < 16&& player.transform.position.x > 14)
             {
-                if (currentText[0] <= 4)
+                if (currentText[0] <= 6)
                 {
                     Text.SetActive(true);
                     text[currentText[0]].SetActive(true);
@@ -50,7 +50,7 @@ public class TextTalk_Level2 : MonoBehaviour
                     {
                         text[currentText[0]].SetActive(false);
                         currentText[0]++;
-                        if (currentText[0] == 5)
+                        if (currentText[0] == 7)
                         {
                             Text.SetActive(false);
                             canTrigger[0] = false;

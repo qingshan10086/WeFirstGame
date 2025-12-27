@@ -140,6 +140,7 @@ public class Player : Entity//玩家类其父类为实体
             if (canStunned)
             {
                 stat.evasion.AddModifier(101);
+                Debug.Log("添加了闪避值");
                 canStunned = false;
             }
             GodTimer -= Time.deltaTime;
@@ -147,13 +148,15 @@ public class Player : Entity//玩家类其父类为实体
             {
                 lastHealth = currentHealth;
                 stat.evasion.RemoveModifier(101);
+                Debug.Log("删除了闪避值");
                 GodTimer = 0.5f;
                 canStunned = true;
             }
         }
-        else if (currentHealth > lastHealth) 
+        else if (currentHealth >= lastHealth) 
         {
             lastHealth=currentHealth;
+            stat.evasion.ClearModifiers();
         }
     }
 

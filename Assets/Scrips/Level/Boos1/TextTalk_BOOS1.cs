@@ -12,7 +12,7 @@ public class TextTalk_BOOS1 : MonoBehaviour
 
     //通过拖拽获取文本信息
     [SerializeField] private GameObject[] text;
-    private int[] currentText = new int[] { 0, 8};//记录当前是哪段文本,其分成几个部分，每部分的初始文本值不同，根据你在text中拖拽的来看
+    private int[] currentText = new int[] { 0, 12};//记录当前是哪段文本,其分成几个部分，每部分的初始文本值不同，根据你在text中拖拽的来看
     [SerializeField] private bool[] canTrigger = new bool[] { true, true};//判断是否能触发文本
    
    
@@ -30,20 +30,26 @@ public class TextTalk_BOOS1 : MonoBehaviour
             if(Vector2.Distance(player.transform.position, new Vector2(38f, 3)) < 1)
             {
 
-                if (currentText[0] <= 7)
+                if (currentText[0] <= 10)
                 {
                     Text.SetActive(true);
                     text[currentText[0]].SetActive(true);
+                    if (currentText[0] == 0)
+                    {
+                        Guider.transform.position = new Vector3(Guider.transform.position.x + Random.Range(-0.05f, 0.05f),
+                        Guider.transform.position.y,
+                        Guider.transform.position.z);
+                    }
 
                         if (Input.GetKeyUp(KeyCode.Space))
                         {
                             text[currentText[0]].SetActive(false);
                             currentText[0]++;
-                            if (currentText[0] == 7)
+                            if (currentText[0] == 9)
                             {
                                 Guider.SetActive(false);
                             }
-                            if (currentText[0] == 8)
+                            if (currentText[0] == 11)
                             {
                             Text.SetActive(false);
                             canTrigger[0] = false;
@@ -62,9 +68,9 @@ public class TextTalk_BOOS1 : MonoBehaviour
 
         }
 
-        if (BOSS.dieState.canNextText)
+        if (BOSS.dieState.canNextText && canTrigger[1])
             {
-                if (currentText[1] <= 19)
+                if (currentText[1] <= 20)
                 {
                     Text.SetActive(true);
                     text[currentText[1]].SetActive(true);
@@ -73,15 +79,17 @@ public class TextTalk_BOOS1 : MonoBehaviour
                     {
                         text[currentText[1]].SetActive(false);
                         currentText[1]++;
-                        if (currentText[1] == 9)
+                        if (currentText[1] == 14)
                         {
                             Guider.SetActive(true);
                             Guider.transform.position=new Vector2(player.transform.position.x+5,player.transform.position.y);
                         }
-                        if (currentText[1] == 20)
+                        if (currentText[1] == 21)
                         {
                             Door.SetActive(true);
                             Text.SetActive(false);
+                            canTrigger[1]= false;
+                            currentText[1] = 11;
                         }
                     }
                 }

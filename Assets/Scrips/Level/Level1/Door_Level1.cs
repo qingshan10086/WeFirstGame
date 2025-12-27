@@ -12,13 +12,13 @@ public class Door_Level1 : MonoBehaviour
 
     [SerializeField] private Transform player;//获取玩家位置
     [SerializeField] private float goalRaidus;//检测玩家是否到达的半径
-    public OneTimeMechanism oneTimeMechanism;//要删除
+   
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
-        oneTimeMechanism = GetComponent<OneTimeMechanism>();//要删除
+        
     }
 
     // Update is called once per frame
@@ -50,7 +50,7 @@ public class Door_Level1 : MonoBehaviour
         }
         if (allDefeated)
         {
-            oneTimeMechanism.TriggerMechanism();//要删除
+            
             anim.SetBool("Open", true);
         }
 
