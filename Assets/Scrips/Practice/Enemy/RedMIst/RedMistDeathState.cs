@@ -6,7 +6,7 @@ public class RedMistDeathState : EnemyState
 {
     private RedMist enemy;
     private Collider2D[] colliders;
-
+    
     public RedMistDeathState(Enemy _enemy, EnemyStateMachine _stateMachine, string _animBoolName) : base(_enemy, _stateMachine, _animBoolName)
     {
         enemy = (RedMist)_enemy;
@@ -39,6 +39,7 @@ public class RedMistDeathState : EnemyState
         // }
         
         // 5秒后销毁游戏对象
+        
         Object.Destroy(enemy.gameObject, 5f);
     }
 

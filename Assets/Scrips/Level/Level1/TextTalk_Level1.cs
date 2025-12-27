@@ -40,7 +40,7 @@ public class TextTalk_Level1 : MonoBehaviour
         if (canTrigger[0])
         {
 
-            if (player.transform.position.x < 0&& player.transform.position.x > -2)
+            if (Vector2.Distance(player.transform.position, new Vector2(-1f, -2)) < 1)
             {
                 if (currentText[0] <= 7)
                 {
@@ -73,7 +73,7 @@ public class TextTalk_Level1 : MonoBehaviour
         if (canTrigger[1])
         {
 
-            if (player.transform.position.x < 60.8f && player.transform.position.x >59)
+            if (Vector2.Distance(player.transform.position, new Vector2(59f, -2)) < 1)
             {
                 if (currentText[1] <= 8)
                 {   Text.SetActive(true);

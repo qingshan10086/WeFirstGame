@@ -54,7 +54,7 @@ public class ShadowMageAttack1State : EnemyState
         base.Updata();
 
 
-        player = PlayerManager.instance.player.transform;//每帧获取，不知道要不要考虑性能
+        player = enemy.Player.transform;//每帧获取，不知道要不要考虑性能
 
 
 
@@ -75,7 +75,7 @@ public class ShadowMageAttack1State : EnemyState
         {
                follower1 = true;
                follower2 = false;
-               shadowFollower.transform.position = new Vector2(player.position.x - 1, player.position.y +15f);//控制随从出现位置
+               shadowFollower.transform.position = new Vector2(player.position.x - 1, player.position.y +20f);//控制随从出现位置
         }
 
         if (followerWays>50 && followerWays <=100)

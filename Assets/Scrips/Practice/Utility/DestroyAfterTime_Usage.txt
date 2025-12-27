@@ -1,0 +1,100 @@
+# 延迟销毁脚本使用说明
+
+## 概述
+DestroyAfterTime.cs 是一个简单的Unity脚本，用于让挂载该脚本的游戏对象在指定时间后自动销毁。
+
+## 使用方法
+
+### 1. 添加脚本到物体
+- 将 DestroyAfterTime.cs 脚本拖拽到需要自动销毁的游戏对象上
+
+### 2. 配置脚本属性
+- 在 Inspector 面板中：
+  - **Destroy Delay**: 设置物体在几秒后销毁（默认为1.0秒）
+
+### 3. 运行游戏
+- 游戏开始后，挂载脚本的物体会在指定时间后自动销毁
+
+## 技术细节
+
+### 工作原理
+- 使用 Unity 的协程（Coroutine）机制实现延迟
+- 在 Start() 方法中启动协程
+- 使用 WaitForSeconds() 等待指定时间
+- 使用 Destroy(gameObject) 销毁物体
+
+### 默认设置
+- 默认延迟时间为1.0秒
+- 无需额外配置即可使用
+
+## 注意事项
+
+### 适用对象
+- 可以挂载到任何游戏对象上
+- 适用于临时物体（如子弹、粒子效果、剑气等）
+- 适用于需要自动清理的游戏对象
+
+### 高级使用
+- 可以在运行时通过代码修改 destroyDelay 属性
+- 可以继承该脚本实现更复杂的延迟销毁逻辑
+- 可以与其他脚本结合使用（如动画事件、碰撞检测等）
+
+## 示例场景
+
+### 剑气自动销毁
+- 将该脚本挂载到剑气预制体上
+- 设置合适的延迟时间（如0.5秒）
+- 剑气生成后会自动销毁，无需手动管理
+
+### 粒子效果自动清理
+- 将该脚本挂载到粒子效果预制体上
+- 设置延迟时间略长于粒子效果的持续时间
+- 粒子效果播放完成后会自动销毁
+
+### 临时物体管理
+- 将该脚本挂载到临时生成的物体上
+- 确保游戏中不会产生大量未销毁的物体
+- 优化游戏性能，避免内存泄漏
+
+## 扩展建议
+
+### 自定义销毁行为
+```csharp
+// 继承 DestroyAfterTime 类
+public class CustomDestroyAfterTime : DestroyAfterTime
+{
+    // 在销毁前执行自定义逻辑
+    protected override void OnDestroy()
+    {
+        // 执行自定义清理代码
+        Debug.Log("物体即将销毁");
+        
+        // 调用基类的 OnDestroy
+        base.OnDestroy();
+    }
+}
+```
+
+### 动态调整延迟时间
+```csharp
+// 在其他脚本中获取引用并修改延迟时间
+public class AdjustDestroyTime : MonoBehaviour
+{
+    public DestroyAfterTime destroyScript;
+    
+    private void Update()
+    {
+        // 根据游戏状态动态调整延迟时间
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            destroyScript.destroyDelay = 2.0f; // 改为2秒后销毁
+        }
+    }
+}
+```
+
+## 版本信息
+- 版本：1.0
+- 创建日期：2025-12-20
+- 作者：Unity 2D Platformer Game Development Expert
+- 适用 Unity 版本：Unity 2020.3 及以上

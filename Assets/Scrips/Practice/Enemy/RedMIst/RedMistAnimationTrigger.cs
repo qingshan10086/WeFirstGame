@@ -5,7 +5,13 @@ using UnityEngine;
 public class RedMistAnimationTrigger : MonoBehaviour
 {
     private RedMist enemy;
-
+    [Header("Audio Clips")]
+    public AudioClip audiodash; // 冲刺音效
+    public AudioClip audioslash; // slash
+    public AudioClip chop; // chop
+    public AudioClip chop2; // specialSlash
+    public AudioClip dashprocessaudio; // dashprocess
+    public float fadeDuration = 1.0f; // 淡入淡出时间
     private void Awake()
     {
         enemy = GetComponentInParent<RedMist>();
@@ -59,6 +65,7 @@ public class RedMistAnimationTrigger : MonoBehaviour
             {
                 collider.GetComponent<PlayerStats>().TakeDamage(enemy.dashDamage);
                 enemy.dashAttackDamageTimer = enemy.dashAttackCooldown;
+                BloodMusicManager.Instance.PlaySoundEffect(audiodash);
             }
         }
     }
@@ -69,11 +76,15 @@ public class RedMistAnimationTrigger : MonoBehaviour
         // 直接使用checkCircleAttack的位置
         Vector2 attackPosition = enemy.checkCircleAttack.position;
         
+        // 播放剑气音效
+        BloodMusicManager.Instance.PlaySoundEffect(chop);
+        
         // 使用圆形检测攻击范围内的玩家
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(attackPosition, enemy.checkCircleAttackRadius, enemy.whatIsPlayer);
         foreach (Collider2D collider in hitColliders)
         {
             // 对玩家造成伤害
+            
             collider.GetComponent<PlayerStats>().TakeDamage(enemy.fallDamage);
         }
     }
@@ -81,6 +92,9 @@ public class RedMistAnimationTrigger : MonoBehaviour
     // 动画事件函数 - 冲刺攻击开始时调用
     public void DashAttackStartTrigger()
     {
+        // 播放冲刺音效
+        BloodMusicManager.Instance.PlaySoundEffect(dashprocessaudio);
+
         // 可以在这里添加冲刺攻击开始时的效果
     }
 
@@ -98,6 +112,9 @@ public class RedMistAnimationTrigger : MonoBehaviour
             Debug.LogWarning("RedMistAnimationTrigger: 无法发射剑气，缺少必要引用");
             return;
         }
+        
+        // 播放剑气音效
+        BloodMusicManager.Instance.PlaySoundEffect(audioslash);
         
         // 计算剑气生成位置：RedMist位置正前方
         Vector3 spawnPosition = enemy.transform.position + new Vector3(enemy.faceDirection * 0.5f, enemy.slashDistance, 0);
@@ -131,6 +148,9 @@ public class RedMistAnimationTrigger : MonoBehaviour
         {
             swordSlashLeft.SetDirection(-1); // 向左移动
         }
+
+        // 播放剑气音效
+        BloodMusicManager.Instance.PlaySoundEffect(chop2);
         
         // 向右释放剑气
         GameObject rightSlash = Object.Instantiate(enemy.swordSlashPrefab, spawnPosition, Quaternion.identity);
@@ -220,6 +240,9 @@ public class RedMistAnimationTrigger : MonoBehaviour
         
         // 在玩家上方生成特殊剑气
         Vector3 spawnPosition = enemy.player.transform.position + new Vector3(0, enemy.upOffset, 0);
+        
+        // 播放剑气音效
+        BloodMusicManager.Instance.PlaySoundEffect(chop);
         
         // 实例化特殊剑气
         GameObject specialSlash = Object.Instantiate(enemy.specialSwordSlashPrefab, spawnPosition, Quaternion.identity);

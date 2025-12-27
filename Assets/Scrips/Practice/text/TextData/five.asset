@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 432c34e160184294aa069e66d80c10c2, type: 3}
+  m_Name: five
+  m_EditorClassIdentifier: 
+  displayText: "\u8FD9\u662F\u4E00\u4E2A\u6587\u672C\u6570\u636E\u5BF9\u8C61\uFF01"
+  useContinuousDialogue: 1
+  dialogueTextArray:
+  - "\u4F60\uFF1A\u8FD9\u91CC\u662F\u4EC0\u4E48\u5730\u65B9\uFF0C\u770B\u4E0A\u53BB\u539F\u6765\u6709\u5F88\u591A\u4EBA\u751F\u6D3B\uFF0C\u4E0D\u8FC7\u73B0\u5728..."
+  - "\u4F60\uFF1A\u6807\u724C\u4E0A\u5199\u7740 ...\u201CI love you\u201D...  \u4E0D\uFF0C\u6211\u8BA8\u538C\u8FD9\u3002"
+  - "\u4F60\uFF1A\u8D8A\u6765\u8D8A\u8BE1\u5F02\u4E86\uFF0C\u770B\u6765\u5FEB\u8981\u63A5\u8FD1\u6E90\u5934\u4E86\u3002"
+  - "\u5E7D\u7075\uFF1A\u8FD9\u91CC\uFF0C\u4E0D\u662F\u4E00\u5B9A\u4E00\u4E2A\u8F7B\u677E\u7684\u5730\u65B9\uFF0C\u5C0F\u5FC3\u654C\u4EBA\u3002"
+  - "\u4F60\uFF1A\u524D\u65B9\u6709\u654C\u4EBA\uFF0C\u751F\u5B58\u4E0B\u6765\u5427\u3002"
+  - "\uFF08\u5728\u7ADE\u6280\u573A\u5185\u6D3B\u4E0B\u6765\u5427\uFF09"
+  displayTime: 3
+  textColor: {r: 1, g: 1, b: 1, a: 1}
+  backgroundColor: {r: 0, g: 0, b: 0, a: 0.5}
+  displaySoundEffect: {fileID: 0}
+  soundEffectVolume: 1
+  textID: default_text
+  isImportantText: 0
+  textType: 0
