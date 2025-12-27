@@ -38,7 +38,8 @@ public class BloodFields_PlayerReturn : MonoBehaviour
     public SpiritFaderBoss[] spiritFaderBoss;
     public CanvasFaderBoss canvasFaderBoss;
     [Header("¥•∑¢∆˜…Ë÷√")]
-    public Collider2D BossTrigger;
+    public BoxCollider2D BossTrigger;
+    public BossBattleTrigger BossBattleTrigger2;
     void Start()
     {
         if (player == null)
@@ -145,8 +146,15 @@ public class BloodFields_PlayerReturn : MonoBehaviour
            
             phase2Canvas2.SetActive(false);
         }
-       
-        BossTrigger.enabled=true;
+
+
+
+        BossBattleTrigger2.isTriggered = false;
+        if (BossTrigger != null)
+        {
+            BossTrigger.enabled = true;
+        }
+        Debug.Log("Boss battle trigger reset");
     }
 
 
