@@ -140,7 +140,7 @@ public class Player : Entity//玩家类其父类为实体
             {
                 lastHealth = currentHealth;
                 stat.evasion.RemoveModifier(101);
-                GodTimer = 0.2f;
+                GodTimer = 0.5f;
                 canStunned = true;
             }
         }

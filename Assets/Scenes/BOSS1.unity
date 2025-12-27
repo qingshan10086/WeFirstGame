@@ -6832,7 +6832,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1957596709
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -3318188226485093758, guid: ae72133dacba6ec4eb33ecde48f50e56, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -37307,7 +37307,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   maxHealth:
-    baseValue: 1
+    baseValue: 249
     modifiers: 
   armor:
     baseValue: 0
@@ -37890,9 +37890,6 @@ MonoBehaviour:
   - {fileID: 560179330}
   - {fileID: 1958995229}
   canTrigger: 0101
-  textCooldownTimer:
-  - 10
-  - 10
 --- !u!1 &1785304899
 GameObject:
   m_ObjectHideFlags: 0
