@@ -729,7 +729,7 @@ GameObject:
   - component: {fileID: 2562344568017473612}
   m_Layer: 7
   m_Name: Enemy_Dust
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -743,8 +743,8 @@ Transform:
   m_GameObject: {fileID: 8970240845122092929}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.82, y: -0.8288999, z: -0.1789}
-  m_LocalScale: {x: 1.0968, y: 1.0968, z: 1.0968}
+  m_LocalPosition: {x: 1.7993, y: -1.5476, z: -0.954}
+  m_LocalScale: {x: 1.6138315, y: 1.6138315, z: 1.6138315}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2515074245857523091}
@@ -771,11 +771,11 @@ MonoBehaviour:
   knockbackDirection: {x: 7, y: 10}
   knockbackDuration: 0.7
   attackCheck: {fileID: 5876188039162254807}
-  attackCheckRadius: 1.01
+  attackCheckRadius: 1.18
   groundCheck: {fileID: 5980614376904311263}
   groundCheckDistance: 0.38
   wallCheck: {fileID: 373187870552562215}
-  wallCheckDiatance: 1.3
+  wallCheckDiatance: 1.53
   whatisGround:
     serializedVersion: 2
     m_Bits: 8
@@ -788,7 +788,7 @@ MonoBehaviour:
   moveSpeed: 3
   idleTime: 1000000
   battleTime: 1
-  attackDistance: 0.91
+  attackDistance: 1.32
   attackCooldown: 1
   lastTimeAttacked: 0
   healthBar: {fileID: 8710562751591219562}
@@ -846,7 +846,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   maxHealth:
-    baseValue: 49
+    baseValue: 59
     modifiers: 
   armor:
     baseValue: 0

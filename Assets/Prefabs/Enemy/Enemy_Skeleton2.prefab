@@ -508,7 +508,7 @@ GameObject:
   - component: {fileID: 7128840508158054813}
   m_Layer: 7
   m_Name: Enemy_Skeleton2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -564,7 +564,7 @@ MonoBehaviour:
   stunDuration: 1
   stunDirection: {x: 7, y: 10}
   counterImage: {fileID: 5007193198715522226}
-  moveSpeed: 1.5
+  moveSpeed: 4
   idleTime: 2
   battleTime: 4
   attackDistance: 1.52
@@ -651,7 +651,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   maxHealth:
-    baseValue: 49
+    baseValue: 59
     modifiers: 
   armor:
     baseValue: 0
@@ -961,6 +961,10 @@ PrefabInstance:
     - target: {fileID: 3490119293586326417, guid: dbb6b61e70f47e9419f0e8d8b9b7197e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7041536265015554638, guid: dbb6b61e70f47e9419f0e8d8b9b7197e, type: 3}
+      propertyPath: maxHealth.baseValue
+      value: 59
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

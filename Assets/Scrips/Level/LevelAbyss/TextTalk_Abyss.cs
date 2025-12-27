@@ -6,7 +6,7 @@ public class TextTalk_Abyss : MonoBehaviour
 {
     [SerializeField] private GameObject player;//通过拖拽获取玩家信息
     [SerializeField] private GameObject Text;//控制对话框的激活与失活
-    [SerializeField] private Enemy enemy;//杀死敌人后，激活对话框
+    [SerializeField] private Enemy[] enemy;//杀死敌人后，激活对话框
     private bool hasDie = false;
 
 
@@ -38,7 +38,7 @@ public class TextTalk_Abyss : MonoBehaviour
 
             if (player.transform.position.x < region1L+2 && player.transform.position.x > region1L)
             {
-                if (currentText[0] <= 3)
+                if (currentText[0] <= 4)
                 {
                     Text.SetActive(true);
                     text[currentText[0]].SetActive(true);
@@ -47,11 +47,11 @@ public class TextTalk_Abyss : MonoBehaviour
                     {
                         text[currentText[0]].SetActive(false);
                         currentText[0]++;
-                        if (currentText[0] == 3)
+                        if (currentText[0] == 4)
                         {
                             Text.SetActive(false);
                             canTrigger[0] = false;
-                            currentText[1] = 3;
+                            currentText[1] = 4;
                         }
                     }
                 }
@@ -72,7 +72,7 @@ public class TextTalk_Abyss : MonoBehaviour
         }
         if (canTrigger[1])
         { 
-            if (currentText[1] <= 10)
+            if (currentText[1] <= 12)
             { 
                 Text.SetActive(true);
                 text[currentText[1]].SetActive(true);
@@ -80,11 +80,11 @@ public class TextTalk_Abyss : MonoBehaviour
                 {
                     text[currentText[1]].SetActive(false);
                     currentText[1]++;
-                    if (currentText[1] == 10)
+                    if (currentText[1] == 12)
                     {
                         Text.SetActive(false);
                         canTrigger[1] = false;
-                        currentText[1] = 3;
+                        currentText[1] = 4;
                     }
                 }
 
@@ -95,6 +95,13 @@ public class TextTalk_Abyss : MonoBehaviour
     }
     private bool isEnemyDead()
     {
-        return enemy.stats.currentHealth <= 0;
+        foreach (var enemy in enemy)
+        {
+            if (enemy.stats.currentHealth > 0)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

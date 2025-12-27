@@ -5,8 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - ShadowFollower
-  - enemy
   - Wall
+  - Enemy
+  - Boss
   layers:
   - Default
   - TransparentFX
