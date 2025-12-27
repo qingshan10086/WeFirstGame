@@ -54,9 +54,15 @@ public class DynamicChainsaw : MonoBehaviour
 
     private void Update()
     {
-        // 实现左右来回移动
+        // 获取电锯当前的旋转角度（Z轴）
+        float rotationAngle = transform.eulerAngles.z * Mathf.Deg2Rad;
+        
+        // 根据旋转角度计算移动方向向量
+        Vector2 moveDirection = new Vector2(Mathf.Cos(rotationAngle), Mathf.Sin(rotationAngle));
+        
+        // 实现沿旋转方向的来回移动
         float pingPongValue = Mathf.PingPong(Time.time * moveSpeed, moveDistance);
-        transform.position = startPosition + Vector2.right * (pingPongValue - moveDistance / 2f);
+        transform.position = startPosition + moveDirection * (pingPongValue - moveDistance / 2f);
     }
 
     #endregion
@@ -133,9 +139,20 @@ public class DynamicChainsaw : MonoBehaviour
         // 绘制移动路径
         Gizmos.color = Color.blue;
         Vector2 pos = transform.position;
-        Gizmos.DrawWireSphere(pos - Vector2.right * moveDistance / 2f, 0.1f);
-        Gizmos.DrawWireSphere(pos + Vector2.right * moveDistance / 2f, 0.1f);
-        Gizmos.DrawLine(pos - Vector2.right * moveDistance / 2f, pos + Vector2.right * moveDistance / 2f);
+        
+        // 获取电锯当前的旋转角度（Z轴）
+        float rotationAngle = transform.eulerAngles.z * Mathf.Deg2Rad;
+        
+        // 根据旋转角度计算移动方向向量
+        Vector2 moveDirection = new Vector2(Mathf.Cos(rotationAngle), Mathf.Sin(rotationAngle));
+        
+        // 绘制路径端点和路径线
+        Vector2 startPoint = pos - moveDirection * moveDistance / 2f;
+        Vector2 endPoint = pos + moveDirection * moveDistance / 2f;
+        
+        Gizmos.DrawWireSphere(startPoint, 0.1f);
+        Gizmos.DrawWireSphere(endPoint, 0.1f);
+        Gizmos.DrawLine(startPoint, endPoint);
     }
     #endregion
 }

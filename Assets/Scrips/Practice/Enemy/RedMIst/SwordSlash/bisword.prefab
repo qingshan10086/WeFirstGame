@@ -83,6 +83,7 @@ MonoBehaviour:
   damage: 30
   damageAreaSize: {x: 2, y: 6}
   damageAreaTransform: {fileID: 597899377363378896}
+  slashSound: {fileID: 8300000, guid: 440605089b71d1c4ea55668b4cb6b249, type: 3}
 --- !u!212 &1252350397554158062
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -121,8 +122,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1456829095
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7eefc88d4b3dfe8478b94fcd76930438, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

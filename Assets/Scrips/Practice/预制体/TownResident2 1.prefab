@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 2310507358472289981}
   m_Layer: 7
   m_Name: TownResident2 1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -301,7 +301,7 @@ MonoBehaviour:
   attackRange: 2.72
   checkAttack: {fileID: 3729496077387206981}
   checkAttackRange: 1.88
-  attackDamage: 15
+  attackDamage: 20
   showDebugLogs: 0
 --- !u!114 &2310507358472289981
 MonoBehaviour:
@@ -464,8 +464,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1957596709
-  m_SortingLayer: 5
+  m_SortingLayerID: -1456829095
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6689ae4c87bbf9443a69431a42799861, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -789,7 +789,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: -1065307163
+  m_SortingLayerID: -1359408359
   m_SortingOrder: 19
   m_TargetDisplay: 0
 --- !u!114 &7264539813388934325

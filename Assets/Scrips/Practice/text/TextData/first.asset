@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 432c34e160184294aa069e66d80c10c2, type: 3}
+  m_Name: first
+  m_EditorClassIdentifier: 
+  displayText: "\u8FD9\u662F\u4E00\u4E2A\u6587\u672C\u6570\u636E\u5BF9\u8C61\uFF01"
+  useContinuousDialogue: 1
+  dialogueTextArray:
+  - "\u4F60\uFF1A\u8FD9\u5C31\u662F\u6697\u5F71\u6CD5\u5E08\u8428\u6258\u65AF\u628A\u5B88\u7684\u9886\u5730\u5417"
+  - "\u5E7D\u7075\uFF1A\u5148\u524D\u8FDB\u5427"
+  - "\u4F60\uFF1A\u73AF\u5883\u53D8\u5F97\u9634\u68EE\u8D77\u6765\u4E86\u3002"
+  displayTime: 3
+  textColor: {r: 1, g: 1, b: 1, a: 1}
+  backgroundColor: {r: 0, g: 0, b: 0, a: 0.5}
+  displaySoundEffect: {fileID: 0}
+  soundEffectVolume: 1
+  textID: default_text
+  isImportantText: 0
+  textType: 0

@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1957596709
-  m_SortingLayer: 5
+  m_SortingLayerID: -1456829095
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b81cc7ec054073e4d9e80621de49566b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -144,7 +144,7 @@ Transform:
   m_GameObject: {fileID: 396761029330551216}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.04, z: 0}
+  m_LocalPosition: {x: -0.03, y: 0.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -516,7 +516,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: -1065307163
+  m_SortingLayerID: -1359408359
   m_SortingOrder: 19
   m_TargetDisplay: 0
 --- !u!114 &4493363985947216676
@@ -617,7 +617,7 @@ GameObject:
   - component: {fileID: 2367305869808827641}
   m_Layer: 7
   m_Name: enemy_nothing 1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -794,11 +794,17 @@ MonoBehaviour:
   checkPlayerDisdance: 7.22
   player: {fileID: 0}
   attackRate: 0.3
-  attackDamage: 10
+  attackDamage: 20
+  attack3Cooldown: 5
+  attack3CooldownTimer: 0
   checkAttackSecond: {fileID: 1169276679861802433}
-  checkAttackRangeSecond: 2.02
+  checkAttackRangeSecond: 2.1
   checkAttackThird: {fileID: 6764158948921141598}
   checkAttackRangeThird: 2.01
+  spikePrefab: {fileID: 8636362724469102442, guid: 7263f20ce250df74daad00bc213e2645, type: 3}
+  spikeSpawnOffset: 0.5
+  arrowPrefab: {fileID: 8786712800607332097, guid: a180aa1b1b735c04c8e92070f35b662d, type: 3}
+  arrowSpeed: 7
   moveTime: 3
 --- !u!1 &8279682480201687668
 GameObject:

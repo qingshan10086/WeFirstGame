@@ -51,7 +51,7 @@ public class TomMali : Enemy
     [SerializeField] private float skill4Probability = 0.2f; // 技能4选择概率
 
     public EnemyStats TomStats;
-    private bool isJumpingToPlayer = false;                  //是否正在向玩家跳跃
+    [SerializeField] private bool isJumpingToPlayer = false;                  //是否正在向玩家跳跃
     
     // 技能随机释放相关变量
     private bool isPerformingSkill = false;                 //是否正在执行技能
