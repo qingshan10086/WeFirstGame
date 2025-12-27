@@ -81,7 +81,7 @@ SpriteRenderer:
   m_Size: {x: 0.51, y: 0.84}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1993456877366892089
@@ -176,6 +176,8 @@ MonoBehaviour:
   minionPerSummon: 3
   summonRadius: 20
   summonCooldown: 60
+  summonRegionL: 0
+  summonRegionR: 0
   lastSummonTime: -100
   lastSummonTime2: -500
   summonHpThreshold: 0.75
@@ -408,7 +410,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -174698598090273943, guid: f45c21b1f70f0ba4781b8fccc276a324, type: 3}
+  m_Sprite: {fileID: -174698598090273943, guid: c4248da68ca694648af10f4507f7a712, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -512,6 +514,6 @@ SpriteRenderer:
   m_Size: {x: 0.51, y: 0.84}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

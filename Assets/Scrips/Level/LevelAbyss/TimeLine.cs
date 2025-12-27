@@ -5,6 +5,7 @@ using UnityEngine.Playables;
 
 public class TimeLine : MonoBehaviour
 {
+    private OneTimeMechanism OneTimeMechanism;
     public PlayableDirector director;
     [SerializeField] private GameObject player;//通过拖拽获取玩家信息
     [SerializeField] private GameObject Text;//控制对话框的激活与失活
@@ -22,6 +23,7 @@ public class TimeLine : MonoBehaviour
         hasTrigger = false;
         textActive = false;
         skillO = SkillManager.GetComponent<HeroKnightTransformSkill>();
+        OneTimeMechanism = GetComponent<OneTimeMechanism>();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -41,11 +43,15 @@ public class TimeLine : MonoBehaviour
         yield return new WaitForSeconds(delay);
         textActive = true;
         skillO.enabled = true;
-        
+        OneTimeMechanism.TriggerMechanism();
     }
-
+    
     private void Update()
     {
+        if (OneTimeMechanism.isTriggered)
+        {
+            skillO.enabled = true;
+        }
         if (!hasTrigger && textActive)
         {
             Debug.Log("2");

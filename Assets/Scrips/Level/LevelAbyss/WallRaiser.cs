@@ -52,6 +52,11 @@ public class WallRaiser : MonoBehaviour
 
     void Update()
     {
+        if (oneTimeMechanism.isTriggered)
+        {
+            DoorC.enabled = true;
+            StartCoroutine(RaiseWall());
+        }
         if (player == null) return;
         if (MusicTrigger != null)
         {
@@ -73,7 +78,7 @@ public class WallRaiser : MonoBehaviour
         {
             DoorC.enabled = true;
             StartCoroutine(RaiseWall());
-            oneTimeMechanism.isTriggered = true;
+            oneTimeMechanism.TriggerMechanism();
         }
     }
 

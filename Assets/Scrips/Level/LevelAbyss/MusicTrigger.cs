@@ -23,9 +23,10 @@ public class MusicTrigger: MonoBehaviour
                 float distance = Vector3.Distance(trigger.position, player.position);
                 if (distance <= triggerRadius)
                 {
+                    Debug.Log("²¥·Å" + index);
                     AudioManager.instance.PlayBGM(index);
+                    isTrigger = true;
                 }
-                isTrigger = true;
             }
             else
             {
@@ -33,8 +34,8 @@ public class MusicTrigger: MonoBehaviour
                 if (distance <= triggerRadius)
                 {
                     StartCoroutine(ActivateAfterDelay(delayTime));
+                    isTrigger = true;
                 }
-                isTrigger = true;
             }
         }
     }
