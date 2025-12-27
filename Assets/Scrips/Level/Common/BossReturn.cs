@@ -58,7 +58,7 @@ public class BossReturn : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(SceneName);
+            SceneManager.LoadScene(data.sceneName);
             Vector3 savedPosition = new Vector3(data.xPosition, data.yPosition, data.zPosition);
             PlayerManager.instance.player.transform.position = savedPosition;
         }
