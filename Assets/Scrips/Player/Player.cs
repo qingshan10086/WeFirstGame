@@ -33,7 +33,7 @@ public class Player : Entity//玩家类其父类为实体
     #region 受到攻击无敌帧相关
     public int currentHealth;//玩家当前血量
     private int lastHealth;//玩家上一帧血量
-    private float GodTimer = 0.5f;//无敌时间
+    private float GodTimer =0.5f;//无敌时间
     private bool canStunned = true;//能否受到攻击
     #endregion
 
@@ -140,7 +140,7 @@ public class Player : Entity//玩家类其父类为实体
             {
                 lastHealth = currentHealth;
                 stat.evasion.RemoveModifier(101);
-                GodTimer = 0.2f;
+                GodTimer = 0.5f;
                 canStunned = true;
             }
         }
