@@ -13,7 +13,6 @@ public class Enemy_FlyingEyesAnimtionTrigger : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-
         sr = GetComponent<SpriteRenderer>();//获取精灵渲染器
         anim = GetComponent<Animator>();//获取动画组件
     }
@@ -38,7 +37,7 @@ public class Enemy_FlyingEyesAnimtionTrigger : MonoBehaviour
         }
 
         // 当完全透明后，销毁整个物体
-        Destroy(transform.root.gameObject);
+        Destroy(transform.parent.gameObject);
     }
 
 

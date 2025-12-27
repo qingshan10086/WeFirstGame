@@ -36,7 +36,7 @@ public class Enemy_SkeletonAnimationTrigger : MonoBehaviour//÷¼÷Ã±ø¶¯»­´¥·¢Æ÷¹ÜÀ
         }
 
         // µ±ÍêÈ«Í¸Ã÷ºó£¬Ïú»ÙÕû¸öÎïÌå
-        Destroy(transform.root.gameObject);
+        Destroy(transform.parent.gameObject);
     }
 
 

@@ -3,12 +3,17 @@ using UnityEngine;
 
 public class WallRaiser : MonoBehaviour
 {
+    [Header("精英怪死亡逻辑")]
+    public GameObject suiWall;    // 要摧毁的地
+    public Enemy enemy;
+
     [Header("References")]
     public Transform player;      // 玩家 Transform
     public Transform wall;        // 要升起的墙体 Transform
     public GameObject Door;       // 要开启的门
 
     [Header("Trigger")]
+    public Transform MusicTrigger;
     public float triggerRadius = 3f;
 
     [Header("Rise Settings")]
@@ -45,8 +50,21 @@ public class WallRaiser : MonoBehaviour
 
     void Update()
     {
-        if (isRaising) return;
         if (player == null) return;
+        if (MusicTrigger != null)
+        {
+            float distance2 = Vector3.Distance(player.position, MusicTrigger.position);
+            if (distance2 <= triggerRadius)
+            {
+                AudioManager.instance.PlayBGM(4);
+            }
+        }
+        if(enemy.stats.currentHealth <= 0)
+        {
+            Destroy(suiWall);
+        }
+
+        if (isRaising) return;
 
         float distance = Vector3.Distance(player.position, transform.position);
         if (distance <= triggerRadius)

@@ -30,7 +30,7 @@ public class ArrowProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // 碰到地面或墙体就销毁（根据工程标签/图层调整）
+        // 碰到地面或墙体就销毁
         if (other.gameObject.layer == LayerMask.NameToLayer("Ground") || other.CompareTag("Wall"))
         {
             Destroy(gameObject);
@@ -56,9 +56,20 @@ public class ArrowProjectile : MonoBehaviour
 
             if (ownerStats != null)
             {
-                // 调用发射者的伤害逻辑（保留暴击/护甲等逻辑）
-                ownerStats.DoDamage(targetStats);
+                // 如果打到enemy身上
+                if (other.CompareTag("Enemy"))
+                {
+                    // 只扣一点血
+                    targetStats.TakeDamage(5);
+                }
+                else
+                {
+                    // 调用发射者的伤害逻辑（保留暴击/护甲等逻辑）
+                    ownerStats.DoDamage(targetStats);
+                }
+                
             }
+            
 
             Debug.Log($"ArrowProjectile: target health after hit = {targetStats.currentHealth}");
             Destroy(gameObject);

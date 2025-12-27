@@ -4,15 +4,17 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public enum DialogueTriggerType { Area, EnemyDead }
+//枚举
+enum DialogueTriggerType { Area,EnemyDead,Transform } 
 
-public class DialogueTrigger : MonoBehaviour
+public class Dialogue1 : MonoBehaviour
 {
     [Header("Common")]
     [SerializeField] private GameObject player;            // 玩家引用（用于区域触发）
     [SerializeField] private GameObject Text;  // 对话框容器（整体开/关）
     [SerializeField] private GameObject[] texts;          // 每句字幕的 GameObject 数组（按索引显示）
     private int currentText ;//记录当前是哪段文本,其分成几个部分，每部分的初始文本值不同，根据你在text中拖拽的来看
+    
 
     [Header("Trigger")]
     [SerializeField] private DialogueTriggerType triggerType = DialogueTriggerType.Area;
@@ -21,6 +23,9 @@ public class DialogueTrigger : MonoBehaviour
     [SerializeField] private float regionMaxX;
     [Tooltip("敌人死亡触发时有效")]
     [SerializeField] private Enemy[] enemyToWatch;
+    [Tooltip("Transform有效")]
+    [SerializeField] private Transform trigger;
+    [SerializeField] private float triggerRadius= 3f;
 
     [Header("可选")]
     [SerializeField] private bool canCooldown;
@@ -80,6 +85,14 @@ public class DialogueTrigger : MonoBehaviour
                 }
                 canTrigger = allDie;
             }
+            if(triggerType  == DialogueTriggerType.Transform)
+            {
+                float dis = Vector3.Distance(trigger.position, player.transform.position);
+                if (dis <= triggerRadius)
+                {
+                    canTrigger = true;
+                }
+            }
         }
         if (canTrigger)
         {
@@ -104,6 +117,5 @@ public class DialogueTrigger : MonoBehaviour
                 }
             
         }
-        Debug.Log(player.transform.position);
     }
 }
