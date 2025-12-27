@@ -13,9 +13,10 @@ public class BossBattleTrigger : MonoBehaviour
     [Header("事件设置")]
     public bool triggerOnEnter = true;        // 进入时触发
     public bool triggerOnExit = false;        // 退出时触发
-
+    public EventManager eventManager;
     private void Start()
     {
+        eventManager.OnBossDefeated.AddListener(TriggerBossDefeated);
         // 如果没有指定碰撞体，尝试获取自身的BoxCollider2D
         if (triggerCollider == null)
         {
@@ -57,7 +58,8 @@ public class BossBattleTrigger : MonoBehaviour
         {
             EventManager.Instance.TriggerBossBattleStart();
             isTriggered = true;
-            
+            BloodMusicManager.Instance.player.enabled = false;
+            BloodMusicManager.Instance.SetBackgroundMusicSpeed(1f);
             // 如果是一次性使用，禁用触发器
             if (isOneTimeUse)
             {
@@ -74,6 +76,10 @@ public class BossBattleTrigger : MonoBehaviour
         }
     }
 
+    public void TriggerBossDefeated()
+    {
+        isTriggered = true;
+    }
     // 重置触发器
     public void ResetTrigger()
     {

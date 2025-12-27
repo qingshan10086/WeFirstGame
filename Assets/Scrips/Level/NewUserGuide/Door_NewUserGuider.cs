@@ -13,11 +13,14 @@ public class Door_NewUserGuider : MonoBehaviour
     [SerializeField] private Transform player;//获取玩家位置
     [SerializeField] private float goalRaidus;//检测玩家是否到达的半径
 
-
+   
+   
+    
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+     
     }
 
     // Update is called once per frame

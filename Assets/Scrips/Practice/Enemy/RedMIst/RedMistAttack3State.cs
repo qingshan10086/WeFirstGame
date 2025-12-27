@@ -82,7 +82,10 @@ public class RedMistAttack3State : EnemyState
         {
             swordSlashLeft.SetDirection(-1); // 向左移动
         }
-        
+        if(BloodMusicManager.Instance != null)
+        {
+            BloodMusicManager.Instance.PlaySoundEffect(enemy.attack3Sound);
+        }
         // 向右释放剑气
         GameObject rightSlash = UnityEngine.Object.Instantiate(enemy.swordSlashPrefab, spawnPosition, UnityEngine.Quaternion.identity);
         SwordSlash swordSlashRight = rightSlash.GetComponent<SwordSlash>();

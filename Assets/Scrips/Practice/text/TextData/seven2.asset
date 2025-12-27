@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 432c34e160184294aa069e66d80c10c2, type: 3}
+  m_Name: seven2
+  m_EditorClassIdentifier: 
+  displayText: "\u8FD9\u662F\u4E00\u4E2A\u6587\u672C\u6570\u636E\u5BF9\u8C61\uFF01"
+  useContinuousDialogue: 0
+  dialogueTextArray: []
+  displayTime: 3
+  textColor: {r: 1, g: 1, b: 1, a: 1}
+  backgroundColor: {r: 0, g: 0, b: 0, a: 0.5}
+  displaySoundEffect: {fileID: 0}
+  soundEffectVolume: 1
+  textID: default_text
+  isImportantText: 0
+  textType: 0

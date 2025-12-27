@@ -2,7 +2,7 @@ using System.Collections;
 
 using UnityEngine;
 using Cinemachine;
-
+using UnityEngine.UI;
 
 /// <summary>
 /// Boss战相机控制器
@@ -23,6 +23,8 @@ public class BossBattleCameraController : MonoBehaviour
     public bool unsubscribeOnDestroy = true;  // 是否在销毁时取消订阅
 
     private bool isInBossBattleMode = false;
+    [Header("玩家能量系统")]
+    public PlayerEnergySystem playerEnergySystem;
 
     private void Start()
     {
@@ -183,6 +185,8 @@ public class BossBattleCameraController : MonoBehaviour
             
             // 再启用Boss战相机
             bossBattleVirtualCamera.gameObject.SetActive(true);
+            playerEnergySystem.energySlider=bossBattleVirtualCamera.GetComponentInChildren<Slider>();
+
             // Maincamera.transform.position = new Vector3(camTransform.position.x, camTransform.position.y, Maincamera.transform.position.z);
             Debug.Log("Cinemachine Boss battle camera activated and fixed");
         }

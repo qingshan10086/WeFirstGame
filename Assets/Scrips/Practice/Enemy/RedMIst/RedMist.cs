@@ -61,6 +61,7 @@ public class RedMist : Enemy
     public int dashDamage = 10;  // 攻击冲刺伤害
     public int maxConsecutiveDashAttacks = 2; // 最大连续攻击次数
     public int dashAttackCounter = 0; // dash attack的连续攻击计数器
+    public AudioClip dashAttackSound; // 攻击冲刺音效
 
     public float dashAttackCooldown = 0.5f;//避免秒伤，设置伤害频率
     public float dashAttackDamageTimer = 10;  // 攻击冲刺伤害
@@ -69,6 +70,7 @@ public class RedMist : Enemy
     public int fallDamage = 10;  // 攻击3的下降伤害
     public int maxConsecutiveAttacks = 2; // 最大连续攻击次数
     public int attack3Counter = 0; // attack3的连续攻击计数器
+    public AudioClip attack3Sound; // 攻击3音效
     
     [Header("剑气参数")]
     public GameObject swordSlashPrefab; // 普通剑气预制体
@@ -79,6 +81,8 @@ public class RedMist : Enemy
     public float generationDistance = 6f; // 生成剑气的间隔距离
     public float upOffset=3f;
     // 覆盖Awake方法，初始化RedMist自己的状态机
+    [Header("死亡动画")]
+    public bool Deathsign=false;
     protected override void Awake()
     {
         base.Awake();

@@ -785,7 +785,7 @@ MonoBehaviour:
   stunDuration: 0.98
   stunDirection: {x: 7.07, y: 10}
   counterImage: {fileID: 5091596629159496353}
-  moveSpeed: 2
+  moveSpeed: 3
   idleTime: 1000000
   battleTime: 1
   attackDistance: 0.91

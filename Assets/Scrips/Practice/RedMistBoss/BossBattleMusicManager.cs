@@ -6,29 +6,34 @@ using UnityEngine.Audio;
 /// <summary>
 /// Boss战音乐管理器
 /// 负责在Boss战开始/结束时切换音乐
+/// 基于BloodMusicManager实现
 /// </summary>
 public class BossBattleMusicManager : MonoBehaviour
 {
-    [Header("音频设置")]
-    public AudioSource normalMusicSource;  // 普通音乐源
-    public AudioSource bossMusicSource;    // Boss战音乐源
-    public AudioMixerGroup musicMixerGroup; // 可选：音频混合器组
+    [Header("Boss战音乐")]
+    public AudioClip normalMusic;            // 普通音乐剪辑
+    public AudioClip bossMusicPhase1;        // Boss战第一阶段音乐剪辑
+    public AudioClip bossMusicPhase2;        // Boss战第二阶段音乐剪辑
+    public AudioClip victorySound;          // 胜利音效剪辑
     
     [Header("过渡设置")]
-    public float fadeDuration = 2f;        // 淡入淡出持续时间
-    public float normalMusicVolume = 0.7f; // 普通音乐音量
-    public float bossMusicVolume = 1.0f;   // Boss战音乐音量
+    public float fadeDuration = 1f;        // 淡入淡出持续时间
     
     [Header("订阅设置")]
     public bool subscribeOnStart = true;   // 是否在Start时订阅
     public bool unsubscribeOnDestroy = true; // 是否在销毁时取消订阅
 
-    private Coroutine currentFadeCoroutine; // 当前淡入淡出协程
-
     private void Start()
     {
-        // 初始化音乐源状态
-        InitializeMusicSources();
+        // 确保BloodMusicManager已初始化
+        if (BloodMusicManager.Instance == null)
+        {
+            Debug.LogError("BossBattleMusicManager: BloodMusicManager instance not found!");
+            return;
+        }
+        
+        // 预加载Boss战音乐
+        PreloadBossMusicClips();
         
         if (subscribeOnStart)
         {
@@ -44,24 +49,23 @@ public class BossBattleMusicManager : MonoBehaviour
         }
     }
 
-    // 初始化音乐源
-    private void InitializeMusicSources()
+    // 预加载Boss战音乐剪辑
+    private void PreloadBossMusicClips()
     {
-        if (normalMusicSource != null)
+        if (BloodMusicManager.Instance != null)
         {
-            normalMusicSource.volume = normalMusicVolume;
-            normalMusicSource.loop = true;
-            normalMusicSource.mute = false;
+            List<AudioClip> clipsToPreload = new List<AudioClip>();
+            
+            if (normalMusic != null) clipsToPreload.Add(normalMusic);
+            if (bossMusicPhase1 != null) clipsToPreload.Add(bossMusicPhase1);
+            if (bossMusicPhase2 != null) clipsToPreload.Add(bossMusicPhase2);
+            
+            if (clipsToPreload.Count > 0)
+            {
+                BloodMusicManager.Instance.PreloadAudioClips(clipsToPreload.ToArray());
+                Debug.Log("BossBattleMusicManager: Preloaded " + clipsToPreload.Count + " boss battle music clips");
+            }
         }
-        
-        if (bossMusicSource != null)
-        {
-            bossMusicSource.volume = 0f;
-            bossMusicSource.loop = true;
-            bossMusicSource.mute = false;
-        }
-        
-        Debug.Log("BossBattleMusicManager initialized");
     }
 
     // 订阅Boss战事件
@@ -70,12 +74,14 @@ public class BossBattleMusicManager : MonoBehaviour
         if (EventManager.Instance != null)
         {
             EventManager.Instance.OnBossBattleStart.AddListener(OnBossBattleStarted);
+            EventManager.Instance.OnBossBattleSecondPhase.AddListener(OnBossBattleSecondPhaseStarted);
             EventManager.Instance.OnBossBattleEnd.AddListener(OnBossBattleEnded);
+            EventManager.Instance.OnBossDefeated.AddListener(OnBossDefeated);
             Debug.Log("BossBattleMusicManager subscribed to events");
         }
         else
         {
-            Debug.LogError("EventManager instance not found!");
+            Debug.LogError("BossBattleMusicManager: EventManager instance not found!");
         }
     }
 
@@ -85,24 +91,34 @@ public class BossBattleMusicManager : MonoBehaviour
         if (EventManager.Instance != null)
         {
             EventManager.Instance.OnBossBattleStart.RemoveListener(OnBossBattleStarted);
+            EventManager.Instance.OnBossBattleSecondPhase.RemoveListener(OnBossBattleSecondPhaseStarted);
             EventManager.Instance.OnBossBattleEnd.RemoveListener(OnBossBattleEnded);
+            EventManager.Instance.OnBossDefeated.RemoveListener(OnBossDefeated);
             Debug.Log("BossBattleMusicManager unsubscribed from events");
         }
     }
 
-    // Boss战开始时切换到Boss战音乐
+    // Boss战开始时切换到Boss战第一阶段音乐
     private void OnBossBattleStarted()
     {
         Debug.Log("Boss battle music started");
+        BloodMusicManager.Instance.SetBackgroundMusicSpeed(1f);
+        // if (BloodMusicManager.Instance != null && bossMusicPhase1 != null)
+        // {
+        //     BloodMusicManager.Instance.SetMusicVolume(0.5f);
+        //     BloodMusicManager.Instance.SwitchBackgroundMusic(bossMusicPhase1, fadeDuration);
+        // }
+    }
+
+    // Boss战第二阶段开始时切换到第二阶段音乐
+    private void OnBossBattleSecondPhaseStarted()
+    {
+        Debug.Log("Boss battle music phase 2 started");
         
-        // 停止当前的淡入淡出协程
-        if (currentFadeCoroutine != null)
+        if (BloodMusicManager.Instance != null && bossMusicPhase2 != null)
         {
-            StopCoroutine(currentFadeCoroutine);
+            BloodMusicManager.Instance.SwitchBackgroundMusic(bossMusicPhase2, fadeDuration);
         }
-        
-        // 开始淡入Boss战音乐，淡出普通音乐
-        currentFadeCoroutine = StartCoroutine(FadeToBossMusic());
     }
 
     // Boss战结束时切换回普通音乐
@@ -110,111 +126,18 @@ public class BossBattleMusicManager : MonoBehaviour
     {
         Debug.Log("Boss battle music ended, switching back to normal music");
         
-        // 停止当前的淡入淡出协程
-        if (currentFadeCoroutine != null)
+        if (BloodMusicManager.Instance != null && normalMusic != null)
         {
-            StopCoroutine(currentFadeCoroutine);
+            BloodMusicManager.Instance.SwitchBackgroundMusic(normalMusic, fadeDuration);
         }
-        
-        // 开始淡入普通音乐，淡出Boss战音乐
-        currentFadeCoroutine = StartCoroutine(FadeToNormalMusic());
     }
 
-    // 淡入Boss战音乐，淡出普通音乐
-    private IEnumerator FadeToBossMusic()
+    // Boss被击败时播放胜利音乐
+    private void OnBossDefeated()
     {
-        float elapsedTime = 0f;
-        
-        // 记录初始音量
-        float startNormalVolume = normalMusicSource != null ? normalMusicSource.volume : 0f;
-        float startBossVolume = bossMusicSource != null ? bossMusicSource.volume : 0f;
-        
-        // 如果Boss战音乐还没播放，开始播放
-        if (bossMusicSource != null && !bossMusicSource.isPlaying)
-        {
-            bossMusicSource.Play();
-        }
-        
-        while (elapsedTime < fadeDuration)
-        {
-            elapsedTime += Time.deltaTime;
-            float t = elapsedTime / fadeDuration;
-            
-            // 平滑过渡音量
-            if (normalMusicSource != null)
-            {
-                normalMusicSource.volume = Mathf.Lerp(startNormalVolume, 0f, t);
-            }
-            
-            if (bossMusicSource != null)
-            {
-                bossMusicSource.volume = Mathf.Lerp(startBossVolume, bossMusicVolume, t);
-            }
-            
-            yield return null;
-        }
-        
-        // 确保音量设置正确
-        if (normalMusicSource != null)
-        {
-            normalMusicSource.volume = 0f;
-            normalMusicSource.Pause();
-        }
-        
-        if (bossMusicSource != null)
-        {
-            bossMusicSource.volume = bossMusicVolume;
-        }
-        
-        currentFadeCoroutine = null;
-    }
-
-    // 淡入普通音乐，淡出Boss战音乐
-    private IEnumerator FadeToNormalMusic()
-    {
-        float elapsedTime = 0f;
-        
-        // 记录初始音量
-        float startNormalVolume = normalMusicSource != null ? normalMusicSource.volume : 0f;
-        float startBossVolume = bossMusicSource != null ? bossMusicSource.volume : 0f;
-        
-        // 如果普通音乐还没播放，开始播放
-        if (normalMusicSource != null && !normalMusicSource.isPlaying)
-        {
-            normalMusicSource.Play();
-        }
-        
-        while (elapsedTime < fadeDuration)
-        {
-            elapsedTime += Time.deltaTime;
-            float t = elapsedTime / fadeDuration;
-            
-            // 平滑过渡音量
-            if (normalMusicSource != null)
-            {
-                normalMusicSource.volume = Mathf.Lerp(startNormalVolume, normalMusicVolume, t);
-            }
-            
-            if (bossMusicSource != null)
-            {
-                bossMusicSource.volume = Mathf.Lerp(startBossVolume, 0f, t);
-            }
-            
-            yield return null;
-        }
-        
-        // 确保音量设置正确
-        if (normalMusicSource != null)
-        {
-            normalMusicSource.volume = normalMusicVolume;
-        }
-        
-        if (bossMusicSource != null)
-        {
-            bossMusicSource.volume = 0f;
-            bossMusicSource.Pause();
-        }
-        
-        currentFadeCoroutine = null;
+        Debug.Log("Boss defeated, playing victory music");
+        BloodMusicManager.Instance.SwitchBackgroundMusic(victorySound, fadeDuration);
+        // 可以在这里添加胜利音乐逻辑
+        // 例如：BloodMusicManager.Instance.PlaySoundEffect(victorySound);
     }
 }

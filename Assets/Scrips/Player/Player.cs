@@ -2,47 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : Entity//Íæ¼ÒÀàÆä¸¸ÀàÎªÊµÌå
+public class Player : Entity//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ä¸¸ï¿½ï¿½ÎªÊµï¿½ï¿½
 {
-    public GameObject Text;//»ñÈ¡¶Ô»°¿òÎïÌå£¬ÓÃÀ´ÊµÏÖ¶Ô»°Ê±²»ÄÜÒÆ¶¯
+    public GameObject Text;//ï¿½ï¿½È¡ï¿½Ô»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½å£¬ï¿½ï¿½ï¿½ï¿½Êµï¿½Ö¶Ô»ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½
 
-    public PlayerStats stat;//»ñÈ¡Íæ¼ÒÊý¾Ý
-    public bool isBusy {  get; private set; }  //ÓÃÀ´¸¨Öú¸Ã×´Ì¬ÊÇ·ñÄÜ×ªÈëÆäËû×´Ì¬
+    public PlayerStats stat;//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public bool isBusy {  get; private set; }  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬ï¿½Ç·ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬
 
-    [Header("Attack details")]              //¹¥»÷Ïà¹ØÊý¾Ý
-    public Vector2[] attackMovement;        //¹¥»÷Ð¡·ùÎ»ÒÆ
-    public float counterAttackDuration = 0.2f;//µ¯·´×´Ì¬
+    [Header("Attack details")]              //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public Vector2[] attackMovement;        //ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½Î»ï¿½ï¿½
+    public float counterAttackDuration = 0.2f;//ï¿½ï¿½ï¿½ï¿½×´Ì¬
    
 
 
-    [Header("Move info")]                   //ÒÆ¶¯ÊäÈë
-    public float moveSpeed;                 //ÒÆ¶¯ËÙ¶È
-    public float jumpForce;                 //ÌøÔ¾Á¦
+    [Header("Move info")]                   //ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½
+    public float moveSpeed;                 //ï¿½Æ¶ï¿½ï¿½Ù¶ï¿½
+    public float jumpForce;                 //ï¿½ï¿½Ô¾ï¿½ï¿½
+    public float acceleration;              //ï¿½Ó³ï¿½ï¿½ï¿½
+    public float deceleration;              //ï¿½ï¿½Ö¹ï¿½ï¿½
+    public float airAcceleration;           //ï¿½Ú»ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½
+    public float airDeceleration;           //ï¿½Ú»ï¿½ï¿½ï¿½ï¿½Ö¹ï¿½ï¿½
+    public float coyoteTime;                //Coyote time for more forgiving jumps
+    public float jumpBufferTime;            //Jump input buffer time
 
 
-    [Header("Dash info")]                   //³å´ÌÊäÈë
-    public float dashSpeed;                 //³å´ÌËÙ¶È
-    public float dashDuration;              //³å´Ì³ÖÐøÊ±¼ä
-    public float dashFaceDir {  get;private set; }     //³å´Ì·½Ïò
+    [Header("Dash info")]                   //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public float dashSpeed;                 //ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
+    public float dashDuration;              //ï¿½ï¿½Ì³ï¿½ï¿½ï¿½Ê±ï¿½ï¿½
+    public float dashFaceDir {  get;private set; }     //ï¿½ï¿½Ì·ï¿½ï¿½ï¿½
 
-    [Header("»ØÑª¼¼ÄÜÀäÈ´")]//ÔÝÊ±·ÅÕâÀï£¬¼¼ÄÜÀàÄÇ±ß¼Ì³ÐÃ»×öÍê
+    [Header("ï¿½ï¿½Ñªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È´")]//ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç±ß¼Ì³ï¿½Ã»ï¿½ï¿½ï¿½ï¿½
     public float RecoverHPCooldown;
     public float RecoverHpCooldownTimer=0f;
     public bool  CanRecoverHP = false;
 
-    #region ÊÜµ½¹¥»÷ÎÞµÐÖ¡Ïà¹Ø
-    public int currentHealth;//Íæ¼Òµ±Ç°ÑªÁ¿
-    private int lastHealth;//Íæ¼ÒÉÏÒ»Ö¡ÑªÁ¿
-    private float GodTimer =0.5f;//ÎÞµÐÊ±¼ä
-    private bool canStunned = true;//ÄÜ·ñÊÜµ½¹¥»÷
+    #region ï¿½Üµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þµï¿½Ö¡ï¿½ï¿½ï¿½
+    public int currentHealth;//ï¿½ï¿½Òµï¿½Ç°Ñªï¿½ï¿½
+    private int lastHealth;//ï¿½ï¿½ï¿½ï¿½ï¿½Ò»Ö¡Ñªï¿½ï¿½
+    private float GodTimer =0.5f;//ï¿½Þµï¿½Ê±ï¿½ï¿½
+    private bool canStunned = true;//ï¿½Ü·ï¿½ï¿½Üµï¿½ï¿½ï¿½ï¿½ï¿½
     #endregion
 
 
 
-    public SkillManager skill {  get;private set; }//ÉêÃ÷SkikllManagerÀà
+    public SkillManager skill {  get;private set; }//ï¿½ï¿½ï¿½ï¿½SkikllManagerï¿½ï¿½
 
 
-    #region States   ¸÷¸ö×´Ì¬
+    #region States   ï¿½ï¿½ï¿½ï¿½×´Ì¬
     public PlayerStateMachine stateMachine { get; private set; }
     public PlayerIdleState idleState { get; private set; }
     public PlayerMoveState moveState { get; private set; }
@@ -69,6 +75,9 @@ public class Player : Entity//Íæ¼ÒÀàÆä¸¸ÀàÎªÊµÌå
     {
         base.Awake();
 
+        
+
+        
         stateMachine = new PlayerStateMachine();
 
         idleState = new PlayerIdleState(this, stateMachine, "Idle");
@@ -89,6 +98,9 @@ public class Player : Entity//Íæ¼ÒÀàÆä¸¸ÀàÎªÊµÌå
         recoverHPState = new PlayerRecoverHPState(this, stateMachine, "RecoverHP");
 
         stat=GetComponent<PlayerStats>();
+
+      
+
     }
 
     protected override void Start()
@@ -96,10 +108,10 @@ public class Player : Entity//Íæ¼ÒÀàÆä¸¸ÀàÎªÊµÌå
         base.Start();
 
         skill = SkillManager.instance;
-        currentHealth=stat.GetMaxHealthValue();//»ñÈ¡×î´óÑªÁ¿
-        lastHealth=stat.GetMaxHealthValue();//»ñÈ¡×î´óÑªÁ¿
+        currentHealth=stat.GetMaxHealthValue();//ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ñªï¿½ï¿½
+        lastHealth=stat.GetMaxHealthValue();//ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ñªï¿½ï¿½
 
-        stateMachine.Initialize(idleState);   //³õÊ¼»¯×´Ì¬
+        stateMachine.Initialize(idleState);   //ï¿½ï¿½Ê¼ï¿½ï¿½×´Ì¬
     }
 
     protected override void Update()
@@ -120,13 +132,14 @@ public class Player : Entity//Íæ¼ÒÀàÆä¸¸ÀàÎªÊµÌå
 
         stateMachine.currentState.Update();
 
-        CheckForInputDash();   //³å´Ìº¯Êý
+        CheckForInputDash();   //ï¿½ï¿½Ìºï¿½ï¿½ï¿½
 
 
     }
 
-    private void CanGodTime()//ÅÐ¶ÏÊÇ·ñ¿ÉÒÔ´¦ÓÚÎÞµÐÊ±¼ä£¬·ÀÖ¹Í¬Ê±³ÔÁËÌ«¶àÖ¡ÉË
+    private void CanGodTime()//ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½Þµï¿½Ê±ï¿½ä£¬ï¿½ï¿½Ö¹Í¬Ê±ï¿½ï¿½ï¿½ï¿½Ì«ï¿½ï¿½Ö¡ï¿½ï¿½
     {
+        
         currentHealth = stat.currentHealth;
         if (currentHealth < lastHealth)
         {
@@ -144,21 +157,25 @@ public class Player : Entity//Íæ¼ÒÀàÆä¸¸ÀàÎªÊµÌå
                 canStunned = true;
             }
         }
+        else if (currentHealth > lastHealth) 
+        {
+            lastHealth=currentHealth;
+        }
     }
 
-    public void AnimationTrigger()=>stateMachine.currentState.AnimationFinishTrigger();  //ÓÃÀ´»ñÈ¡¶¯»­Íê³ÉÏà¹Ø
+    public void AnimationTrigger()=>stateMachine.currentState.AnimationFinishTrigger();  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
 
 
-    private void CheckForInputDash()//³å´Ìº¯Êý£¬ÊµÏÖÊäÈëL±ã³å´Ì£¬ÒòÎªËüÔÚplayerÖÐËùÓÐËü¾ßÓÐ½Ï¸ßµÄÓÅÏÈ¼¶
+    private void CheckForInputDash()//ï¿½ï¿½Ìºï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½Ì£ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½playerï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð½Ï¸ßµï¿½ï¿½ï¿½ï¿½È¼ï¿½
     {
-        if (IsWallDetected())   //ÔÚÇ½ÉÏ²»ÄÜ³å´Ì
+        if (IsWallDetected())   //ï¿½ï¿½Ç½ï¿½Ï²ï¿½ï¿½Ü³ï¿½ï¿½
         {
             return;
         }
 
-        if (deadState.isDead) { return; }//ËÀÍöÊ±²»ÄÜ³å´Ì
+        if (deadState.isDead) { return; }//ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ü³ï¿½ï¿½
 
         dashFaceDir = Input.GetAxisRaw("Horizontal");
         if (dashFaceDir == 0)
@@ -175,7 +192,7 @@ public class Player : Entity//Íæ¼ÒÀàÆä¸¸ÀàÎªÊµÌå
     }
 
 
-    public IEnumerator BusyFor(float _seconds)  //Ã¦ÂµÐ­³Ì£¬À´ÊµÏÖ¶¯»­Ö´ÐÐÆÚ¼ä²»»á±»´ò¶Ï
+    public IEnumerator BusyFor(float _seconds)  //Ã¦ÂµÐ­ï¿½Ì£ï¿½ï¿½ï¿½Êµï¿½Ö¶ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½Ú¼ä²»ï¿½á±»ï¿½ï¿½ï¿½
     {
         isBusy = true;
 

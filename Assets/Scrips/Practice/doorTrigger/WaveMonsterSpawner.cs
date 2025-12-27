@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 /// <summary>
 /// 波次怪物产生器
@@ -32,6 +33,10 @@ public class WaveMonsterSpawner : MonoBehaviour
     
     [Header("视觉效果")]
     [SerializeField] private Color spawnRangeColor = new Color(1, 0, 0, 0.2f); // 产生范围颜色
+    
+    [Header("音乐设置")]
+    [SerializeField] private AudioClip battleMusic; // 战斗音乐
+    [SerializeField] private bool useBattleMusic = true; // 是否使用战斗音乐
     
     private int currentWaveIndex = -1; // 当前波次索引（-1表示未开始）
     private List<GameObject> spawnedMonstersInCurrentWave = new List<GameObject>(); // 当前波次产生的怪物列表
@@ -165,6 +170,18 @@ public class WaveMonsterSpawner : MonoBehaviour
         {
             monsterDeathDetector.requiredDeadCount = monstersToSpawnCount;
             monsterDeathDetector.Start();
+        }
+        
+        // 第一波开始时播放战斗音乐
+        if (currentWaveIndex == 0 && useBattleMusic && battleMusic != null)
+        {
+            BloodMusicManager musicManager = BloodMusicManager.Instance;
+            if (musicManager != null)
+            {
+                // 播放战斗音乐
+                musicManager.PlayBackgroundMusic(battleMusic, true);
+                Debug.Log("WaveMonsterSpawner: Playing battle music for wave 1");
+            }
         }
         
         OnWaveStart?.Invoke();

@@ -8,6 +8,7 @@ public class SwordSlashAnimationTrigger : MonoBehaviour
     [SerializeField] private int damage = 30;
     [SerializeField] private Vector2 damageAreaSize = new Vector2(2f, 1f);
     [SerializeField] private Transform damageAreaTransform;
+    [SerializeField] private AudioClip slashSound; // 普通剑气音效
     
     // 检测触发对玩家造成伤害的函数
     public void TriggerDamageToPlayer()
@@ -57,5 +58,12 @@ public class SwordSlashAnimationTrigger : MonoBehaviour
         // 绘制线框矩形伤害区域
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(damagePosition, damageAreaSize);
+    }
+    void PlaySoundEffect(AudioClip soundClip)
+    {
+        if (soundClip != null)
+        {
+            BloodMusicManager.Instance.PlaySoundEffect(soundClip);
+        }
     }
 }

@@ -1,4 +1,6 @@
+
 using UnityEngine;
+using UnityEngine.Audio;
 
 /// <summary>
 /// Boss生成器
@@ -25,6 +27,11 @@ public class BossSpawner : MonoBehaviour
     [SerializeField] private GameObject deathEffectPrefab; // 死亡特效预制体
     [SerializeField] private AudioClip deathSound; // 死亡音效
     
+    [Header("音乐设置")]
+    [SerializeField] private AudioClip postBossMusic; // Boss战结束后播放的音乐
+    [SerializeField] private bool usePostBossMusic = true; // 是否使用Boss战后音乐
+    [SerializeField] private float musicFadeDuration = 1f; // 音乐淡入淡出持续时间
+    
     [Header("调试信息")]
     [SerializeField] private bool showDebugInfo = true; // 是否显示调试信息
     
@@ -36,7 +43,9 @@ public class BossSpawner : MonoBehaviour
     private bool hasDefeatedBoss = false; // 是否已经击败Boss
     private GameObject spawnedBoss = null; // 生成的Boss实例
     private EnemyStats bossStats = null; // Boss的生命值组件
-    
+    [Header("Boss生命血条")]
+    public GameObject bossHealthBar;
+
     #region 生命周期方法
     private void Start()
     {
@@ -55,7 +64,7 @@ public class BossSpawner : MonoBehaviour
         
         // 订阅所有波次完成事件
         waveSpawner.OnAllWavesCompleted += HandleAllWavesCompleted;
-        
+        OnBossDefeated += BossDeath;
         if (showDebugInfo)
         {
             Debug.Log("BossSpawner initialized and waiting for all waves to complete.");
@@ -65,7 +74,7 @@ public class BossSpawner : MonoBehaviour
     private void Update()
     {
         // 检测Boss是否已经死亡
-        if (hasSpawnedBoss && !hasDefeatedBoss && spawnedBoss != null)
+        if (hasSpawnedBoss && !hasDefeatedBoss &&spawnedBoss != null)
         {
             if (bossStats != null)
             {
@@ -75,14 +84,14 @@ public class BossSpawner : MonoBehaviour
                     HandleBossDeath();
                 }
             }
-            else
-            {
-                // 如果没有EnemyStats组件，检查Boss是否被销毁
-                if (spawnedBoss == null || spawnedBoss.Equals(null))
-                {
-                    HandleBossDeath();
-                }
-            }
+            // else
+            // {
+            //     // 如果没有EnemyStats组件，检查Boss是否被销毁
+            //     if (spawnedBoss == null || spawnedBoss.Equals(null))
+            //     {
+            //         HandleBossDeath();
+            //     }
+            // }
         }
     }
     
@@ -148,7 +157,15 @@ public class BossSpawner : MonoBehaviour
         
         // 生成Boss
         spawnedBoss = Instantiate(bossPrefab, spawnPosition, Quaternion.identity);
-        
+        //设置Boss血条
+        if(bossHealthBar!=null)
+        {
+            Debug.Log("BossSpawner: Boss health bar activated.");
+            bossHealthBar.SetActive(true);
+            bossHealthBar.GetComponent<PlayerHealthBar_UI>().entity = spawnedBoss.GetComponent<Enemy>();
+            bossHealthBar.GetComponent<PlayerHealthBar_UI>().myStats = spawnedBoss.GetComponent<EnemyStats>();
+        }
+
         // 设置Boss的标签和绘制层级
         if (spawnedBoss != null)
         {
@@ -231,7 +248,8 @@ public class BossSpawner : MonoBehaviour
             {
                 Debug.LogWarning("BossSpawner: EnemyStats component not found on Boss!");
             }
-            
+            bossStats.currentHealth = 400;
+            Debug.Log($"BossSpawner: Boss health: {bossStats.currentHealth}");
             hasSpawnedBoss = true;
             hasDefeatedBoss = false;
             
@@ -304,9 +322,8 @@ public class BossSpawner : MonoBehaviour
         {
             return; // 避免重复处理
         }
-        
         hasDefeatedBoss = true;
-        
+ 
         // 播放死亡特效
         if (spawnedBoss != null && deathEffectPrefab != null)
         {
@@ -317,6 +334,18 @@ public class BossSpawner : MonoBehaviour
         if (audioSource != null && deathSound != null)
         {
             audioSource.PlayOneShot(deathSound);
+        }
+        
+        // 播放Boss战后音乐
+        if (usePostBossMusic && postBossMusic != null)
+        {
+            BloodMusicManager musicManager = BloodMusicManager.Instance;
+            if (musicManager != null)
+            {
+                // 使用淡入效果播放Boss战后音乐
+                musicManager.PlayBackgroundMusic(postBossMusic, true);
+                Debug.Log("BossSpawner: Playing post-boss music after boss defeat");
+            }
         }
         
         // 触发Boss被击败事件
@@ -383,4 +412,10 @@ public class BossSpawner : MonoBehaviour
         UnityEditor.Handles.Label(spawnPosition + Vector3.up * 3.0f, spawnerInfo, style);
     }
     #endregion
+    void BossDeath()
+    {
+        //清除Boss血条
+        Debug.Log("BossDeath: Boss health bar deactivated.");
+        bossHealthBar.SetActive(false);
+    }
 }

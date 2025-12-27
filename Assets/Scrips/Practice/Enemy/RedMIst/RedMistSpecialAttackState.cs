@@ -12,6 +12,7 @@ public class RedMistSpecialAttackState : EnemyState
     private int currentSlashCount = 0;
     private float upOffset;
     public float releaseCooldown = 2f;
+    public AudioClip specialSlashSound; // 特殊剑气音效
     public RedMistSpecialAttackState(Enemy _enemy, EnemyStateMachine _stateMachine, string _animBoolName) : base(_enemy, _stateMachine, _animBoolName)
     {
         enemy = (RedMist)_enemy;
@@ -86,6 +87,7 @@ public class RedMistSpecialAttackState : EnemyState
         // 生成剑气预制体，不需要设置方向
         Object.Instantiate(slashPrefab, spawnPosition1+new Vector3(0,upOffset,0), Quaternion.identity);
         Object.Instantiate(slashPrefab, spawnPosition2+new Vector3(0,upOffset,0), Quaternion.identity);
+        BloodMusicManager.Instance.PlaySoundEffect(specialSlashSound);
     }
 
     public override void Exit()

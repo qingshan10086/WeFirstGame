@@ -27,7 +27,11 @@ public class TeleportPortal : MonoBehaviour
     private GameObject detectedPlayer; // 检测到的玩家对象
     
     public System.Action<GameObject> OnPlayerTeleported; // 玩家被传送事件
-    
+    public AudioClip teleportSound; // 传送音效
+    public AudioClip HeartSound; //BloodField初始音效
+    public bool playSoundOnTeleport = true; // 是否在传送时播放音效
+    public bool StopBackgroundMusic = false;
+    public float fadeDuration = 1.0f; // 淡入淡出时间
     #region 生命周期方法
     private void Awake()
     {
@@ -64,6 +68,7 @@ public class TeleportPortal : MonoBehaviour
             if (!requirePlayerInput && Time.time >= lastTeleportTime + teleportCooldown)
             {
                 TeleportPlayer(detectedPlayer);
+              
             }
             else if (requirePlayerInput && showDebugInfo)
             {
@@ -102,6 +107,15 @@ public class TeleportPortal : MonoBehaviour
         // 触发传送事件
         OnPlayerTeleported?.Invoke(player);
         
+        // 播放传送音效
+        if (playSoundOnTeleport && teleportSound != null)
+        {
+           BloodMusicManager.Instance.PlaySoundEffect(teleportSound);
+        }
+          if(StopBackgroundMusic)
+                {
+                    BloodMusicManager.Instance.SwitchBackgroundMusic(HeartSound, fadeDuration);
+                }
         if (showDebugInfo)
         {
             Debug.Log("Player teleported from " + transform.position + " to " + targetPosition.position);

@@ -306,6 +306,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe500739068101d468cab57e21e7cdae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audiodash: {fileID: 0}
+  audioslash: {fileID: 0}
+  chop: {fileID: 0}
+  chop2: {fileID: 0}
+  dashprocessaudio: {fileID: 0}
+  fadeDuration: 1
 --- !u!95 &7257292913922538583
 Animator:
   serializedVersion: 5
@@ -459,15 +465,17 @@ MonoBehaviour:
   specialAttackTimer: 0
   defaultGravityScale: 0
   attackDashSpeed: 30
-  dashDamage: 10
+  dashDamage: 15
   maxConsecutiveDashAttacks: 2
   dashAttackCounter: 0
+  dashAttackSound: {fileID: 0}
   dashAttackCooldown: 0.5
   dashAttackDamageTimer: 10
   fallVelocity: -10
   fallDamage: 10
   maxConsecutiveAttacks: 2
   attack3Counter: 0
+  attack3Sound: {fileID: 0}
   swordSlashPrefab: {fileID: 6649177456625309050, guid: 2b89cb1e45eeb614187bf2d6863c9df3, type: 3}
   specialSwordSlashPrefab: {fileID: 4539563866101328645, guid: 12129e825d3a6b04db0d9c5f9f68150f, type: 3}
   swordSlashSpawnPoint: {fileID: 0}
