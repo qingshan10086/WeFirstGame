@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class WallRaiser : MonoBehaviour
 {
+    private OneTimeMechanism oneTimeMechanism;
     [Header("¾«Ó¢¹ÖËÀÍöÂß¼­")]
     public GameObject suiWall;    // Òª´Ý»ÙµÄµØ
     public Enemy enemy;
@@ -29,6 +30,7 @@ public class WallRaiser : MonoBehaviour
 
     void Start()
     {
+        oneTimeMechanism = GetComponent<OneTimeMechanism>();
         DoorC = Door.GetComponent<ToAbyssPlus>();
         if (wall == null)
         {
@@ -71,6 +73,7 @@ public class WallRaiser : MonoBehaviour
         {
             DoorC.enabled = true;
             StartCoroutine(RaiseWall());
+            oneTimeMechanism.isTriggered = true;
         }
     }
 

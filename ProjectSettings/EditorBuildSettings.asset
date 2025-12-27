@@ -42,7 +42,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Echo2.unity
     guid: 32fda2817158f0a4fb649bcef4df6706
   - enabled: 1
-    path: Assets/Scenes/Echo3.unity
+    path: Assets/Resources/echoAbyss/Echo3.unity
     guid: 780a865b7d2e26f41b6303ec7e2086e3
   - enabled: 1
     path: Assets/Scenes/BossDeath.unity
