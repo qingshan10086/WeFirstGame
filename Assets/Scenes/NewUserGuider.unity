@@ -29774,6 +29774,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1385847121314721648, guid: abbfe8e8f83335b439dcb898076bf52c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747464287973338949, guid: abbfe8e8f83335b439dcb898076bf52c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1938975678709422017, guid: abbfe8e8f83335b439dcb898076bf52c, type: 3}
       propertyPath: player
       value: 
@@ -29821,6 +29829,10 @@ PrefabInstance:
     - target: {fileID: 3803061205027644228, guid: abbfe8e8f83335b439dcb898076bf52c, type: 3}
       propertyPath: m_Name
       value: SavePoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 8291594620573738748, guid: abbfe8e8f83335b439dcb898076bf52c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
