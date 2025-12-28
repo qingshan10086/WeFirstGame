@@ -39,6 +39,7 @@ public class BossBattleUI : MonoBehaviour
 
     private void Awake()
     {
+        
         // 初始化CanvasGroup组件用于淡入淡出效果
         if (bossBattleUIPanel != null)
         {

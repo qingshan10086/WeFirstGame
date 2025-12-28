@@ -57,7 +57,7 @@ public class PlayerReturn_Level2 : MonoBehaviour
     private void ReloadLevel()
     {
         PlayData data = SaveManager.Instance.GetPlayData();
-
+        
         Vector3 savedPosition = new Vector3(data.xPosition, data.yPosition, data.zPosition);
         PlayerManager.instance.player.transform.position = savedPosition;
 

@@ -96341,29 +96341,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76807309e7fa45b42b8a1f81304065e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RedMistStats: {fileID: 1498302842}
-  RedMist: {fileID: 938141509}
-  TomMaliHealthBar: {fileID: 75274113}
-  RedMistHealthBar: {fileID: 1580727035}
-  MonsterDeathDetector: {fileID: 124684392}
-  normalVirtualCamera: {fileID: 890833774}
-  bossBattleVirtualCamera: {fileID: 1188174869}
-  doorMoveUp1: {fileID: 1879321944}
-  doorMoveUp2: {fileID: 709903002}
-  bossBattleUIPanel: {fileID: 0}
-  phase2Canvas1: {fileID: 226023125}
-  phase2Canvas2: {fileID: 753111073}
-  bossName: Red Mist Boss
-  fadeDuration: 1
-  phaseTransitionDuration: 1
-  spiritFaderBoss:
-  - {fileID: 127227925}
-  - {fileID: 1560393009}
-  - {fileID: 1328037409}
-  - {fileID: 2016209768}
-  - {fileID: 1974941507}
-  canvasFaderBoss: {fileID: 824692741}
-  BossTrigger: {fileID: 473740419}
 --- !u!1 &1373770926
 GameObject:
   m_ObjectHideFlags: 0
@@ -96971,7 +96948,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.42352945, g: 0.7254902, b: 0.94117653, a: 0}
+  m_BackGroundColor: {r: 0.058823533, g: 0.050980397, b: 0.054901965, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

@@ -21,7 +21,6 @@ public class EventManager : MonoBehaviour
                 {
                     GameObject obj = new GameObject("EventManager");
                     instance = obj.AddComponent<EventManager>();
-                    DontDestroyOnLoad(obj);
                 }
             }
             return instance;
@@ -43,7 +42,6 @@ public class EventManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else if (instance != this)
         {
@@ -75,6 +73,7 @@ public class EventManager : MonoBehaviour
             }
             else if (Boss.GetComponent<EnemyStats>().currentHealth <= initializedHealth / 2 && !hasTriggeredSecondPhase)
             {
+                Debug.Log("Boss进入第二阶段");
                 TriggerBossBattleSecondPhase();
                 hasTriggeredSecondPhase = true;
             }

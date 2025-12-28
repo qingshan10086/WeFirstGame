@@ -60,6 +60,7 @@ public class BossBattleTrigger : MonoBehaviour
             isTriggered = true;
             BloodMusicManager.Instance.player.enabled = false;
             BloodMusicManager.Instance.SetBackgroundMusicSpeed(1f);
+            player.ZeroVelocity();//玩家零速度
             // 如果是一次性使用，禁用触发器
             if (isOneTimeUse)
             {
@@ -68,6 +69,7 @@ public class BossBattleTrigger : MonoBehaviour
                     triggerCollider.enabled = false;
                 }
                 Debug.Log("Boss battle trigger disabled (one-time use)");
+
             }
         }
         else
