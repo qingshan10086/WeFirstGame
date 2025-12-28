@@ -142,7 +142,7 @@ public class doorTown : MonoBehaviour
         }
         
         isOpening = true;
-        oneTimeMechanism.isTriggered = true;
+        oneTimeMechanism.TriggerMechanism();
         // 如果是直接禁用类型，立即执行
         if (doorType == DoorType.Disable)
         {

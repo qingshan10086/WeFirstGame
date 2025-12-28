@@ -61,7 +61,7 @@ public class GainEnermySys : MonoBehaviour
             {
                 collider2D.enabled = false;
             }
-            
+            oneTimeMechanism.TriggerMechanism();
             // 可以选择销毁对象或禁用渲染
             // Destroy(gameObject);
             gameObject.SetActive(false);

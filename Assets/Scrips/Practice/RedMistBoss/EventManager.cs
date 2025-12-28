@@ -71,7 +71,7 @@ public class EventManager : MonoBehaviour
                 TriggerBossDefeated();
                 defeatedalreadyTriggered = true;
             }
-            else if (Boss.GetComponent<EnemyStats>().currentHealth <= initializedHealth / 2 && !hasTriggeredSecondPhase)
+            else if ((Boss.GetComponent<EnemyStats>().currentHealth <= initializedHealth / 2) && !hasTriggeredSecondPhase)
             {
                 Debug.Log("Boss进入第二阶段");
                 TriggerBossBattleSecondPhase();
