@@ -12,7 +12,7 @@ public class TextTalk_Level1 : MonoBehaviour
     [SerializeField] private GameObject[] text;
     private int[] currentText = new int[] { 0, 8 };//记录当前是哪段文本,其分成几个部分，每部分的初始文本值不同，根据你在text中拖拽的来看
     [SerializeField] private bool[] canTrigger = new bool[] { true, true };//判断是否能触发文本
-    private float textCooldown = 10f;//下一次文本触发时间
+    private float textCooldown = 60f;//下一次文本触发时间
     [SerializeField] private float[] textCooldownTimer = new float[] { 10, 10};//文本冷却辅助
     void Start()
     {

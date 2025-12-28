@@ -9,6 +9,9 @@ public class TextTalk_BOOS1 : MonoBehaviour
     [SerializeField] private GameObject Guider;//引导者
     [SerializeField] private Enemy_ShadowMage BOSS;//获取BOSS
     [SerializeField] private GameObject Door;//控制出口
+    [SerializeField] private GameObject skillImage;//技能图标
+
+
 
     //通过拖拽获取文本信息
     [SerializeField] private GameObject[] text;
@@ -48,6 +51,7 @@ public class TextTalk_BOOS1 : MonoBehaviour
                             if (currentText[0] == 9)
                             {
                                 Guider.SetActive(false);
+                                skillImage.SetActive(true);
                             }
                             if (currentText[0] == 11)
                             {
