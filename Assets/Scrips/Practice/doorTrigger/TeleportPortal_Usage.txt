@@ -1,0 +1,99 @@
+# 传送门系统使用说明
+
+## 概述
+本传送门系统包含两个主要脚本：
+1. **TeleportPortal.cs** - 传送门本体，负责检测玩家并执行传送
+2. **TeleportTarget.cs** - 传送目标位置标记，用于标记传送的目标点
+
+## 使用步骤
+
+### 1. 创建传送门
+1. 在场景中创建一个空对象，命名为 "TeleportPortal"
+2. 添加 **TeleportPortal.cs** 脚本组件
+3. 调整传送门的位置
+
+### 2. 创建目标位置
+1. 在场景中创建一个空对象，命名为 "TeleportTarget"
+2. 添加 **TeleportTarget.cs** 脚本组件
+3. 调整目标位置到想要传送的地点
+
+### 3. 连接传送门和目标位置
+1. 在传送门的 Inspector 面板中找到 "Target Position" 字段
+2. 将目标位置对象拖放到该字段中
+
+### 4. 配置传送门参数
+- **Player Tag**: 玩家对象的标签（默认为 "Player"）
+- **Require Player Input**: 是否需要玩家输入才能触发传送（默认关闭）
+- **Teleport Key**: 触发传送的按键（默认为 E）
+- **Teleport Cooldown**: 传送冷却时间（默认 1 秒）
+- **Detection Size**: 检测范围大小（默认 2 单位）
+
+### 5. 测试传送功能
+1. 运行游戏
+2. 控制玩家接近传送门
+3. 如果设置了需要输入，按下指定按键触发传送
+4. 如果未设置输入要求，进入传送门范围会自动传送
+
+## 高级功能
+
+### 双向传送门
+要创建双向传送门，只需：
+1. 创建两个传送门对象
+2. 将第一个传送门的目标设置为第二个传送门的位置
+3. 将第二个传送门的目标设置为第一个传送门的位置
+
+### 传送事件
+可以订阅 `OnPlayerTeleported` 事件来在玩家被传送时执行自定义逻辑：
+
+```csharp
+TeleportPortal portal = GetComponent<TeleportPortal>();
+portal.OnPlayerTeleported += OnTeleport;
+
+private void OnTeleport(GameObject player)
+{
+    // 传送后执行的逻辑
+    Debug.Log("玩家已被传送！");
+}
+```
+
+### 可视化设置
+在场景视图中选择传送门或目标位置时，可以看到：
+- 传送门：蓝色半透明立方体
+- 目标位置：橙色半透明立方体
+- 连接线：青色线条连接传送门和目标位置
+
+## 注意事项
+1. 确保玩家对象有 "Player" 标签（或与传送门设置的标签一致）
+2. 确保玩家对象有 Rigidbody2D 和 Collider2D 组件
+3. 避免将目标位置设置在障碍物内部
+4. 在 2D 场景中使用时，确保 Z 轴位置为 0
+
+## 示例代码
+
+```csharp
+// 创建一个简单的传送门系统
+using UnityEngine;
+
+public class SimpleTeleportSystem : MonoBehaviour
+{
+    [SerializeField] private Transform portal1Position;
+    [SerializeField] private Transform portal2Position;
+    
+    void Start()
+    {
+        // 创建传送门 1
+        GameObject portal1 = new GameObject("Portal1");
+        portal1.transform.position = portal1Position.position;
+        TeleportPortal portal1Script = portal1.AddComponent<TeleportPortal>();
+        
+        // 创建传送门 2
+        GameObject portal2 = new GameObject("Portal2");
+        portal2.transform.position = portal2Position.position;
+        TeleportPortal portal2Script = portal2.AddComponent<TeleportPortal>();
+        
+        // 设置双向传送
+        portal1Script.SetTargetPosition(portal2.transform);
+        portal2Script.SetTargetPosition(portal1.transform);
+    }
+}
+```

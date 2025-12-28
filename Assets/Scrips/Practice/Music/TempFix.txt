@@ -1,0 +1,27 @@
+    private void PlayerExitedZone()
+    {
+        if (!playerInZone || musicManager == null)
+            return;
+        
+        playerInZone = false;
+        
+        // 恢复之前的音乐或停止播放
+        if (restorePreviousMusic && previousMusic != null)
+        {
+            if (useFadeEffects)
+            {
+                musicManager.SwitchBackgroundMusic(previousMusic, fadeDuration);
+            }
+            else
+            {
+                musicManager.PlayBackgroundMusic(previousMusic, false);
+            }
+            
+            Debug.Log("MusicTriggerZone: 玩家离开区域，恢复音乐: " + previousMusic.name);
+        }
+        else
+        {
+            // 如果不恢复之前的音乐，可以选择停止背景音乐或继续播放
+            Debug.Log("MusicTriggerZone: 玩家离开区域");
+        }
+    }

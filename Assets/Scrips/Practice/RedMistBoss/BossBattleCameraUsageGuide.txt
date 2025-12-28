@@ -1,0 +1,140 @@
+# Boss战相机控制器使用指南
+
+## 一、功能概述
+BossBattleCameraController脚本用于在Boss战期间切换到固定的Cinemachine虚拟相机，确保Boss战相机保持固定位置而不跟随玩家移动。
+
+## 二、准备工作
+
+### 1. 安装Cinemachine
+确保项目中已安装Cinemachine插件：
+- 打开Package Manager
+- 搜索并安装Cinemachine包
+
+### 2. 设置虚拟相机
+
+#### 普通虚拟相机（Normal Virtual Camera）
+1. 在场景中创建一个Cinemachine虚拟相机
+2. 配置相机跟随玩家对象（将Player对象拖到Follow属性）
+3. 设置适当的跟随偏移量和阻尼值
+
+#### Boss战虚拟相机（Boss Battle Virtual Camera）
+1. 在场景中创建另一个Cinemachine虚拟相机
+2. 将相机放置在Boss战区域的固定位置
+3. 不要设置Follow属性（保持为空），或者将Follow属性设置为Boss对象
+4. 配置相机视角，确保能完整显示Boss战区域
+5. **初始状态设为禁用**（在Inspector中取消勾选"Enable"选项）
+
+## 三、脚本配置
+
+### 1. 添加脚本
+1. 创建一个空游戏对象或选择现有对象
+2. 向该对象添加BossBattleCameraController脚本
+
+### 2. 配置参数
+
+#### Cinemachine设置
+- **Normal Virtual Camera**：拖入普通虚拟相机
+- **Boss Battle Virtual Camera**：拖入Boss战虚拟相机
+- **Boss Battle Camera Transform**：拖入一个Transform对象，作为Boss战相机的固定位置（可在场景中直观调控）
+- **Use Fixed Position**：勾选表示使用Transform设置的固定位置，取消勾选则保持相机当前位置
+
+### 3. 可视化设置
+
+#### 创建位置标记对象
+1. 在场景中创建一个空游戏对象（GameObject）
+2. 重命名为"BossBattleCameraPosition"（或其他有意义的名称）
+3. 将其移动到Boss战相机应该固定的位置
+4. 可以为该对象添加一个可视化标记（如一个小立方体或球体）以便在场景中更容易识别
+
+#### 使用Transform设置固定位置
+1. 在BossBattleCameraController组件的Inspector中
+2. 将创建的位置标记对象拖入"Boss Battle Camera Transform"字段
+3. 确保"Use Fixed Position"选项已勾选
+4. 在场景视图中移动位置标记对象，实时预览Boss战相机的固定位置
+
+#### 场景视图中的Gizmos
+1. 选择添加了BossBattleCameraController脚本的对象
+2. 场景视图中会显示红色球体和轴线，表示Boss战相机的固定位置
+3. 黄色线条表示当前Boss战相机与固定位置之间的偏移
+4. 移动位置标记对象，Gizmos会实时更新位置
+
+#### 位置设置技巧
+- 直接在场景视图中拖动位置标记对象来直观调整位置
+- 可以旋转位置标记对象来设置相机的朝向
+- 结合Game视图预览相机效果，调整到最佳视角
+- 可以为位置标记对象添加子对象作为辅助参考点
+
+#### 订阅设置
+- **Subscribe On Start**：勾选表示在Start时自动订阅Boss战事件（推荐启用）
+- **Unsubscribe On Destroy**：勾选表示在对象销毁时自动取消订阅（推荐启用）
+
+## 四、Boss战事件触发
+
+### 1. 确保EventManager存在
+BossBattleCameraController通过EventManager接收Boss战开始和结束事件，确保场景中有EventManager实例。
+
+### 2. 触发Boss战
+使用BossBattleTrigger或其他方式触发Boss战事件：
+```csharp
+// 开始Boss战
+if (EventManager.Instance != null)
+{
+    EventManager.Instance.OnBossBattleStart.Invoke();
+}
+
+// 结束Boss战
+if (EventManager.Instance != null)
+{
+    EventManager.Instance.OnBossBattleEnd.Invoke();
+}
+```
+
+## 五、工作原理
+
+### Boss战开始时
+1. 启用BossBattleVirtualCamera（gameObject.SetActive(true)）
+2. 禁用普通相机（NormalVirtualCamera.gameObject.SetActive(false)）
+3. 根据BossBattleCameraTransform设置Boss战相机的固定位置和旋转
+4. 禁用相机跟随功能（如果有CinemachineTransposer组件）
+5. 设置阻尼值为0，确保相机完全固定
+
+### Boss战结束时
+1. 禁用BossBattleVirtualCamera（gameObject.SetActive(false)）
+2. 启用普通相机（NormalVirtualCamera.gameObject.SetActive(true)）
+3. 恢复普通相机的跟随阻尼值
+4. 普通相机继续跟随玩家移动
+
+## 六、注意事项
+
+1. **相机位置**：确保Boss战虚拟相机在场景中的位置正确，能完整显示Boss战区域
+2. **相机视角**：调整Boss战虚拟相机的视角和景深，获得最佳视觉效果
+3. **性能**：避免在Boss战相机上使用过多复杂效果，影响性能
+4. **测试**：在游戏中测试相机切换效果，确保过渡平滑
+
+## 七、故障排除
+
+### 相机切换不生效
+- 检查EventManager是否存在且未被销毁
+- 确保BossBattleTrigger正确触发了OnBossBattleStart事件
+- 检查虚拟相机的Follow属性是否设置正确
+
+### Boss战相机仍在移动
+- 确保Boss战虚拟相机没有设置Follow属性，或者Follow属性指向固定对象
+- 检查CinemachineTransposer组件的设置，确保阻尼值为0
+
+### 普通相机无法恢复跟随
+- 检查NormalVirtualCamera的Follow属性是否正确设置为Player对象
+- 确保普通相机的阻尼值设置合理
+
+## 八、示例场景
+
+在测试场景中：
+1. 创建一个玩家角色和Boss角色
+2. 设置两个Cinemachine虚拟相机
+3. 添加BossBattleCameraController并配置参数
+4. 添加BossBattleTrigger触发Boss战
+5. 运行游戏，测试相机切换效果
+
+---
+
+通过以上步骤，您可以成功实现固定的Boss战相机效果，为玩家提供沉浸式的Boss战体验。

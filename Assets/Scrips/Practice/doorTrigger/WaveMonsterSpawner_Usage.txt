@@ -1,0 +1,113 @@
+# 波次怪物产生器 (WaveMonsterSpawner) 使用说明
+
+## 功能介绍
+WaveMonsterSpawner 是一个功能强大的波次怪物产生器，支持以下特性：
+- 实现 4 波次怪物产生
+- 每波怪物和数量可在 Unity 编辑器中灵活配置
+- 结合 MonsterDeathDetector 检测怪物死亡情况
+- 第一波由玩家进入触发器触发
+- 后续波次在前一波怪物完全消灭后自动触发
+- 所有波次完成后触发事件通知
+
+## 使用方法
+
+### 1. 创建波次怪物产生器
+1. 在场景中创建一个空游戏对象
+2. 添加 `WaveMonsterSpawner` 组件
+3. 添加 `BoxCollider2D` 组件（如果没有自动添加）并设置为触发器
+
+### 2. 配置核心参数
+
+#### 玩家设置
+- **Player Tag**: 设置玩家的标签（默认为 "Player"）
+
+#### 怪物死亡检测器
+- **Monster Death Detector**: 拖拽场景中的 `MonsterDeathDetector` 组件到此处
+  - 该组件用于检测当前波次所有怪物是否被完全消灭
+
+#### 波次配置
+- **Monster Waves**: 4 波次的配置数组，每波次包含：
+  - **Monster Prefabs**: 此波次可产生的怪物预制体数组
+  - **Monster Counts**: 对应预制体的产生数量数组
+    - 例如：如果预制体数组是 [MonsterA, MonsterB]，数量数组是 [3, 2]，则会产生 3 个 MonsterA 和 2 个 MonsterB
+  - **Spawn Delay**: 此波次内怪物产生的间隔时间（秒）
+
+#### 产生范围设置
+- **Spawn Range Size**: 怪物产生的范围大小（正方形的边长）
+- **Spawn Range Offset**: 产生范围相对于产生器位置的偏移量
+
+#### 其他设置
+- **Spawn Cooldown**: 单个怪物产生的冷却时间（秒）
+- **Show Debug Info**: 是否在控制台显示调试信息
+
+### 3. 配置 MonsterDeathDetector
+1. 在场景中创建一个空游戏对象
+2. 添加 `MonsterDeathDetector` 组件
+3. 设置检测范围大小覆盖整个战斗区域
+4. 确保 `Monster Tag` 与怪物的标签一致（默认为 "Enemy"）
+
+### 4. 事件监听
+脚本提供以下事件可用于外部监听：
+
+- **OnWaveStart**: 当新一波开始时触发
+- **OnWaveComplete(int waveNumber)**: 当某一波完成时触发，参数为波次数
+- **OnAllWavesCompleted**: 当所有 4 波完成时触发
+- **OnFirstWaveTriggered**: 当第一波被玩家触发器触发时触发
+
+### 5. 代码示例
+
+```csharp
+// 获取波次怪物产生器组件
+WaveMonsterSpawner spawner = GetComponent<WaveMonsterSpawner>();
+
+// 监听事件
+spawner.OnWaveStart += () => {
+    Debug.Log("New wave started!");
+};
+
+spawner.OnWaveComplete += (waveNumber) => {
+    Debug.Log("Wave " + waveNumber + " completed!");
+};
+
+spawner.OnAllWavesCompleted += () => {
+    Debug.Log("All waves completed! Boss incoming!");
+    // 可以在这里触发开门、出现Boss等事件
+};
+
+// 手动开始下一波（通常不需要，系统会自动触发）
+// spawner.StartNextWave();
+
+// 重置产生器
+// spawner.ResetSpawner();
+```
+
+## 工作流程
+1. 玩家进入 `WaveMonsterSpawner` 的触发器区域
+2. 第一波怪物开始产生
+3. 所有怪物产生完成后，等待怪物被消灭
+4. 当前波次所有怪物被消灭后，自动开始下一波
+5. 重复步骤 3-4，直到 4 波怪物全部完成
+6. 触发 `OnAllWavesCompleted` 事件
+
+## 注意事项
+1. 确保 `MonsterDeathDetector` 的检测范围覆盖所有产生的怪物
+2. 每波次的 `Monster Prefabs` 和 `Monster Counts` 数组长度应该一致
+3. 如果某波次的怪物预制体或数量配置不正确，会跳过该波次
+4. 可以通过调整 `Spawn Delay` 和 `Spawn Cooldown` 控制怪物产生的节奏
+5. 产生范围大小应根据实际战斗区域进行调整，避免怪物产生在地图外
+
+## 可视化调试
+在编辑器中选中 `WaveMonsterSpawner` 对象时：
+- 红色半透明方块表示怪物产生范围
+- 白色边框标记范围边界
+- 场景中会显示产生器的当前状态信息（波次、产生进度等）
+
+运行时：
+- 黄色小圆圈标记已产生的怪物位置
+- 控制台会显示详细的调试信息（如果启用）
+
+## 扩展建议
+1. 可以在 `OnAllWavesCompleted` 事件中添加开门、出现 Boss、奖励掉落等逻辑
+2. 结合 UI 系统显示当前波次信息和剩余怪物数量
+3. 根据游戏难度动态调整每波怪物的强度和数量
+4. 添加波次开始和结束的音效和视觉效果

@@ -4,10 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - ShadowFollower
-  - Wall
+  - enemy
   - Enemy
-  - Boss
   layers:
   - Default
   - TransparentFX
@@ -17,11 +15,11 @@ TagManager:
   - UI
   - Player
   - Enemy
-  - "\u9677\u9631"
-  - 
-  - 
-  - 
-  - 
+  - EnemyTrigger
+  - Trap
+  - Wall
+  - yinxingwall
+  - Special
   - 
   - 
   - 
@@ -45,15 +43,36 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: BackGround
-    uniqueID: 1283232651
+  - name: background
+    uniqueID: 1586342885
     locked: 0
-  - name: Ground
-    uniqueID: 3995931785
+  - name: backGround
+    uniqueID: 79430679
+    locked: 0
+  - name: repair
+    uniqueID: 3252444601
+    locked: 0
+  - name: ground
+    uniqueID: 48677299
+    locked: 0
+  - name: trap
+    uniqueID: 1634471225
+    locked: 0
+  - name: Trap
+    uniqueID: 3648628707
+    locked: 0
+  - name: enemy
+    uniqueID: 2838138201
     locked: 0
   - name: Enemy
-    uniqueID: 3229660133
+    uniqueID: 778123141
     locked: 0
-  - name: Player
-    uniqueID: 2337370587
+  - name: player
+    uniqueID: 875916605
+    locked: 0
+  - name: UI
+    uniqueID: 3102585451
+    locked: 0
+  - name: UII
+    uniqueID: 1029970557
     locked: 0
