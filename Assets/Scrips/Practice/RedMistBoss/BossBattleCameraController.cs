@@ -25,7 +25,8 @@ public class BossBattleCameraController : MonoBehaviour
     private bool isInBossBattleMode = false;
     [Header("玩家能量系统")]
     public PlayerEnergySystem playerEnergySystem;
-
+    public Slider slider1;
+    public Slider slider2;
     private void Start()
     {
         if (subscribeOnStart)
@@ -189,6 +190,7 @@ public class BossBattleCameraController : MonoBehaviour
 
             // Maincamera.transform.position = new Vector3(camTransform.position.x, camTransform.position.y, Maincamera.transform.position.z);
             Debug.Log("Cinemachine Boss battle camera activated and fixed");
+            playerEnergySystem.energySlider = slider2;
         }
         else
         {
@@ -222,6 +224,7 @@ public class BossBattleCameraController : MonoBehaviour
             
             
             Debug.Log("Cinemachine normal camera activated");
+            playerEnergySystem.energySlider = slider2;
         }
         else
         {

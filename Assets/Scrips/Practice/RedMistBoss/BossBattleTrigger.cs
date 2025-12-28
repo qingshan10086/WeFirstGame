@@ -56,11 +56,11 @@ public class BossBattleTrigger : MonoBehaviour
     {
         if (EventManager.Instance != null)
         {
+            BloodMusicManager.Instance.player.ZeroVelocity(); ;//玩家零速度
             EventManager.Instance.TriggerBossBattleStart();
             isTriggered = true;
             BloodMusicManager.Instance.player.enabled = false;
             BloodMusicManager.Instance.SetBackgroundMusicSpeed(1f);
-            player.ZeroVelocity();//玩家零速度
             // 如果是一次性使用，禁用触发器
             if (isOneTimeUse)
             {

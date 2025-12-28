@@ -9,6 +9,7 @@ public class BloodFields_PlayerReturn : MonoBehaviour
 {
     private PlayerStats playerStats;
     private Player player;
+    public CinemachineVirtualCamera virtualCamera;
     //public EnemyStats RedMistStats;
     //public Enemy RedMist;
     //public GameObject TomMaliHealthBar;
@@ -60,6 +61,7 @@ public class BloodFields_PlayerReturn : MonoBehaviour
         {
             playerStats = GetComponent<PlayerStats>();
         }
+       
         //BossPosition = BossCurrentPosition;
         //doorPosition1 = doorCurrentPosition1;
         //doorPosition2 = doorCurrentPosition2;
@@ -94,6 +96,7 @@ public class BloodFields_PlayerReturn : MonoBehaviour
 
     private void ReloadLevel()
     {
+        
         //PlayData data = SaveManager.Instance.GetPlayData();
         SceneManager.LoadScene("BloodFields");
         Debug.Log("重新加载场景");

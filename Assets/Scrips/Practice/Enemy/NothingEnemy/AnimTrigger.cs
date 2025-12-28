@@ -3,6 +3,9 @@ using UnityEngine;
 public class AnimTrigger : MonoBehaviour
 {
     private Enemy_nothing enemy;
+    public AudioClip Hello;
+    public AudioClip Goodbye;
+    
     private void Awake()
     {
         enemy = GetComponentInParent<Enemy_nothing>();
@@ -94,7 +97,8 @@ public class AnimTrigger : MonoBehaviour
                     {
                         enemy.fx.StartCoroutine("FlashFX");
                     }
-                    
+                    BloodMusicManager.Instance.PreloadAudioClips(Goodbye);
+                    BloodMusicManager.Instance.PlaySoundEffect(Goodbye);
                     UnityEngine.Debug.Log("3攻击到玩家，造成了 " + intDamage + " 点伤害");
                 }
             }
@@ -121,7 +125,8 @@ public class AnimTrigger : MonoBehaviour
                 
                 // 实例化箭预制体
                 GameObject arrow = Object.Instantiate(enemy.arrowPrefab, spawnPosition, Quaternion.identity);
-                
+                BloodMusicManager.Instance.PreloadAudioClips(Hello);
+                BloodMusicManager.Instance.PlaySoundEffect(Hello);
                 if (arrow != null)
                 {
                     Debug.Log("箭实例化成功，名称: " + arrow.name);

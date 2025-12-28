@@ -48,7 +48,7 @@ public class BloodMusicManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+          
             InitializeAudioSystem();
         }
         else
