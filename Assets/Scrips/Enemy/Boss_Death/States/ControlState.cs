@@ -11,8 +11,9 @@ public class ControlState : EnemyState
     public ControlState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Boss_Death _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
     {
         this.enemy = _enemy;
-        playerEntity = PlayerManager.instance?.player;
-        player = playerEntity?.transform;
+        //playerEntity = PlayerManager.instance.player;
+        playerEntity = enemy.player;
+        player = playerEntity.transform;
         v3 = new Vector3(0, 5, 0);
     }
 
@@ -37,15 +38,18 @@ public class ControlState : EnemyState
 
     private IEnumerator DisablePlayerControl()
     {
+        Debug.Log("1");
         if (playerEntity == null)
+
             yield break;
 
-        // 只针对 Player 脚本进行禁用/恢复。如果需要禁用其它组件，可在此扩展。
+        // 只针对 Player 脚本进行禁用/恢复。
         Player playerScript = playerEntity.GetComponent<Player>();
         if (playerScript != null)
         {
             bool wasEnabled = playerScript.enabled;
             playerScript.enabled = false;
+            Debug.Log("脚本消失");
 
             yield return new WaitForSeconds(enemy.controlDuration);
 

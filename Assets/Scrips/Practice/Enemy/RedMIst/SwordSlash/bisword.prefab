@@ -80,7 +80,7 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  damage: 30
+  damage: 20
   damageAreaSize: {x: 2, y: 6}
   damageAreaTransform: {fileID: 597899377363378896}
   slashSound: {fileID: 8300000, guid: 440605089b71d1c4ea55668b4cb6b249, type: 3}

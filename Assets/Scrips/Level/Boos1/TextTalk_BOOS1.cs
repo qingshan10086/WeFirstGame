@@ -30,8 +30,7 @@ public class TextTalk_BOOS1 : MonoBehaviour
         
         if (canTrigger[0])
         {
-            if(Vector2.Distance(player.transform.position, new Vector2(38f, 3)) < 1)
-            {
+            
 
                 if (currentText[0] <= 10)
                 {
@@ -61,14 +60,7 @@ public class TextTalk_BOOS1 : MonoBehaviour
                             }
                         }
                 }
-            }
-            else//防止进场景每次都卡在第一段文本
-            {
-                canTrigger[0] = false;
-                text[currentText[0]].SetActive(false);
-                Text.SetActive(false);
-            }
-
+          
 
         }
 

@@ -10953,8 +10953,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -225, y: 54}
-  m_SizeDelta: {x: 1834.9307, y: 106.8688}
+  m_AnchoredPosition: {x: -225, y: 26.275787}
+  m_SizeDelta: {x: 1834.9307, y: 162.3172}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1164980485
 MonoBehaviour:
@@ -11068,7 +11068,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 30
+  m_Text: 60
 --- !u!222 &1170880492
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11321,7 +11321,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1195750901}
   - component: {fileID: 1195750903}
-  - component: {fileID: 1195750906}
   - component: {fileID: 1195750907}
   m_Layer: 0
   m_Name: Manager
@@ -11342,7 +11341,8 @@ Transform:
   m_LocalPosition: {x: 49.8551, y: 1.2764215, z: -0.0037763831}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1443192700}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1195750903
@@ -11390,24 +11390,6 @@ MonoBehaviour:
   - {fileID: 1830580993}
   - {fileID: 1342571058}
   - {fileID: 245560711}
---- !u!114 &1195750906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1195750900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0a58688a3d3f58438f279a610d11ee4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trigger: {fileID: 590972650}
-  player: {fileID: 18579060}
-  triggerRadius: 3
-  index: 5
-  isDelay: 0
-  delayTime: 0
 --- !u!114 &1195750907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11415,7 +11397,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1195750900}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0a58688a3d3f58438f279a610d11ee4, type: 3}
   m_Name: 
@@ -13403,6 +13385,56 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1443192699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1443192700}
+  - component: {fileID: 1443192701}
+  m_Layer: 0
+  m_Name: Manager2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1443192700
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443192699}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 80.97142, y: -0.910787, z: -0.15618636}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1195750901}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1443192701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443192699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0a58688a3d3f58438f279a610d11ee4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger: {fileID: 590972650}
+  player: {fileID: 18579060}
+  triggerRadius: 3
+  index: 5
+  isDelay: 0
+  delayTime: 0
 --- !u!1 &1448863302
 GameObject:
   m_ObjectHideFlags: 0
@@ -14126,8 +14158,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -225, y: 54}
-  m_SizeDelta: {x: 1834.9307, y: 106.8688}
+  m_AnchoredPosition: {x: -225, y: 33.206818}
+  m_SizeDelta: {x: 1834.9307, y: 148.4551}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1493650631
 MonoBehaviour:

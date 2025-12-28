@@ -5321,6 +5321,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 493113774553338647, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 814501255809199286, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
       propertyPath: playerEnergySystem
       value: 
@@ -5344,6 +5348,10 @@ PrefabInstance:
     - target: {fileID: 2655952832445335054, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
       propertyPath: m_BackGroundColor.r
       value: 0.13207549
+      objectReference: {fileID: 0}
+    - target: {fileID: 2796904551716071979, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
+      propertyPath: vitality.baseValue
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3756755967807957271, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5375,7 +5383,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4737598179399067179, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
       propertyPath: transformDuration
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4737598179399067179, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
       propertyPath: transformedDamage
@@ -5391,16 +5399,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5869090185335243135, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
       propertyPath: RecoverHPCooldown
-      value: 50
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5869090185335243135, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
       propertyPath: RecoverHpCooldownTimer
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6175003514407085942, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7188914505879146966, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 1081518467}
     - target: {fileID: 8375523023277986980, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
       propertyPath: m_LocalPosition.x
       value: -34.36
@@ -5591,6 +5603,17 @@ MonoBehaviour:
   currentLevel: 1
   energySliderImage: {fileID: 471073675}
   isSkillEnabled: 1
+--- !u!114 &1081518467 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2796904551716071979, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
+  m_PrefabInstance: {fileID: 1081518454}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081518457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eee311a100cef84298a214e4bb3a864, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1089351686
 GameObject:
   m_ObjectHideFlags: 0
@@ -9413,7 +9436,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 30
+  m_Text: 60
 --- !u!222 &1777155774
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24408,6 +24431,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2292929747850695864, guid: 06a9b3d8dcc28ac4cbbd4b53c739ba98, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1081518460}
+    - target: {fileID: 2292929747850695864, guid: 06a9b3d8dcc28ac4cbbd4b53c739ba98, type: 3}
       propertyPath: moveSpeed
       value: 3
       objectReference: {fileID: 0}
@@ -24505,11 +24532,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9039676220090981123, guid: 06a9b3d8dcc28ac4cbbd4b53c739ba98, type: 3}
       propertyPath: damage.baseValue
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 9039676220090981123, guid: 06a9b3d8dcc28ac4cbbd4b53c739ba98, type: 3}
       propertyPath: maxHealth.baseValue
-      value: 199
+      value: 399
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

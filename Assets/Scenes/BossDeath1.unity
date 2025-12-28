@@ -2572,7 +2572,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 30
+  m_Text: 60
 --- !u!222 &394114294
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7068,12 +7068,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5869090185335243135, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
       propertyPath: RecoverHPCooldown
-      value: 50
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5869090185335243135, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
       propertyPath: RecoverHpCooldownTimer
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7188914505879146966, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 2116298021}
     - target: {fileID: 8375523023277986980, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
       propertyPath: m_LocalPosition.x
       value: -34.36
@@ -28093,6 +28097,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2116298021 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2796904551716071979, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
+  m_PrefabInstance: {fileID: 1081518454}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081518456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eee311a100cef84298a214e4bb3a864, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2128583277
 GameObject:
   m_ObjectHideFlags: 0
@@ -28477,6 +28492,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2292929747850695864, guid: 06a9b3d8dcc28ac4cbbd4b53c739ba98, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1081518460}
     - target: {fileID: 2292929747850695864, guid: 06a9b3d8dcc28ac4cbbd4b53c739ba98, type: 3}
       propertyPath: moveSpeed
       value: 4

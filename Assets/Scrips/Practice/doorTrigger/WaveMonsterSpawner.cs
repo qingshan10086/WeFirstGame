@@ -37,7 +37,7 @@ public class WaveMonsterSpawner : MonoBehaviour
     [Header("音乐设置")]
     [SerializeField] private AudioClip battleMusic; // 战斗音乐
     [SerializeField] private bool useBattleMusic = true; // 是否使用战斗音乐
-    
+    public float fadeDuration = 1f;
     private int currentWaveIndex = -1; // 当前波次索引（-1表示未开始）
     private List<GameObject> spawnedMonstersInCurrentWave = new List<GameObject>(); // 当前波次产生的怪物列表
     private bool isWaveSpawning = false; // 是否正在产生当前波次
@@ -179,7 +179,7 @@ public class WaveMonsterSpawner : MonoBehaviour
             if (musicManager != null)
             {
                 // 播放战斗音乐
-                musicManager.PlayBackgroundMusic(battleMusic, true);
+                musicManager.SwitchBackgroundMusic(battleMusic, fadeDuration);
                 Debug.Log("WaveMonsterSpawner: Playing battle music for wave 1");
             }
         }

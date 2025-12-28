@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/NewUserGuide.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/BloodFields.unity
+    guid: 4aff893eab48dec42ba5c98918ced0da
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 815a9b2c3e26e954e83d83c128ed0f88
   - enabled: 1

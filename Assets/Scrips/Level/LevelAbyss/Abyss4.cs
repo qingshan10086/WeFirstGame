@@ -43,10 +43,12 @@ public class Abyss4 : MonoBehaviour
     private int currentText = 0;//记录当前是哪段文本,其分成几个部分，每部分的初始文本值不同，根据你在text中拖拽的来看
     private int currentText2 = 0;//记录当前是哪段文本,其分成几个部分，每部分的初始文本值不同，根据你在text中拖拽的来看
     private bool cantrigger2 = false;
+
+    private MonoBehaviour MusicTrigger;
     private void Start()
     {
         DoorC = Door.GetComponent<ToEcho3>();
-
+        MusicTrigger = GetComponent<MusicTrigger>();
     }
 
     private void Update()
@@ -80,6 +82,7 @@ public class Abyss4 : MonoBehaviour
             if (distance <= triggerRadius)
             {
                 DoorC.enabled = true;
+                MusicTrigger.enabled = true;
                 TextButton.SetActive(true);
                 texts[currentText].SetActive(true);
 

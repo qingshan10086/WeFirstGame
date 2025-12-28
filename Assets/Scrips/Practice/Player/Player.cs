@@ -160,6 +160,7 @@ public class Player : Entity//������丸��Ϊʵ��
         else if (currentHealth > lastHealth) 
         {
             lastHealth=currentHealth;
+            stat.evasion.ClearModifiers();
         }
     }
 

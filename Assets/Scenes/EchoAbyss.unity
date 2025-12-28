@@ -1384,6 +1384,14 @@ PrefabInstance:
       propertyPath: Text
       value: 
       objectReference: {fileID: 1273018367}
+    - target: {fileID: 5869090185335243135, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
+      propertyPath: CanRecoverHP
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5869090185335243135, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
+      propertyPath: RecoverHPCooldown
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 5880705037025400363, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.4

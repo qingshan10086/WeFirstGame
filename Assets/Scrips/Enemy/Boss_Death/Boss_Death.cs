@@ -56,6 +56,7 @@ public class Boss_Death : Enemy
     public float controlHpThreshold = 0.3f; // 低于该血量比例时触发控制
     public float controlCooldown = 30f; // 控制技能冷却时间
     [HideInInspector] public float lastControlTime = -100f;
+    public Player player;
 
 
     protected override void Awake()

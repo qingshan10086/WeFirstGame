@@ -1436,6 +1436,18 @@ PrefabInstance:
       propertyPath: Text
       value: 
       objectReference: {fileID: 1273018367}
+    - target: {fileID: 5869090185335243135, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
+      propertyPath: CanRecoverHP
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5869090185335243135, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
+      propertyPath: RecoverHPCooldown
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5869090185335243135, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
+      propertyPath: RecoverHpCooldownTimer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5880705037025400363, guid: 9151a2c63a831014aa1b6d16a783b976, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.4
@@ -5780,7 +5792,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 30
+  m_Text: 60
 --- !u!222 &1199493088
 CanvasRenderer:
   m_ObjectHideFlags: 0

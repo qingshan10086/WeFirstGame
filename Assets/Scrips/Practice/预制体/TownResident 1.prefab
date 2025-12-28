@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashDuration: 0
-  hitMat: {fileID: 0}
+  hitMat: {fileID: 2100000, guid: ba74bf30a384e644b830979ee9a04519, type: 2}
 --- !u!1 &3358736740446412911
 GameObject:
   m_ObjectHideFlags: 0

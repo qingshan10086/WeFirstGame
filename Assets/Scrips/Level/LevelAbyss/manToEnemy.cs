@@ -76,15 +76,18 @@ public class manToEnemy : MonoBehaviour
                 {
                     Destroy(obj);
                 }
-                TextButton.SetActive(true);
-                texts[currentText].SetActive(true);
-                if (Input.GetKeyUp(KeyCode.Space))
+                if(currentText < texts.Length)
                 {
-                    texts[currentText].SetActive(false);
-                    currentText++;
-                    if (currentText == texts.Length)
+                    TextButton.SetActive(true);
+                    texts[currentText].SetActive(true);
+                    if (Input.GetKeyUp(KeyCode.Space))
                     {
-                        TextButton.SetActive(false);
+                        texts[currentText].SetActive(false);
+                        currentText++;
+                        if (currentText == texts.Length)
+                        {
+                            TextButton.SetActive(false);
+                        }
                     }
                 }
             }
