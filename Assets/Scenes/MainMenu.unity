@@ -797,7 +797,7 @@ GameObject:
   - component: {fileID: 183169354}
   - component: {fileID: 183169353}
   - component: {fileID: 183169352}
-  - component: {fileID: 183169351}
+  - component: {fileID: 183169356}
   m_Layer: 5
   m_Name: fanhui
   m_TagString: Untagged
@@ -825,18 +825,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -480}
   m_SizeDelta: {x: 910, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &183169351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 183169349}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb6aaa47ff40e0c4c8f0e89ad4364278, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &183169352
 Animator:
   serializedVersion: 5
@@ -903,8 +891,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1195705596}
-        m_TargetAssemblyTypeName: UI, Assembly-CSharp
-        m_MethodName: optionCanva
+        m_TargetAssemblyTypeName: MainManager, Assembly-CSharp
+        m_MethodName: Option
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -952,6 +940,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 183169349}
   m_CullTransparentMesh: 1
+--- !u!114 &183169356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183169349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c175726067e55de42a96a551291c7c0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 1010813816}
 --- !u!1 &183806812
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,7 +1125,6 @@ GameObject:
   - component: {fileID: 284058084}
   - component: {fileID: 284058083}
   - component: {fileID: 284058082}
-  - component: {fileID: 284058081}
   - component: {fileID: 284058085}
   - component: {fileID: 284058086}
   m_Layer: 5
@@ -1154,18 +1154,6 @@ RectTransform:
   m_AnchoredPosition: {x: -769, y: -468}
   m_SizeDelta: {x: 500, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &284058081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 284058079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a99995c43192ed4586a6e5c65c8970a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &284058082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1210,9 +1198,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 284058081}
-        m_TargetAssemblyTypeName: changeScene, Assembly-CSharp
-        m_MethodName: exitGame
+      - m_Target: {fileID: 1195705596}
+        m_TargetAssemblyTypeName: MainManager, Assembly-CSharp
+        m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1290,9 +1278,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 284058079}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb6aaa47ff40e0c4c8f0e89ad4364278, type: 3}
+  m_Script: {fileID: 11500000, guid: c175726067e55de42a96a551291c7c0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sound: {fileID: 1010813816}
 --- !u!1 &310202283
 GameObject:
   m_ObjectHideFlags: 0
@@ -1306,7 +1295,7 @@ GameObject:
   - component: {fileID: 310202288}
   - component: {fileID: 310202287}
   - component: {fileID: 310202286}
-  - component: {fileID: 310202285}
+  - component: {fileID: 310202290}
   m_Layer: 5
   m_Name: language (1)
   m_TagString: Untagged
@@ -1334,18 +1323,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: 910, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &310202285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 310202283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb6aaa47ff40e0c4c8f0e89ad4364278, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &310202286
 Animator:
   serializedVersion: 5
@@ -1449,6 +1426,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 310202283}
   m_CullTransparentMesh: 1
+--- !u!114 &310202290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310202283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c175726067e55de42a96a551291c7c0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 1010813816}
 --- !u!1 &312546655
 GameObject:
   m_ObjectHideFlags: 0
@@ -2051,6 +2041,7 @@ GameObject:
   - component: {fileID: 552291827}
   - component: {fileID: 552291826}
   - component: {fileID: 552291825}
+  - component: {fileID: 552291830}
   m_Layer: 5
   m_Name: fanhui
   m_TagString: Untagged
@@ -2156,8 +2147,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1195705596}
-        m_TargetAssemblyTypeName: UI, Assembly-CSharp
-        m_MethodName: optionCanva
+        m_TargetAssemblyTypeName: MainManager, Assembly-CSharp
+        m_MethodName: Option
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2205,6 +2196,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 552291823}
   m_CullTransparentMesh: 1
+--- !u!114 &552291830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552291823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c175726067e55de42a96a551291c7c0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 1010813816}
 --- !u!1 &601648508
 GameObject:
   m_ObjectHideFlags: 0
@@ -2329,8 +2333,9 @@ GameObject:
   - component: {fileID: 636647284}
   - component: {fileID: 636647283}
   - component: {fileID: 636647287}
+  - component: {fileID: 636647288}
   m_Layer: 5
-  m_Name: duoren
+  m_Name: dudang
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2489,6 +2494,19 @@ MonoBehaviour:
   defaultNewGameScene: NewUserGuider
   loadTimeout: 5
   sceneLoadBuffer: 0.5
+--- !u!114 &636647288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 636647281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c175726067e55de42a96a551291c7c0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 1010813816}
 --- !u!1 &648476167
 GameObject:
   m_ObjectHideFlags: 0
@@ -2909,7 +2927,6 @@ GameObject:
   m_Component:
   - component: {fileID: 732454289}
   - component: {fileID: 732454291}
-  - component: {fileID: 732454290}
   m_Layer: 5
   m_Name: volume
   m_TagString: Untagged
@@ -2940,18 +2957,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 200}
   m_SizeDelta: {x: 1000, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &732454290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 732454288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3011582d0d775b4b8774bb7e5620b03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &732454291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3583,8 +3588,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1195705596}
-        m_TargetAssemblyTypeName: UI, Assembly-CSharp
-        m_MethodName: languageCanva
+        m_TargetAssemblyTypeName: MainManager, Assembly-CSharp
+        m_MethodName: Language
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3641,9 +3646,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 945014345}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb6aaa47ff40e0c4c8f0e89ad4364278, type: 3}
+  m_Script: {fileID: 11500000, guid: c175726067e55de42a96a551291c7c0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sound: {fileID: 1010813816}
 --- !u!1 &969835029
 GameObject:
   m_ObjectHideFlags: 0
@@ -3883,7 +3889,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 11f7121449d5b2f4b93263c1d8d0adb9, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -4054,7 +4060,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u80CC \u666F \u97F3"
+  m_Text: "\u97F3\u4E50\n"
 --- !u!222 &1036622161
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4591,9 +4597,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1195705595}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd65c1fe93d98894ab20cb25c911a902, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c119cbfc54f1db449c7d2c9889ebd3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainC: {fileID: 86176580}
+  OptionC: {fileID: 316252582}
+  AudioC: {fileID: 2029724024}
+  LanguageC: {fileID: 1262841829}
 --- !u!4 &1195705597
 Transform:
   m_ObjectHideFlags: 0
@@ -4716,8 +4726,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1195705596}
-        m_TargetAssemblyTypeName: UI, Assembly-CSharp
-        m_MethodName: audioCanva
+        m_TargetAssemblyTypeName: MainManager, Assembly-CSharp
+        m_MethodName: Audio
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4774,9 +4784,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1211097759}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb6aaa47ff40e0c4c8f0e89ad4364278, type: 3}
+  m_Script: {fileID: 11500000, guid: c175726067e55de42a96a551291c7c0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sound: {fileID: 1010813816}
 --- !u!1 &1230756518
 GameObject:
   m_ObjectHideFlags: 0
@@ -4791,6 +4802,7 @@ GameObject:
   - component: {fileID: 1230756520}
   - component: {fileID: 1230756523}
   - component: {fileID: 1230756524}
+  - component: {fileID: 1230756525}
   m_Layer: 5
   m_Name: play
   m_TagString: Untagged
@@ -4951,6 +4963,19 @@ MonoBehaviour:
   defaultNewGameScene: NewUserGuider
   loadTimeout: 5
   sceneLoadBuffer: 0.5
+--- !u!114 &1230756525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230756518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c175726067e55de42a96a551291c7c0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sound: {fileID: 1010813816}
 --- !u!1 &1257725058
 GameObject:
   m_ObjectHideFlags: 0
@@ -5398,9 +5423,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1335665968}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb6aaa47ff40e0c4c8f0e89ad4364278, type: 3}
+  m_Script: {fileID: 11500000, guid: c175726067e55de42a96a551291c7c0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sound: {fileID: 1010813816}
 --- !u!95 &1335665971
 Animator:
   serializedVersion: 5
@@ -5467,8 +5493,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1195705596}
-        m_TargetAssemblyTypeName: UI, Assembly-CSharp
-        m_MethodName: mainCanva
+        m_TargetAssemblyTypeName: MainManager, Assembly-CSharp
+        m_MethodName: Main
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6952,8 +6978,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1195705596}
-        m_TargetAssemblyTypeName: UI, Assembly-CSharp
-        m_MethodName: optionCanva
+        m_TargetAssemblyTypeName: MainManager, Assembly-CSharp
+        m_MethodName: Option
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7031,9 +7057,55 @@ MonoBehaviour:
   m_GameObject: {fileID: 1801272422}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb6aaa47ff40e0c4c8f0e89ad4364278, type: 3}
+  m_Script: {fileID: 11500000, guid: c175726067e55de42a96a551291c7c0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sound: {fileID: 1010813816}
+--- !u!1 &1839372870
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1839372872}
+  - component: {fileID: 1839372871}
+  m_Layer: 0
+  m_Name: VolumeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1839372871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839372870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a23df3df25458354db70850b6b6bdb5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ZongvolumeSlider: {fileID: 732454291}
+--- !u!4 &1839372872
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1839372870}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 96.23904, y: 0.25924733, z: 2.6033952}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1864991521
 GameObject:
   m_ObjectHideFlags: 0
@@ -8001,3 +8073,4 @@ SceneRoots:
   - {fileID: 276873573}
   - {fileID: 849191432}
   - {fileID: 1415886227}
+  - {fileID: 1839372872}
