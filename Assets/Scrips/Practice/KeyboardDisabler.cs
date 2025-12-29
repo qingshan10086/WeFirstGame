@@ -104,7 +104,7 @@ public class KeyboardDisabler : MonoBehaviour
         return !isKeyboardDisabled;
     }
     #endregion
-
+#if UNITY_EDITOR
     #region 编辑器可视化
     private void OnDrawGizmosSelected()
     {
@@ -128,4 +128,5 @@ public class KeyboardDisabler : MonoBehaviour
         UnityEditor.Handles.Label(transform.position + Vector3.up * 1.5f, keyboardInfo, style);
     }
     #endregion
+#endif
 }

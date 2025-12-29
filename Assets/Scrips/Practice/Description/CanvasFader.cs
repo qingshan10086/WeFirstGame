@@ -145,7 +145,7 @@ public class CanvasFader : MonoBehaviour
         targetCanvas.gameObject.SetActive(false);
     }
     #endregion
-
+#if UNITY_EDITOR
     #region 编辑器可视化
     private void OnDrawGizmosSelected()
     {
@@ -178,4 +178,5 @@ public class CanvasFader : MonoBehaviour
         UnityEditor.Handles.Label(transform.position + Vector3.up * 1.5f, canvasInfo, style);
     }
     #endregion
+#endif
 }

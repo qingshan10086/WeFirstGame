@@ -269,11 +269,12 @@ public class BreakableBrick : MonoBehaviour
     {
         // 可以在这里添加复原特效
     }
-    
+
     // 已删除依赖动画长度的方法，现在由动画事件控制动画结束
     #endregion
-
+#if UNITY_EDITOR
     #region 调试辅助
+
     private void OnDrawGizmosSelected()
     {
         // 根据状态设置不同颜色
@@ -306,5 +307,6 @@ public class BreakableBrick : MonoBehaviour
                 $"状态: {state}\n破碎延迟: {breakDelay}s\n复原延迟: {respawnDelay}s");
         }
     }
-    #endregion
+#endregion
+#endif
 }

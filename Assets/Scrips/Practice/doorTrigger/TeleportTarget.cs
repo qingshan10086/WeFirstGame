@@ -28,7 +28,7 @@ public class TeleportTarget : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
     }
     #endregion
-    
+#if UNITY_EDITOR
     #region 编辑器可视化
     private void OnDrawGizmosSelected()
     {
@@ -59,4 +59,5 @@ public class TeleportTarget : MonoBehaviour
         UnityEditor.Handles.Label(transform.position + Vector3.up * (targetSize / 2 + 0.5f), targetInfo, style);
     }
     #endregion
+#endif
 }

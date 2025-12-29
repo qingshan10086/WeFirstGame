@@ -260,7 +260,7 @@ public class CameraStopController : MonoBehaviour
         stopPosition = newStopPosition;
     }
     #endregion
-    
+#if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         // 更新停止位置（编辑器中也能实时更新）
@@ -393,4 +393,5 @@ public class CameraStopController : MonoBehaviour
         labelStyle.fontStyle = FontStyle.Bold;
         UnityEditor.Handles.Label(currentStopPosition + Vector3.up * 0.5f, "Camera Stop Point", labelStyle);
     }
+#endif
 }

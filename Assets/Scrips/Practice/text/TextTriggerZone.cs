@@ -339,7 +339,7 @@ public class TextTriggerZone : MonoBehaviour
         // 标记为已触发
         hasTriggered = true;
     }
-    
+#if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
         // 在编辑器中绘制矩形触发区域的范围
@@ -373,4 +373,5 @@ public class TextTriggerZone : MonoBehaviour
         hasTriggered = false;
         Debug.Log($"TextTriggerZone: 已重置触发状态");
     }
+#endif
 }

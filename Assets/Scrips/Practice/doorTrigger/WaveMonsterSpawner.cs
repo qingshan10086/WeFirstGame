@@ -399,7 +399,7 @@ public class WaveMonsterSpawner : MonoBehaviour
         return isAllWavesCompleted;
     }
     #endregion
-    
+#if UNITY_EDITOR
     #region 编辑器可视化
     private void OnDrawGizmosSelected()
     {
@@ -450,4 +450,5 @@ public class WaveMonsterSpawner : MonoBehaviour
         }
     }
     #endregion
+#endif
 }

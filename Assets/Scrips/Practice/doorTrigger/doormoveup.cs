@@ -145,6 +145,7 @@ public class doormoveup : MonoBehaviour
     /// <summary>
     /// 在Scene视图中绘制移动路径和目标标记
     /// </summary>
+    #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         if (!showMoveTarget) return;
@@ -203,4 +204,5 @@ public class doormoveup : MonoBehaviour
             #endif
         }
     }
+#endif
 }

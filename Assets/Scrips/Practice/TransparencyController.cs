@@ -169,7 +169,7 @@ public class TransparencyController : MonoBehaviour
         fadeSpeed = Mathf.Max(0.1f, speed);
     }
     #endregion
-    
+#if UNITY_EDITOR
     #region 编辑器可视化
     private void OnDrawGizmosSelected()
     {
@@ -194,4 +194,5 @@ public class TransparencyController : MonoBehaviour
         UnityEditor.Handles.Label(transform.position + Vector3.up * (bounds.extents.y + 0.5f), debugText, style);
     }
     #endregion
+#endif
 }

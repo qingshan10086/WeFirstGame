@@ -129,7 +129,7 @@ public class TriggerEventManager : MonoBehaviour
         hasTriggered = false;
     }
     #endregion
-
+#if UNITY_EDITOR
     #region 编辑器可视化
     private void OnDrawGizmosSelected()
     {
@@ -172,4 +172,5 @@ public class TriggerEventManager : MonoBehaviour
         UnityEditor.Handles.Label(labelPosition, triggerInfo, style);
     }
     #endregion
+#endif
 }

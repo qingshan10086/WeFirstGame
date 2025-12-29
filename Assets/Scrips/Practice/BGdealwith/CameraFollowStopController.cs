@@ -267,7 +267,7 @@ public class CameraFollowStopController : MonoBehaviour
         }
     }
     #endregion
-
+#if UNITY_EDITOR
     #region 编辑器可视化
     private void OnDrawGizmosSelected()
     {
@@ -400,4 +400,5 @@ public class CameraFollowStopController : MonoBehaviour
         }
     }
     #endregion
+#endif
 }

@@ -142,7 +142,7 @@ public class MonsterDeathDetector : MonoBehaviour
         return detectedMonsters.Count;
     }
     #endregion
-    
+#if UNITY_EDITOR
     #region 编辑器可视化
     private void OnDrawGizmosSelected()
     {
@@ -193,4 +193,5 @@ public class MonsterDeathDetector : MonoBehaviour
         UnityEditor.Handles.Label(transform.position + Vector3.up * (detectionSize.y / 2 + 1f), detectorInfo, detectorStyle);
     }
     #endregion
+#endif
 }

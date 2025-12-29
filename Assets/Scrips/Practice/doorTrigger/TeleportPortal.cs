@@ -140,7 +140,7 @@ public class TeleportPortal : MonoBehaviour
         requirePlayerInput = requireInput;
     }
     #endregion
-    
+#if UNITY_EDITOR
     #region 编辑器可视化
     private void OnDrawGizmosSelected()
     {
@@ -210,4 +210,5 @@ public class TeleportPortal : MonoBehaviour
         Gizmos.matrix = Matrix4x4.identity;
     }
     #endregion
+#endif
 }

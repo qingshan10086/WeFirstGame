@@ -129,7 +129,7 @@ public class TransparencyEnabler : MonoBehaviour
         }
     }
     #endregion
-
+#if UNITY_EDITOR
     #region 编辑器可视化
     private void OnDrawGizmosSelected()
     {
@@ -154,4 +154,5 @@ public class TransparencyEnabler : MonoBehaviour
         UnityEditor.Handles.Label(transform.position + Vector3.up * 1.5f, transparencyInfo, style);
     }
     #endregion
+#endif
 }
