@@ -19,7 +19,12 @@ public class BloodCheat : MonoBehaviour
         {
                 if (Input.GetKeyDown(KeyCode.Keypad5))
                 {
-                    player.currentHealth += 50;
+                        player.currentHealth += 50;
+                        if(player.currentHealth > player.GetMaxHealthValue())
+                        {
+                         player.currentHealth = player.GetMaxHealthValue();
+                        }
+
                 }
                 else if (Input.GetKeyDown(KeyCode.Keypad6))
                 {
