@@ -617,6 +617,7 @@ GameObject:
   - component: {fileID: 7582317794949743707}
   - component: {fileID: 9217247252549613105}
   - component: {fileID: 2367305869808827641}
+  - component: {fileID: 8695508490067366148}
   m_Layer: 7
   m_Name: enemy_nothing 1
   m_TagString: Enemy
@@ -808,6 +809,20 @@ MonoBehaviour:
   arrowPrefab: {fileID: 8786712800607332097, guid: a180aa1b1b735c04c8e92070f35b662d, type: 3}
   arrowSpeed: 7
   moveTime: 3
+--- !u!114 &8695508490067366148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8095693384814998798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c436395126cc069498576acf9c57df7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashDuration: 0
+  hitMat: {fileID: 2100000, guid: ba74bf30a384e644b830979ee9a04519, type: 2}
 --- !u!1 &8279682480201687668
 GameObject:
   m_ObjectHideFlags: 0

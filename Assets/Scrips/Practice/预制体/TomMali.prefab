@@ -318,6 +318,7 @@ GameObject:
   - component: {fileID: 6188076724566246656}
   - component: {fileID: 8142906280498364604}
   - component: {fileID: 7056074476755309926}
+  - component: {fileID: -9195787542391779193}
   m_Layer: 7
   m_Name: TomMali
   m_TagString: Enemy
@@ -526,3 +527,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-9195787542391779193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8005287290999235138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c436395126cc069498576acf9c57df7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashDuration: 0
+  hitMat: {fileID: 2100000, guid: ba74bf30a384e644b830979ee9a04519, type: 2}

@@ -17,12 +17,11 @@ public class GrassTrigger : MonoBehaviour
     
     // Update is called once per frame
     void OnTriggerEnter2D(Collider2D other)
-    {
-                           BloodMusicManager.Instance.SwitchBackgroundMusic(grassSound,fadeDuration);
-        
+    {   
         if (other.CompareTag("Player"))
         {
             Debug.Log("玩家进入了草地");
+            BloodMusicManager.Instance.SwitchBackgroundMusic(grassSound, fadeDuration);
             SceneFade.Instance.QuickFadeIn();
         }
         

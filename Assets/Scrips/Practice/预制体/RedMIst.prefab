@@ -346,6 +346,7 @@ GameObject:
   - component: {fileID: 7735325312437443050}
   - component: {fileID: 7457117322412917942}
   - component: {fileID: 6523346356023599809}
+  - component: {fileID: -2366133105510664118}
   m_Layer: 7
   m_Name: RedMIst
   m_TagString: Untagged
@@ -483,6 +484,7 @@ MonoBehaviour:
   slashDistance: 3.2
   generationDistance: 6
   upOffset: 3
+  Deathsign: 0
 --- !u!50 &7457117322412917942
 Rigidbody2D:
   serializedVersion: 4
@@ -559,3 +561,17 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   currentHealth: 100
+--- !u!114 &-2366133105510664118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7821099102117269967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c436395126cc069498576acf9c57df7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashDuration: 0
+  hitMat: {fileID: 2100000, guid: ba74bf30a384e644b830979ee9a04519, type: 2}

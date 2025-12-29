@@ -125,7 +125,7 @@ public class AnimTrigger : MonoBehaviour
                 
                 // 实例化箭预制体
                 GameObject arrow = Object.Instantiate(enemy.arrowPrefab, spawnPosition, Quaternion.identity);
-                BloodMusicManager.Instance.PreloadAudioClips(Hello);
+     
                 BloodMusicManager.Instance.PlaySoundEffect(Hello);
                 if (arrow != null)
                 {
