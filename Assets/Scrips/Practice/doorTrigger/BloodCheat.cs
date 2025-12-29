@@ -6,7 +6,6 @@ using UnityEngine;
 public class BloodCheat : MonoBehaviour
 {
     public PlayerStats player;
-    public Enemy RedMist;
     void Start()
     {
         
