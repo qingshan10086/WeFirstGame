@@ -6707,7 +6707,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -5
+  m_SortingOrder: -6
   m_Sprite: {fileID: 21300000, guid: 335e30b416040a24b88a1c16eda337f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -28598,7 +28598,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9039676220090981123, guid: 06a9b3d8dcc28ac4cbbd4b53c739ba98, type: 3}
       propertyPath: maxHealth.baseValue
-      value: 349
+      value: 369
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
